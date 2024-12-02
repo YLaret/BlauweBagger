@@ -13,7 +13,6 @@ def overview():
 @app.route("/tableview")
 def tableview():
     motors = sF.getTable("motors")
-    print(motors)
     return render_template('tableview.html',motors=motors)
 
 @app.route("/program")
