@@ -1,0 +1,27 @@
+Overview of the main database (machine.db)
+TABLES:
+
+*MOTORS*
+Switch=>describes the name of the switch (e.g. EM01)
+Name=>describes the function of the (e.g. Drum Filter or Hydrocycloon)
+State=>describes current state: 0->off, 1->on, != {0,1}->differnt error state (e.g. 4->no connection possible, all error states are described in the states table)
+StartTime=>describes the date and time the machine has started
+StopTime=>describes the date and time the machine has stopped
+TimeNeeded=>describes the desired motor run time in minutes
+TimeDone=>describes the time the motor has already run in minutes
+
+*SWITCHES*
+Switches=>describes the name of the switch (e.g. EM01)
+Ipaddress=>describes the local ip (e.g. 192.168.1.123)
+Localkey=>hold the localkey value for the tuya api
+
+*METERS*
+MeterID=>used to identify the meter
+Name=>used to describe the meter
+Unit=>describes the measured quantity
+Value=>absolute value of the measured quantity
+
+*STATES*
+Code=>number used to identify the state
+Description=>describes the state
+Error=>indicates if this is an error state (0->no, 1->yes)
