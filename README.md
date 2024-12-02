@@ -14,6 +14,12 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 * Log and display errors and stalls
 * Be transferable to new systems
 
+## Installation
+* Make sure python and pip are installed
+* Clone the repository `git clone https://github.com/YLaret/BlauweBagger`
+* Go to the BlauweBagger directory `cd BlauweBagger`
+* Install the python dependencies `pip install -r requirements.txt`
+
 ## Running the webserver
 To run the webserver in developer modus:
 * `cd server`
