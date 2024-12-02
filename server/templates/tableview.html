@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block main %}
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Switch</th>
+					<th>State</th>
+					<th>Start Time</th>
+					<th>Stop Time</th>
+					<th>Time Remaining</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for motor in motors %}
+					<tr>
+						<td>{{ motor.name }}</td>
+						<td>{{ motor.switch }}</td>
+						<td>{{ motor.state }}</td>
+						<td>{{ motor.startTime }}</td>
+						<td>{{ motor.stopTime }}</td>
+						<td>{{ motor.timeNeeded - motor.timeDone }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
