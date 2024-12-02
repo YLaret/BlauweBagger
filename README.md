@@ -12,3 +12,4 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 * Pump control based on flowmeter
 * Log pump data (flow and power)
 * Log and display errors and stalls
+* Be transferable to new systems
