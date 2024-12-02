@@ -24,5 +24,5 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 To run the webserver in developer modus:
 * `cd server`
 * `export FLASK_APP=server`
-* `python3 -m flask run --host=0.0.0.0`
-* After making some changes to the `server.py`, the server can be stopped by Ctr-C and restarted by the previous command
+* `flask run --host=0.0.0.0`
+* After making some changes to the `server.py`, the server can be stopped by Ctr+C and restarted by the previous command
