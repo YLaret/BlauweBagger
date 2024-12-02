@@ -19,7 +19,7 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 * Way to create programs and controll machine manually
 * Tableview with meters table, motors table and log window
 * Schematicview with visualization of the plant (motor and flow meter states) and a log window
-* Program view
+* Program view with timing possibilities
 
 ## Installation
 Make sure python and pip are installed
