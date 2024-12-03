@@ -21,5 +21,65 @@
 			</tbody>
 		</table>
 	</div>
+	<div>
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in meters[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for meter in meters %}
+                                        <tr>
+                                                {% for key, value in meter.items() %}
+                                                        <td>{{value}}</th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                        </tbody>
+                </table>
+        </div>
+	<div>
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in switches[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for switch in switches %}
+                                        <tr>
+                                                {% for key, value in switch.items() %}
+                                                        <td>{{value}}</th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                        </tbody>
+                </table>
+        </div>
+	<div>
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in states[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for state in states %}
+                                        <tr>
+                                                {% for key, value in state.items() %}
+                                                        <td>{{value}}</th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                        </tbody>
+                </table>
+        </div>
 
 {% endblock %}

@@ -11,8 +11,7 @@ def getTable(table):
 
     # turn the table into a dict list
     result = []
-    ls = db.execute('SELECT * FROM ' + table)
-    for li in ls:
-        result.append(dict(zip(ns,li)))
+    for ci in cs:
+        result.append(dict(zip(ns,ci)))
 
     return result
