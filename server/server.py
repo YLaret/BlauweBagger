@@ -21,7 +21,10 @@ def tableview():
 @app.route("/program")
 def program():
     motors = sF.getTable("motors")
-    return render_template('program.html',motors=motors)
+    meters = sF.getTable("meters")
+    switches = sF.getTable("switches")
+    states = sF.getTable("states")
+    return render_template('program.html',motors=motors,meters=meters,switches=switches,states=states)
 
 @app.route("/program/<table>", methods=["POST"])
 def protramMotors(table):
