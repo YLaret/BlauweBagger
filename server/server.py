@@ -23,7 +23,7 @@ def program():
     motors = sF.getTable("motors")
     return render_template('program.html',motors=motors)
 
-@app.route("/program/motors", methods=["POST"])
-def protramMotors():
-    sF.updateTable("motors")
+@app.route("/program/<table>", methods=["POST"])
+def protramMotors(table):
+    sF.updateTable(table)
     return redirect("/tableview")

@@ -16,10 +16,10 @@
                                 </tr>
                         </thead>
                         <tbody>
-                               	{% for motor in motors %}
+                               	{% for item in motors %}
                                        	<tr>
-                                               	{% for key, value in motor.items() %}
-							<td><input name="{{motor.switch + key}}" value="{{value}}" /></th>
+                                               	{% for key, value in item.items() %}
+							<td><input name="{{item.id + key}}" value="{{value}}" /></th>
                                                	{% endfor %}
                                        	</tr>
                                 {% endfor %}
@@ -27,6 +27,75 @@
                         </tbody>
                 </table>
 		</form>
+        </div>
+	<div>
+                <form action="/program/meters" method="POST">
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in meters[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for item in meters %}
+                                        <tr>
+                                                {% for key, value in item.items() %}
+                                                        <td><input name="{{item.id + key}}" value="{{value}}" /></th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                                <tr><td><input type="submit" value="Apply"/></td></tr>
+                        </tbody>
+                </table>
+                </form>
+        </div>
+	<div>
+                <form action="/program/switches" method="POST">
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in switches[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for item in switches %}
+                                        <tr>
+                                                {% for key, value in item.items() %}
+                                                        <td><input name="{{item.id + key}}" value="{{value}}" /></th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                                <tr><td><input type="submit" value="Apply"/></td></tr>
+                        </tbody>
+                </table>
+                </form>
+        </div>
+	<div>
+                <form action="/program/states" method="POST">
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in states[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                {% for item in states %}
+                                        <tr>
+                                                {% for key, value in item.items() %}
+							<td><input name="{{item.id + key}}" value="{{value}}" /></th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                                <tr><td><input type="submit" value="Apply"/></td></tr>
+                        </tbody>
+                </table>
+                </form>
         </div>
 
 {% endblock %}
