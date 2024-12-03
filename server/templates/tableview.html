@@ -5,23 +5,17 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Switch</th>
-					<th>State</th>
-					<th>Start Time</th>
-					<th>Stop Time</th>
-					<th>Time Remaining</th>
+					{% for key, value in motors[0].items() %}
+						<th>{{key}}</th>
+					{% endfor %}
 				</tr>
 			</thead>
 			<tbody>
 				{% for motor in motors %}
 					<tr>
-						<td>{{ motor.name }}</td>
-						<td>{{ motor.switch }}</td>
-						<td>{{ motor.state }}</td>
-						<td>{{ motor.startTime }}</td>
-						<td>{{ motor.stopTime }}</td>
-						<td>{{ motor.timeNeeded - motor.timeDone }}</td>
+						{% for key, value in motor.items() %}
+							<td>{{value}}</th>
+						{% endfor %}
 					</tr>
 				{% endfor %}
 			</tbody>
