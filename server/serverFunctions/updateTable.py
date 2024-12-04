@@ -15,8 +15,8 @@ def updateTable(table):
     for ci in cs:
         for ni in ns:
             # get form data
-            value = request.form.get(ci[0] + ni)
+            value = request.form.get(str(ci[0]) + str(ni))
             # update database
-            db.execute('UPDATE ' + table + ' SET ' + ni + '="' + value + '" WHERE ' + ns[0] + '="' + ci[0] + '"')
+            db.execute('UPDATE ' + str(table) + ' SET ' + str(ni) + '="' + str(value) + '" WHERE ' + str(ns[0]) + '="' + str(ci[0]) + '"')
     db.commit()
     return
