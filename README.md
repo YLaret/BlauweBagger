@@ -38,4 +38,5 @@ To run the webserver in developer modus:
 To run the machine program in developer modus:
 * `cd machine`
 * `python machine.py`
+
 Exit the program with Ctr+C
