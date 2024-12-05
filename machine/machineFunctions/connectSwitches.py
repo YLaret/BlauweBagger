@@ -13,6 +13,7 @@ def connectSwitches():
 	# connect to the tuya switches
 	switches = []
 	for switch in switchdata:
-		switches.append(tinytuya.OutletDevice(dev_id=switch[0],address=switch[1],local_key=switch[2], version=3.3)
+		switches.append(tinytuya.OutletDevice(dev_id=switch[0],address=switch[1],local_key=switch[2], version=3.3))
 
+        # return the tuya connected switches
 	return switches
