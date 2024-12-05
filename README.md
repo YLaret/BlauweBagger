@@ -36,6 +36,6 @@ To run the webserver in developer modus:
 
 ## Running the machine program
 To run the machine program in developer modus:
-# `cd machine`
-# `python machine.py`
+* `cd machine`
+* `python machine.py`
 Exit the program with Ctr+C
