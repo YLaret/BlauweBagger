@@ -5,7 +5,7 @@ import sqlite3
 
 def updateTable(table):
     # connect to database
-    db = sqlite3.connect('../data/machine.db')
+    db = sqlite3.connect('../data/machine.db',timeout=5)
 
     # get the possible rows and columns
     cs = db.execute('SELECT * FROM ' + table)

@@ -3,7 +3,7 @@ import sqlite3
 
 def getTable(table):
     # connect to database
-    db = sqlite3.connect('../data/machine.db')
+    db = sqlite3.connect('../data/machine.db',timeout=0.3)
 
     # get the names of the columns
     cs = db.execute('SELECT * FROM ' + table)

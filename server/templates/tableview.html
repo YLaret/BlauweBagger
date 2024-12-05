@@ -1,85 +1,27 @@
 {% extends "layout.html" %}
 
 {% block main %}
-	<div>
-		<table>
-			<thead>
-				<tr>
-					{% for key, value in motors[0].items() %}
-						<th>{{key}}</th>
-					{% endfor %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for motor in motors %}
-					<tr>
-						{% for key, value in motor.items() %}
-							<td>{{value}}</th>
-						{% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
-	<div>
-                <table>
-                        <thead>
-                                <tr>
-                                        {% for key, value in meters[0].items() %}
-                                                <th>{{key}}</th>
-                                        {% endfor %}
-                                </tr>
-                        </thead>
-                        <tbody>
-                                {% for meter in meters %}
-                                        <tr>
-                                                {% for key, value in meter.items() %}
-                                                        <td>{{value}}</th>
-                                                {% endfor %}
-                                        </tr>
-                                {% endfor %}
-                        </tbody>
-                </table>
-        </div>
-	<div>
-                <table>
-                        <thead>
-                                <tr>
-                                        {% for key, value in switches[0].items() %}
-                                                <th>{{key}}</th>
-                                        {% endfor %}
-                                </tr>
-                        </thead>
-                        <tbody>
-                                {% for switch in switches %}
-                                        <tr>
-                                                {% for key, value in switch.items() %}
-                                                        <td>{{value}}</th>
-                                                {% endfor %}
-                                        </tr>
-                                {% endfor %}
-                        </tbody>
-                </table>
-        </div>
-	<div>
-                <table>
-                        <thead>
-                                <tr>
-                                        {% for key, value in states[0].items() %}
-                                                <th>{{key}}</th>
-                                        {% endfor %}
-                                </tr>
-                        </thead>
-                        <tbody>
-                                {% for state in states %}
-                                        <tr>
-                                                {% for key, value in state.items() %}
-                                                        <td>{{value}}</th>
-                                                {% endfor %}
-                                        </tr>
-                                {% endfor %}
-                        </tbody>
-                </table>
-        </div>
-
+	{% for table in tables %}
+		<div>
+			<h1>{{ tableNames[loop.index-1] }}</h1>
+                	<table>
+                        	<thead>
+                                	<tr>
+					{% for key, value in table[0].items() %}
+                                        	        <th>{{key}}</th>
+                                 	       {% endfor %}
+                                	</tr>
+                       		</thead>
+                        	<tbody>
+                                	{% for item in table %}
+                                        	<tr>
+                                                	{% for key, value in item.items() %}
+                                                	        <td>{{value}}</th>
+                                        	        {% endfor %}
+                                	        </tr>
+                        	        {% endfor %}
+                	        </tbody>
+        	        </table>
+	        </div>
+	{% endfor %}
 {% endblock %}

@@ -6,25 +6,26 @@ import serverFunctions as sF
 
 app = Flask(__name__)
 
+# define table names, this will need something different in the future
+tableNames = ["motors","meters","states","switches","program","programStatus"]
+
 @app.route("/")
 def overview():
     return render_template('overview.html')
 
 @app.route("/tableview")
 def tableview():
-    motors = sF.getTable("motors")
-    meters = sF.getTable("meters")
-    switches = sF.getTable("switches")
-    states = sF.getTable("states")
-    return render_template('tableview.html',motors=motors,meters=meters,switches=switches,states=states)
+    tables = []
+    for tableName in tableNames:
+        tables.append(sF.getTable(tableName))
+    return render_template('tableview.html',tables=tables,tableNames=tableNames)
 
 @app.route("/program")
 def program():
-    motors = sF.getTable("motors")
-    meters = sF.getTable("meters")
-    switches = sF.getTable("switches")
-    states = sF.getTable("states")
-    return render_template('program.html',motors=motors,meters=meters,switches=switches,states=states)
+    tables = []
+    for tableName in tableNames:
+        tables.append(sF.getTable(tableName))
+    return render_template('program.html',tables=tables,tableNames=tableNames)
 
 @app.route("/program/<table>", methods=["POST"])
 def protramMotors(table):
