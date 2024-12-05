@@ -33,3 +33,9 @@ To run the webserver in developer modus:
 * `export FLASK_APP=server`
 * `flask run --host=0.0.0.0`
 * After making some changes to the `server.py`, the server can be stopped by Ctr+C and restarted by the previous command
+
+## Running the machine program
+To run the machine program in developer modus:
+# `cd machine`
+# `python machine.py`
+Exit the program with Ctr+C
