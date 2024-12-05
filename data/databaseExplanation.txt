@@ -25,3 +25,12 @@ Value=>absolute value of the measured quantity
 id=>number used to identify the state
 Description=>describes the state
 Error=>indicates if this is an error state (0->no, 1->yes)
+
+*PROGRAM*
+id=>Name of the switch
+name=>name of the device connected to the switch
+
+*PROGRAMSTATE*
+id=>start (yes=1, no=0)
+running=>yes=1, no=0
+runtime=>time since start in seconds
