@@ -1,4 +1,4 @@
-Overview of the main database (machine.db)
+Overview of the machine database (machine.db)
 TABLES:
 
 *MOTORS*
@@ -12,23 +12,27 @@ timeDone=>describes the time the motor has already run in minutes
 
 *SWITCHES*
 id=>describes the name of the switch (e.g. EM01)
-Ipaddress=>describes the local ip (e.g. 192.168.1.123)
-Localkey=>hold the localkey value for the tuya api
+ipaddress=>describes the local ip (e.g. 192.168.1.123)
+localkey=>hold the localkey value for the tuya api
 
 *METERS*
 id=>used to identify the meter
-Name=>used to describe the meter
-Unit=>describes the measured quantity
-Value=>absolute value of the measured quantity
+name=>used to describe the meter
+unit=>describes the measured quantity
+value=>absolute value of the measured quantity
 
 *STATES*
 id=>number used to identify the state
-Description=>describes the state
-Error=>indicates if this is an error state (0->no, 1->yes)
+description=>describes the state
+error=>indicates if this is an error state (0->no, 1->yes)
 
 *PROGRAM*
 id=>Name of the switch
 name=>name of the device connected to the switch
+timeSpent=>time in seconds that the switch has run
+timeNeeded=>time in seconds that the switch needs to run
+delaySpent=>time in seconds that the switch has delayed
+delayNeeded=>time in seconds that the switch needs to delay
 
 *PROGRAMSTATE*
 id=>start (yes=1, no=0)
