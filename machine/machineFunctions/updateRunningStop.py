@@ -8,7 +8,8 @@ def updateRunningStop():
     # stop running var
     db.execute("UPDATE programStatus SET running=0 WHERE id=0")
 
-    # commit changes
+    # commit changes and close database
     db.commit()
+    db.close()
     
     return

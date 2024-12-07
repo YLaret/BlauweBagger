@@ -18,5 +18,8 @@ def updateTable(table):
             value = request.form.get(str(ci[0]) + str(ni))
             # update database
             db.execute('UPDATE ' + str(table) + ' SET ' + str(ni) + '="' + str(value) + '" WHERE ' + str(ns[0]) + '="' + str(ci[0]) + '"')
+    
+    # commit changes and close connection
     db.commit()
+    db.close()
     return

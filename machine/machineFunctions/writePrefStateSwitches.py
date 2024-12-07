@@ -12,10 +12,13 @@ def writePrefStateSwitches(switches,startTime):
     secondsPassed = (currentTime - startTime).total_seconds()
 
     # program switches according to program
-    db = sqlite3.connect("../data/machine.db")
+    db = sqlite3.connect("../data/machine.db",timeout=5))
 
     # get the program
     program = db.execute("SELECT * FROM program").fetchall()
+
+    # close the database
+    db.close()
 
     # set the preferred state of each switch
     for i,switch in enumerate(switches):

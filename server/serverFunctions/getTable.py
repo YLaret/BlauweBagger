@@ -3,10 +3,11 @@ import sqlite3
 
 def getTable(table):
     # connect to database
-    db = sqlite3.connect('../data/machine.db',timeout=0.3)
+    db = sqlite3.connect('../data/machine.db',timeout=5)
 
-    # get the names of the columns
+    # get the names of the columns and close the connection
     cs = db.execute('SELECT * FROM ' + table)
+    db.close()
     ns = [description[0] for description in cs.description]
 
     # turn the table into a dict list
