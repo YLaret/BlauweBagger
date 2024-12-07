@@ -7,8 +7,8 @@ def getTable(table):
 
     # get the names of the columns and close the connection
     cs = db.execute('SELECT * FROM ' + table)
-    db.close()
     ns = [description[0] for description in cs.description]
+    db.close()
 
     # turn the table into a dict list
     result = []
