@@ -6,7 +6,7 @@ import sqlite3
 
 def updateStartTime(startTime):
     # connect to database
-    db = sqlite3.connect("../data/machine.db",timeout=5))
+    db = sqlite3.connect("../data/machine.db",timeout=5)
 
     # get the current program status
     ps = db.execute("SELECT * FROM programStatus").fetchall()
