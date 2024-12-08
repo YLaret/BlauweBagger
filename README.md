@@ -6,6 +6,10 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 * `machine.py` will rely heavily on the [TinyTuya](https://github.com/jasonacox/tinytuya) library for interaction with switches
 * `server.py` will be based around Flask and nginx
 
+### Database Architecture
+The databse follows a relational model with the following layout:
+![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/docs/databaseArchitecture.pdf)
+
 ## General Design Requirements
 * Controlling pumps (timed and manual) using WebUI
 * Flowmeter visualization in WebUI
