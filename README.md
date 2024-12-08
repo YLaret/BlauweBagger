@@ -8,7 +8,7 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 
 ### Database Architecture
 The databse follows a relational model with the following layout:
-![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/databaseArchitecture.pdf)
+![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/databaseArchitecture.jpg)
 
 ## General Design Requirements
 * Controlling pumps (timed and manual) using WebUI
