@@ -25,7 +25,7 @@ while True:
         print("Machine ready ....")
         
         # shutdown all switches, disabled for test
-        #mF.shutDownSwitches(switches)
+        mF.shutDownSwitches(switches)
 
         # update running status
         mF.updateRunningStop()

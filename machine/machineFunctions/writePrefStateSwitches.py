@@ -28,11 +28,11 @@ def writePrefStateSwitches(switches,startTime):
         # if time passed greater then the starting delay and smaller than the starting delay and the needed runtime
         if secondsPassed > program[i][5] and secondsPassed < (program[i][3] + program[i][5]):
             # turn on switch, disabled for test
-            #switch.turn_on()
+            switch.turn_on()
             print("switch "+str(i)+" turning on")
         else:
             # turn off switch, disabled for test
-            #switch.turn_off()
+            switch.turn_off()
             print("switch "+str(i)+" turning off")
 
     return
