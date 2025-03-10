@@ -1,0 +1,25 @@
+Tuya devices kunnen op 2 manieren gebruikt worden => home assistant en via node red
+01-04-2024
+
+Voor beide methodes heb je de local key nodig. Onderstaande tutorial legt uit hoe je deze verkrijgt
+https://smarthomecircle.com/how-to-setup-local-tuya-in-home-assistant
+
+#####LET OP#####
+Wanneer je het apparaat opnieuw op een ander netwerk instelt via bijv de smartlife app veranderd de local key....
+Deze moet je dan opnieuw retrieven via de Cloud api website van tuya
+Localtuya werkt wel zonder internet. Maar 1e keer instellen moet met internet.
+Belangrijk is om geen cloud api account te koppelen via home assistant.
+
+Home Assistant:
+LocalTuya HACS addon is nodig om tuya devices lokaal te benaderen ipv via de tuya server
+Add onn is te downloaden via HACS
+https://github.com/rospogrigio/localtuya 
+https://smarthomecircle.com/how-to-setup-local-tuya-in-home-assistant
+
+Node red:
+Om tuya devices via node red te benaderen/gebruiken moet de volgende library geïnstalleerd worden
+node-red-contrib-tuya-smart-device 5.2.0
+https://flows.nodered.org/node/node-red-contrib-tuya-smart-device
+
+
+

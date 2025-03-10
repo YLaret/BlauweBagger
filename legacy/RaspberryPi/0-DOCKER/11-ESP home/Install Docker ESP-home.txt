@@ -1,0 +1,31 @@
+
+Met fix TttyUSB0 port gedefinieerd.
+
+docker run \
+-d --name esphome \
+--restart=always \
+-e TZ=Europe/Amsterdam \
+--net=host \
+-it \
+-p 6052:6052 \
+-v /docker-volumes/esphome:/config \
+--device=/dev/ttyUSB0 \
+esphome/esphome
+
+
+Default zonder port definitie:
+
+docker run \
+-d --name esphome \
+--restart=always \
+-e TZ=Europe/Amsterdam \
+--net=host \
+-it \
+-p 6052:6052 \
+-v /docker-volumes/esphome:/config \
+--device=/dev/ttyUSB0 \
+esphome/esphome
+
+Tijdelijk Privileged, zonder werkt e.e.a. niet
+docker run -d --name esphome --restart=always -e TZ=Europe/Amsterdam --net=host -it -p 6052:6052 --privileged -v /docker-volumes/esphome:/config --device=/dev/ttyUSB0 esphome/esphome
+

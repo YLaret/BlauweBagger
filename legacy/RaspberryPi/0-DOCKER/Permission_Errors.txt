@@ -1,0 +1,80 @@
+https://www.warp.dev/terminus/sudo-chown
+
+Each file and directory belongs to a user and a group. Default is root
+pi user is (no longer) the root user. So if you want permissions/ownership to certain folder you have to set those permissions
+This can be down using chmod and chown. chmod will be gone after reboot and chown is permanent.
+
+!!!!!!chown can break your system!!!!!!
+
+home folder is usually accessible by the pi user
+docker-volumes is not for example. So if you want to run a python venv inside this folder you will need to gain ownership (or be part of the group)
+$sudo chown pi:pi -R /docker-volumes
+$sudo chown <user>:<group> -R /docker-volumes
+
+if you wanna check main folders permissions:
+ls -l /
+on the left it shows user and on the right group
+
+
+##########################Docker Device permission Error nr 13##########################################
+When you are not able to acces a device outside the container, for example "/dev/ttyUSB0" you should add the device to the docker compose file.
+$  devices:
+     - /dev/ttyUSB0:/dev/ttyUSB0
+
+If it still doesn't work you can add a <user> to the docker compose file with the rights to the correct groups.
+Setting "user:root" will solve the issue
+$ user:root #This is a preferred method over privileged
+
+A better solution is to add the "containers user" to the group that owns/manages the device instead of using "root"
+This can be done by adding the following code to the docker compose file
+$ group_add:
+     - dialout #for example
+     -"46" #numerical version of group, quotes are mandatory
+
+Usually docker wants the numerical version of the group. This number can be different inside the container than outside.
+In order find the group number inside the container you must get inside the container on the command/bash line and run the following code:
+$ docker exec -it <container> bash
+$ ls -ld <path to device>
+example output: crw-rw----    1 root     46        188,   0 Apr 24 20:11 /dev/ttyUSB0
+root is the user and 46 is the group
+Add this group to the compose file and it should work
+https://github.com/moby/moby/issues/43019  
+########################################################################################################
+
+################
+Privileged vs Root
+Better to use root inside container for security
+https://www.howtogeek.com/devops/privileged-vs-root-in-docker-whats-the-difference/
+https://security.stackexchange.com/questions/264333/in-practice-how-should-you-run-privileged-or-root-container
+https://itnext.io/docker-and-kubernetes-root-vs-privileged-9d2a37453dec
+################
+
+###############
+https://www.geeksforgeeks.org/how-to-check-the-groups-a-user-belongs-to-in-linux/
+check in which groups <user> is:
+groups <user>
+
+Find group name and owner(user) of folder
+ls -ld <path to folder>
+
+Find group name and owner(user) of file
+ls -ld <path to file>
+example: ls -ld /dev/ttyUSB0
+
+ls -la <path to file>
+#does the same but also includes files with . at the beginning (hidden files)
+###############
+
+###############
+####Add user to existing group
+https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/
+(sudo) usermod -a -G <group> <user>
+###############
+
+
+################
+Docker users root/non root with limited acces
+Haven't tested
+https://medium.com/@mccode/understanding-how-uid-and-gid-work-in-docker-containers-c37a01d01cf
+https://cloudyuga.guru/blogs/manage-docker-as-non-root-user/
+################

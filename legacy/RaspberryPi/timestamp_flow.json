@@ -1,0 +1,129 @@
+[
+    {
+        "id": "41a6cefcd17de86b",
+        "type": "change",
+        "z": "3089909a.079d9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "date",
+                "pt": "msg",
+                "to": "$now()",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 1500,
+        "wires": [
+            [
+                "acf4b5d41512d4e9"
+            ]
+        ]
+    },
+    {
+        "id": "178547b886c63523",
+        "type": "inject",
+        "z": "3089909a.079d9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Appeltje",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 610,
+        "y": 1500,
+        "wires": [
+            [
+                "41a6cefcd17de86b"
+            ]
+        ]
+    },
+    {
+        "id": "f7ce935fe1d15057",
+        "type": "debug",
+        "z": "3089909a.079d9",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "d008c4aebdf710f1",
+        "type": "json",
+        "z": "3089909a.079d9",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1330,
+        "y": 1500,
+        "wires": [
+            [
+                "f7ce935fe1d15057"
+            ]
+        ]
+    },
+    {
+        "id": "acf4b5d41512d4e9",
+        "type": "function",
+        "z": "3089909a.079d9",
+        "name": "Make log data",
+        "func": "//var date=msg.date \nvar date=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar parameter=11234567890;\n\nvar Payload={\"Date\":date,\"Parameter\":parameter};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 1500,
+        "wires": [
+            [
+                "d008c4aebdf710f1",
+                "d7c6a0a3d1b38f94"
+            ]
+        ]
+    },
+    {
+        "id": "d7c6a0a3d1b38f94",
+        "type": "debug",
+        "z": "3089909a.079d9",
+        "name": "debug 32",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 1560,
+        "wires": []
+    }
+]

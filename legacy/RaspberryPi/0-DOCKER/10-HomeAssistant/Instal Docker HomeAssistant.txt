@@ -1,0 +1,28 @@
+Zie voor meer informatie:
+https://www.home-assistant.io/docs/installation/docker/
+
+Volumes:
+onderstaande volume directories aanmaken:
+
+/docker-volumes/homeassistant/config
+
+docker run -d \
+  --name homeassistant \
+  --restart=unless-stopped \
+  -p 8123:8123 \
+  -e "TZ=Europe/Amsterdam" \
+  -v /etc/localtime:/etc/localtime:ro \
+  -v /docker-volumes/homeassistant/config:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
+
+OR
+
+docker run -d --name homeassistant --restart=unless-stopped -p 8123:8123 -e "TZ=Europe/Amsterdam" -v /etc/localtime:/etc/localtime:ro -v /docker-volumes/homeassistant/config:/config --network=host ghcr.io/home-assistant/home-assistant:stable
+
+Updating:
+
+docker pull homeassistant/home-assistant:stable  # if this returns "Image is up to date" then you can stop here
+docker stop home-assistant  # stop the running container
+docker rm home-assistant  # remove it from Docker's list of containers
+docker run -d --name="home-assistant" -v /PATH_TO_YOUR_CONFIG:/config -v /etc/localtime:/etc/localtime:ro --net=host homeassistant/home-assistant:stable  # finally, start a new one

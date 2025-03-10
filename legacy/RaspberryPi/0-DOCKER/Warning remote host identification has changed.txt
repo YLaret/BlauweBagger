@@ -1,0 +1,18 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:EhsNrfpKOwsR8F4nnSyEiCv9InPxevcAxZPGf9Eu3yY.
+Please contact your system administrator.
+Add correct host key in C:\\Users\\mail/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in C:\\Users\\mail/.ssh/known_hosts:2
+ECDSA host key for 192.168.0.100 has changed and you have requested strict checking.
+Host key verification failed.
+
+
+You need to remove keys when reinstalling Pi
+run the following command in bash/cmd
+ssh-keygen -R 192.168.0.100

@@ -1,0 +1,4 @@
+Hostnaam: BaggerPi.local
+
+Gebruikersnaam: pi
+Wachtwoord: 91118493

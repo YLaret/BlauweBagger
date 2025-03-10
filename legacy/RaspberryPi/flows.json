@@ -1,0 +1,2956 @@
+[
+    {
+        "id": "263377b5c0b04ba1",
+        "type": "tab",
+        "label": "BaggerPi CPU Temp",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29e396d2.ea499a",
+        "type": "tab",
+        "label": "Openweather",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7882811ac93375d1",
+        "type": "tab",
+        "label": "Energy Meters",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b2e04683.825318",
+        "type": "tab",
+        "label": "Example Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d5179f341428e949",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8d3e493dd70b706a",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a6398238.dbb24",
+        "type": "tab",
+        "label": "example create python env and install packages",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b0cd02017fbac25c",
+        "type": "mqtt-broker",
+        "name": "MQTT-Pi-Bagger",
+        "broker": "192.168.0.100",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "58f738de.c1e408",
+        "type": "ui_group",
+        "name": "weather",
+        "tab": "77e698ddbc74f3cc",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "77e698ddbc74f3cc",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "49c56e768fe44439",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "be3e3661c5d1fc9d",
+        "type": "modbus-client",
+        "name": "3PEM1",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB0",
+        "serialType": "RTU",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "73899d88263ad0f5",
+        "type": "mqtt in",
+        "z": "263377b5c0b04ba1",
+        "name": "",
+        "topic": "Bagger-Pi-Temp-monitor/BaggerPi/cputemp",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "b0cd02017fbac25c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 510,
+        "y": 180,
+        "wires": [
+            [
+                "494b1aa1dd388f7c",
+                "04bceea136235f58"
+            ]
+        ]
+    },
+    {
+        "id": "494b1aa1dd388f7c",
+        "type": "ui_gauge",
+        "z": "263377b5c0b04ba1",
+        "name": "",
+        "group": "58f738de.c1e408",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pi Temp",
+        "label": "°C",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "04bceea136235f58",
+        "type": "debug",
+        "z": "263377b5c0b04ba1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fcb8cc8b.9a385",
+        "type": "json",
+        "z": "29e396d2.ea499a",
+        "name": "Data",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "68196c8e.5baf24",
+                "516d23d7.1715ac",
+                "ed094b3f.f695c8",
+                "8294e410.69c018",
+                "d40fafdb.23e8a",
+                "d2405300.bc0c4"
+            ]
+        ]
+    },
+    {
+        "id": "d2405300.bc0c4",
+        "type": "debug",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 470,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "68196c8e.5baf24",
+        "type": "ui_gauge",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "group": "58f738de.c1e408",
+        "order": 4,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{msg.payload.main.temp}}",
+        "min": "-40",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "516d23d7.1715ac",
+        "type": "ui_gauge",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "group": "58f738de.c1e408",
+        "order": 5,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Pressure",
+        "label": "hPa",
+        "format": "{{msg.payload.main.pressure}}",
+        "min": "0",
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 580,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d40fafdb.23e8a",
+        "type": "ui_text",
+        "z": "29e396d2.ea499a",
+        "group": "58f738de.c1e408",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "City",
+        "format": "{{msg.payload.name}} ",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 570,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8294e410.69c018",
+        "type": "ui_gauge",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "group": "58f738de.c1e408",
+        "order": 7,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Wind speed",
+        "label": "m/s",
+        "format": "{{msg.payload.wind.speed}}",
+        "min": "0",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 590,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ed094b3f.f695c8",
+        "type": "ui_gauge",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "group": "58f738de.c1e408",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "",
+        "format": "{{msg.payload.main.humidity}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e705f89d69260886",
+        "type": "http request",
+        "z": "29e396d2.ea499a",
+        "name": "Openweathermap",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?lat=51.8308564&lon=4.76984303118367&appid=ccd80faec8bcb58e9528642af07a39a7&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "fcb8cc8b.9a385"
+            ]
+        ]
+    },
+    {
+        "id": "64a9c07ccd050589",
+        "type": "http request",
+        "z": "29e396d2.ea499a",
+        "name": "Location API",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "query",
+        "url": "http://api.openweathermap.org/geo/1.0/direct?q=sliedrecht,NLD&limit={limit}&appid=ccd80faec8bcb58e9528642af07a39a7",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 590,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92f3773c2026f24d",
+        "type": "inject",
+        "z": "29e396d2.ea499a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "e705f89d69260886"
+            ]
+        ]
+    },
+    {
+        "id": "310baa5a13c0aac6",
+        "type": "debug",
+        "z": "7882811ac93375d1",
+        "name": "data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "aa6413262b3c1d6d",
+        "type": "debug",
+        "z": "7882811ac93375d1",
+        "name": "state",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3f2cf539c18def4e",
+        "type": "inject",
+        "z": "7882811ac93375d1",
+        "name": "ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "34cc70172814f1c4"
+            ]
+        ]
+    },
+    {
+        "id": "78efb102eeaa3cba",
+        "type": "inject",
+        "z": "7882811ac93375d1",
+        "name": "OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "34cc70172814f1c4"
+            ]
+        ]
+    },
+    {
+        "id": "34cc70172814f1c4",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "function 2",
+        "func": "msg.payload ={\n   dps : 1,\n    set : msg.payload\n}\n\n/*\n\n    */\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "c2b44381fbe20260",
+                "29aaa6e084f6fe2a",
+                "b19d3420f5f35afd",
+                "b4ecbfe2b91d2be0",
+                "a58a4a23e3ab1bf5",
+                "06bab409c8b6f46a",
+                "75f18c13b75e3ccf",
+                "775f8cc63b7c9884",
+                "764e3f2c766e37e6",
+                "e9311e9e5277a5ec"
+            ]
+        ]
+    },
+    {
+        "id": "5e8d3ce00f2dd49b",
+        "type": "catch",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "bf848ec3d6064452"
+            ]
+        ]
+    },
+    {
+        "id": "bf848ec3d6064452",
+        "type": "debug",
+        "z": "7882811ac93375d1",
+        "name": "On Error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b4ecbfe2b91d2be0",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM0",
+        "disableAutoStart": false,
+        "deviceId": "bfc34e65c3aff6952455sz",
+        "deviceKey": "i0M~/lA?`HuiH_7Y",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.101",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "617070169a952712"
+            ],
+            [
+                "b9fc21308549216e"
+            ]
+        ]
+    },
+    {
+        "id": "29aaa6e084f6fe2a",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM1",
+        "disableAutoStart": false,
+        "deviceId": "bf0ee3446d4bfa88d9vrga",
+        "deviceKey": "4WZy:.}^CMiSPHSA",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.102",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 420,
+        "wires": [
+            [
+                "bd8f39f018dd5ac9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b19d3420f5f35afd",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM2",
+        "disableAutoStart": false,
+        "deviceId": "bfc3f247f346c6795bquxi",
+        "deviceKey": "Y<8VU5etZbt!8]cr",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.103",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "4ea60e63b8035f3a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a58a4a23e3ab1bf5",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM3",
+        "disableAutoStart": false,
+        "deviceId": "bfcaf92327ae184c6fo1db",
+        "deviceKey": "U.%v+JvH.WO|a5'E",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.104",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 540,
+        "wires": [
+            [
+                "ccc608a5cf20683f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "06bab409c8b6f46a",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM4",
+        "disableAutoStart": false,
+        "deviceId": "bf48f48381bce5c33fsamt",
+        "deviceKey": "KoPm^>XbjY1;Kjvm",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.105",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 600,
+        "wires": [
+            [
+                "d72b7a338c05b6e2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "75f18c13b75e3ccf",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM5",
+        "disableAutoStart": false,
+        "deviceId": "bf6b95b0880be74a23qnku",
+        "deviceKey": "HL]V>3)P.<_q`aKL",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.106",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 660,
+        "wires": [
+            [
+                "d3bb2bd3ec9e50ca"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "775f8cc63b7c9884",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM6",
+        "disableAutoStart": false,
+        "deviceId": "bfb233983cc3330394ff3d",
+        "deviceKey": "3A*4^EO<:u{IK{Qr",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.107",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 720,
+        "wires": [
+            [
+                "5322d760469a3c54"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "764e3f2c766e37e6",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "EM7",
+        "disableAutoStart": false,
+        "deviceId": "bf66568a765e418753ahml",
+        "deviceKey": "#bemGOVL7's;)}u9",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.108",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "a8045d412e820675"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c2b44381fbe20260",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "d": true,
+        "deviceName": "tuya switch",
+        "disableAutoStart": false,
+        "deviceId": "bfc34e65c3aff6952455sz",
+        "deviceKey": "i0M~/lA?`HuiH_7Y",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.101",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.3",
+        "eventMode": "event-both",
+        "x": 590,
+        "y": 300,
+        "wires": [
+            [
+                "310baa5a13c0aac6"
+            ],
+            [
+                "aa6413262b3c1d6d"
+            ]
+        ]
+    },
+    {
+        "id": "e9311e9e5277a5ec",
+        "type": "tuya-smart-device",
+        "z": "7882811ac93375d1",
+        "deviceName": "3PEM1",
+        "disableAutoStart": false,
+        "deviceId": "bf385bb5a95081d75beptm",
+        "deviceKey": "=}dZIpi6i4yXWS$.",
+        "storeAsCreds": false,
+        "deviceIp": "192.168.0.109",
+        "retryTimeout": 1000,
+        "findTimeout": 10000,
+        "tuyaVersion": "3.4",
+        "eventMode": "event-both",
+        "x": 580,
+        "y": 840,
+        "wires": [
+            [
+                "fca3583e033acc5e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b9041c2feadf1ad1",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM0.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 360,
+        "wires": [
+            [
+                "ea2433e3966a6868"
+            ]
+        ]
+    },
+    {
+        "id": "ea2433e3966a6868",
+        "type": "debug",
+        "z": "7882811ac93375d1",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "bc294dc809c40962",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM1.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8122937f9f2f6c7",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM2.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9557563c441c4be8",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM3.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9180ae1c04f3d717",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM4.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cfbbc6351fd177fd",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM5.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7d92cb35ac8a6c9",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM6.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bf6daebe261ba6e",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/EM7.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 950,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c69d60ec185a48c8",
+        "type": "file",
+        "z": "7882811ac93375d1",
+        "name": "",
+        "filename": "/data/log/3PEM1.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 960,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4eae8f35f8a7258",
+        "type": "inject",
+        "z": "7882811ac93375d1",
+        "name": "Get Status /10s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "em_data",
+        "payload": "{\"operation\":\"GET\",\"dps\":1}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 500,
+        "wires": [
+            [
+                "b4ecbfe2b91d2be0",
+                "29aaa6e084f6fe2a",
+                "b19d3420f5f35afd",
+                "a58a4a23e3ab1bf5",
+                "06bab409c8b6f46a",
+                "75f18c13b75e3ccf",
+                "775f8cc63b7c9884",
+                "764e3f2c766e37e6",
+                "e9311e9e5277a5ec"
+            ]
+        ]
+    },
+    {
+        "id": "617070169a952712",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "b9041c2feadf1ad1"
+            ]
+        ]
+    },
+    {
+        "id": "b9fc21308549216e",
+        "type": "debug",
+        "z": "7882811ac93375d1",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bd8f39f018dd5ac9",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 420,
+        "wires": [
+            [
+                "bc294dc809c40962"
+            ]
+        ]
+    },
+    {
+        "id": "4ea60e63b8035f3a",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 480,
+        "wires": [
+            [
+                "c8122937f9f2f6c7"
+            ]
+        ]
+    },
+    {
+        "id": "ccc608a5cf20683f",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 540,
+        "wires": [
+            [
+                "9557563c441c4be8"
+            ]
+        ]
+    },
+    {
+        "id": "d72b7a338c05b6e2",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "9180ae1c04f3d717"
+            ]
+        ]
+    },
+    {
+        "id": "d3bb2bd3ec9e50ca",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 660,
+        "wires": [
+            [
+                "cfbbc6351fd177fd"
+            ]
+        ]
+    },
+    {
+        "id": "5322d760469a3c54",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 720,
+        "wires": [
+            [
+                "e7d92cb35ac8a6c9"
+            ]
+        ]
+    },
+    {
+        "id": "a8045d412e820675",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 780,
+        "wires": [
+            [
+                "2bf6daebe261ba6e"
+            ]
+        ]
+    },
+    {
+        "id": "fca3583e033acc5e",
+        "type": "function",
+        "z": "7882811ac93375d1",
+        "name": "add timestamp",
+        "func": "// Make timestamp\nvar timestamp=new Date().toLocaleString ('nl-NL', { hour12:false });\nvar [date,time]=timestamp.split(\" \");\n\n// Load payload\nvar data=msg.payload\n\n// Combine data + timestamp into 1 payload msg\nvar Payload={\"Timestamp\":timestamp,\"Date\":date,\"Time\":time,\"Data\":data};\nmsg={payload:null};\nmsg.payload=Payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 840,
+        "wires": [
+            [
+                "c69d60ec185a48c8"
+            ]
+        ]
+    },
+    {
+        "id": "c016131.e98faf",
+        "type": "function",
+        "z": "b2e04683.825318",
+        "name": "",
+        "func": "msg.payload ={\n   //dps : 1,\n   dps: 20,\n    set : msg.payload\n}\n\n/*\n\n    */\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 510,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "993c8470.01a278",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Turn On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "c016131.e98faf"
+            ]
+        ]
+    },
+    {
+        "id": "6403cde.251ab34",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Turn Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "c016131.e98faf"
+            ]
+        ]
+    },
+    {
+        "id": "81a451cc.919f9",
+        "type": "function",
+        "z": "b2e04683.825318",
+        "name": "",
+        "func": "msg.payload ={\n            \"deviceVirtualId\": \"\",\n            //deviceIp: \"192.168.1.71\",\n            \"deviceKey\": \"\",\n            \"deviceName\": \"PM\",\n            \"operation\": \"SET\", // optional default : SET\n            \"payload\": {\n                \"dps\": 20,\n                \"set\": msg.payload\n            },\n        //    \"version\":\"3.2\"\n            \n        }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "e4cfcdc.9520a3"
+            ]
+        ]
+    },
+    {
+        "id": "dc28dca8.674c1",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 240,
+        "y": 780,
+        "wires": [
+            [
+                "81a451cc.919f9"
+            ]
+        ]
+    },
+    {
+        "id": "1e77cd28.a8c303",
+        "type": "debug",
+        "z": "b2e04683.825318",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "4295327a.09bf3c",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 240,
+        "y": 700,
+        "wires": [
+            [
+                "81a451cc.919f9"
+            ]
+        ]
+    },
+    {
+        "id": "8f69fe68.9e4ce",
+        "type": "catch",
+        "z": "b2e04683.825318",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 640,
+        "y": 140,
+        "wires": [
+            [
+                "3764c769.6e1298"
+            ]
+        ]
+    },
+    {
+        "id": "3764c769.6e1298",
+        "type": "debug",
+        "z": "b2e04683.825318",
+        "name": "On Error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ff4bd686.53ae18",
+        "type": "debug",
+        "z": "b2e04683.825318",
+        "name": "Device Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "15d22ba6.824b84",
+        "type": "debug",
+        "z": "b2e04683.825318",
+        "name": "Node State",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "47ea1d2a.7d85f4",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "RECONNECT ACTION",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"RECONNECT\"}",
+        "payloadType": "json",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1991e72.c15c719",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "DISCONNECT ACTION",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"DISCONNECT\"}",
+        "payloadType": "json",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c820897454429637",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Get Schema",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"GET\",\"schema\":true}",
+        "payloadType": "json",
+        "x": 310,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b416b83a6edfd2b",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Get Status of dps 1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"GET\" , \"dps\": 1}",
+        "payloadType": "json",
+        "x": 330,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8616fca1bda4ddbf",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "SET EVENT MODE - DATA",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"SET_EVENT_MODE\",\"value\":\"event-data\"}",
+        "payloadType": "json",
+        "x": 260,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cbe30d8393fbb66a",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "SET EVENT MODE - DP REFRESH",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"SET_EVENT_MODE\",\"value\":\"event-dp-refresh\"}",
+        "payloadType": "json",
+        "x": 280,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4df579385b195b55",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Update Find Timeout",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"SET_FIND_TIMEOUT\",\"value\":1234}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65ab15b279337d86",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "Update  Retry Timeout",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"SET_RETRY_TIMEOUT\",\"value\":1234}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "51d98c1b9e3ce54b",
+        "type": "inject",
+        "z": "b2e04683.825318",
+        "name": "CONNECT ACTION",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"operation\":\"CONTROL\",\"action\":\"CONNECT\"}",
+        "payloadType": "json",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e63245d0.e6cdc8",
+        "type": "tuya-smart-device",
+        "z": "b2e04683.825318",
+        "d": true,
+        "deviceName": "Tv Light",
+        "disableAutoStart": true,
+        "deviceId": "",
+        "deviceKey": "",
+        "storeAsCreds": false,
+        "deviceIp": "",
+        "retryTimeout": "1001",
+        "findTimeout": "2000",
+        "tuyaVersion": "3.1",
+        "eventMode": "event-both",
+        "x": 680,
+        "y": 360,
+        "wires": [
+            [
+                "ff4bd686.53ae18"
+            ],
+            [
+                "15d22ba6.824b84"
+            ]
+        ]
+    },
+    {
+        "id": "e4cfcdc.9520a3",
+        "type": "tuya-smart-device-generic",
+        "z": "b2e04683.825318",
+        "name": "",
+        "x": 660,
+        "y": 740,
+        "wires": [
+            [
+                "1e77cd28.a8c303"
+            ]
+        ]
+    },
+    {
+        "id": "a0987965c5e4c8c7",
+        "type": "modbus-read",
+        "z": "d5179f341428e949",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "rate": "5",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "be3e3661c5d1fc9d",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "0b16e6c1f4a94e49"
+            ],
+            [
+                "c6115138d9a948e6"
+            ]
+        ]
+    },
+    {
+        "id": "0b16e6c1f4a94e49",
+        "type": "debug",
+        "z": "d5179f341428e949",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c6115138d9a948e6",
+        "type": "debug",
+        "z": "d5179f341428e949",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e8dac55b3e519788",
+        "type": "modbus-getter",
+        "z": "d5179f341428e949",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "server": "be3e3661c5d1fc9d",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "fd6458f584811d06"
+            ],
+            [
+                "c8ac9394ddbb7032"
+            ]
+        ]
+    },
+    {
+        "id": "fd6458f584811d06",
+        "type": "debug",
+        "z": "d5179f341428e949",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d12b1bb73a6aec39",
+        "type": "inject",
+        "z": "d5179f341428e949",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "e8dac55b3e519788"
+            ]
+        ]
+    },
+    {
+        "id": "c8ac9394ddbb7032",
+        "type": "debug",
+        "z": "d5179f341428e949",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b7227ab987d2b830",
+        "type": "modbus-flex-getter",
+        "z": "d5179f341428e949",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "be3e3661c5d1fc9d",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 590,
+        "y": 560,
+        "wires": [
+            [
+                "fbc338076fece19b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "30f139a8f9f12304",
+        "type": "inject",
+        "z": "d5179f341428e949",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "3e6d5bf615615b94"
+            ]
+        ]
+    },
+    {
+        "id": "fbc338076fece19b",
+        "type": "debug",
+        "z": "d5179f341428e949",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "3e6d5bf615615b94",
+        "type": "function",
+        "z": "d5179f341428e949",
+        "name": "function 3",
+        "func": "msg.payload = { value: msg.payload,\n'fc': 3,\n'unitid': 1,\n'address': 5 ,\n'quantity': 1 }\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "b7227ab987d2b830"
+            ]
+        ]
+    },
+    {
+        "id": "709cc66c.0133e8",
+        "type": "template",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "import sys\n\ndef absolute_value(num):\n\t\"\"\"This function returns the absolute\n\tvalue of the entered number\"\"\"\n\n\tif num >= 0:\n\t\treturn num\n\telse:\n\t\treturn -num\n\n# Output: 2\n#print(absolute_value(2))\n\nwhile True:\n    num = sys.stdin.readline() # read the stdin from the inject node\n    num = int(num)\n    print(absolute_value(num))",
+        "output": "str",
+        "x": 660,
+        "y": 300,
+        "wires": [
+            [
+                "a315938cea2eec01"
+            ]
+        ]
+    },
+    {
+        "id": "6f9d20b40eed108a",
+        "type": "inject",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "709cc66c.0133e8"
+            ]
+        ]
+    },
+    {
+        "id": "a315938cea2eec01",
+        "type": "file",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "filename": "/data/python/scripts/example.py",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 920,
+        "y": 300,
+        "wires": [
+            [
+                "d6d9097ea8a86c8d"
+            ]
+        ]
+    },
+    {
+        "id": "d6d9097ea8a86c8d",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a966dd82b56b554b",
+        "type": "pythonshell in",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "pyfile": "/data/python/scripts/modbus.py",
+        "virtualenv": "/data/python/node_python",
+        "continuous": true,
+        "stdInData": true,
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "619067953a96b45d"
+            ]
+        ]
+    },
+    {
+        "id": "619067953a96b45d",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "547c21a6ba05cd08",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 940,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "148e2f195ceebc9c",
+        "type": "pythonshell in",
+        "z": "8d3e493dd70b706a",
+        "name": "example",
+        "pyfile": "/data/python/scripts/example.py",
+        "virtualenv": "/data/python/node_python",
+        "continuous": true,
+        "stdInData": true,
+        "x": 660,
+        "y": 560,
+        "wires": [
+            [
+                "547c21a6ba05cd08"
+            ]
+        ]
+    },
+    {
+        "id": "ce5bdf0177497430",
+        "type": "inject",
+        "z": "8d3e493dd70b706a",
+        "name": "inject number",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "148e2f195ceebc9c"
+            ]
+        ]
+    },
+    {
+        "id": "f50b3d842b40320c",
+        "type": "comment",
+        "z": "8d3e493dd70b706a",
+        "name": "inject a number to the python script and display it in the debug window",
+        "info": "",
+        "x": 690,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a67faff3d644b8ed",
+        "type": "exec",
+        "z": "8d3e493dd70b706a",
+        "command": "/data/python/scripts/modbus.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "f25d3ee9161759dc"
+            ],
+            [
+                "87ac9f1730c60d78"
+            ],
+            [
+                "fb2af12d698ed3e5"
+            ]
+        ]
+    },
+    {
+        "id": "f25d3ee9161759dc",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9903e9e7f9385bb8",
+        "type": "inject",
+        "z": "8d3e493dd70b706a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "a67faff3d644b8ed"
+            ]
+        ]
+    },
+    {
+        "id": "87ac9f1730c60d78",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fb2af12d698ed3e5",
+        "type": "debug",
+        "z": "8d3e493dd70b706a",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f4319015.f829c",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 820,
+        "wires": [
+            [
+                "b8d5a5ee.27a048"
+            ]
+        ]
+    },
+    {
+        "id": "ba14283e.921b28",
+        "type": "file",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "filename": "/data/python/scripts/example.py",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 590,
+        "y": 820,
+        "wires": [
+            [
+                "45fc3c1b.2cdf44"
+            ]
+        ]
+    },
+    {
+        "id": "b8d5a5ee.27a048",
+        "type": "template",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "import sys\n\ndef absolute_value(num):\n\t\"\"\"This function returns the absolute\n\tvalue of the entered number\"\"\"\n\n\tif num >= 0:\n\t\treturn num\n\telse:\n\t\treturn -num\n\n# Output: 2\n#print(absolute_value(2))\n\nwhile True:\n    num = sys.stdin.readline() # read the stdin from the inject node\n    num = int(num)\n    print(absolute_value(num))",
+        "output": "str",
+        "x": 300,
+        "y": 820,
+        "wires": [
+            [
+                "ba14283e.921b28"
+            ]
+        ]
+    },
+    {
+        "id": "13717224.4e8bfe",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "create a python script file and save to disk",
+        "info": "",
+        "x": 340,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "a41dee1f.ceba1",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "58b5c2a.d8e9f3c"
+            ]
+        ]
+    },
+    {
+        "id": "b5798004.7515c",
+        "type": "file",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "filename": "/data/create_env.sh",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 530,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58b5c2a.d8e9f3c",
+        "type": "template",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "#!/bin/bash \n\ncd /data\nls -l\npython3 -m venv envtest\nsource envtest/bin/activate\nls -l\nwhich python",
+        "output": "str",
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "b5798004.7515c"
+            ]
+        ]
+    },
+    {
+        "id": "675e87af.f0a968",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "7dd4be3e.84d4d"
+            ]
+        ]
+    },
+    {
+        "id": "7dd4be3e.84d4d",
+        "type": "exec",
+        "z": "a6398238.dbb24",
+        "command": "chmod u+x /data/create_env.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "make create_env.sh file executable",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "62d946f1.440b28"
+            ],
+            [
+                "62d946f1.440b28"
+            ],
+            [
+                "62d946f1.440b28"
+            ]
+        ]
+    },
+    {
+        "id": "62d946f1.440b28",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "bd5f6d44.e7d4b",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "3edc17c3.75cb18"
+            ]
+        ]
+    },
+    {
+        "id": "3edc17c3.75cb18",
+        "type": "exec",
+        "z": "a6398238.dbb24",
+        "command": "bash /data/create_env.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "execute create_env.sh",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "9b94a230.939e5"
+            ],
+            [
+                "9b94a230.939e5"
+            ],
+            [
+                "9b94a230.939e5"
+            ]
+        ]
+    },
+    {
+        "id": "9b94a230.939e5",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4e8765d8.507ddc",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "61a0c56a.052f5c"
+            ]
+        ]
+    },
+    {
+        "id": "61a0c56a.052f5c",
+        "type": "exec",
+        "z": "a6398238.dbb24",
+        "command": "chmod u+x /data/install_packages.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "make install_packages.sh file executable",
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "13c2c87a.b73bc8"
+            ],
+            [
+                "13c2c87a.b73bc8"
+            ],
+            [
+                "13c2c87a.b73bc8"
+            ]
+        ]
+    },
+    {
+        "id": "13c2c87a.b73bc8",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 670,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e39cb324.19715",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 680,
+        "wires": [
+            [
+                "fbbbbe17.cfbef"
+            ]
+        ]
+    },
+    {
+        "id": "fbbbbe17.cfbef",
+        "type": "exec",
+        "z": "a6398238.dbb24",
+        "command": "bash /data/install_packages.sh",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "execute /install_packages.sh",
+        "x": 360,
+        "y": 680,
+        "wires": [
+            [
+                "70a58ad1.947204"
+            ],
+            [
+                "70a58ad1.947204"
+            ],
+            [
+                "70a58ad1.947204"
+            ]
+        ]
+    },
+    {
+        "id": "70a58ad1.947204",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7e36e3ea.d2ee8c",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "create bash file that creates and activates venv",
+        "info": "In the template node we create a bash file that will create a virtual python environment and activate the environment.\n\n#!/bin/bash \n\ncd /data\nls -l\npython3 -m venv envtest\nsource envtest/bin/activate\nls -l\nwhich python",
+        "x": 340,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "10bf703d.477d3",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "make the bash file executable",
+        "info": "",
+        "x": 280,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "8ffba3c3.5413",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "make the bash file executable",
+        "info": "",
+        "x": 300,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ffe32ec1.4f824",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "execute the bash file",
+        "info": "",
+        "x": 250,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f0066900.4db1f8",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 420,
+        "wires": [
+            [
+                "34f6f7c4.23b168"
+            ]
+        ]
+    },
+    {
+        "id": "255ca056.4e641",
+        "type": "file",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "filename": "/data/install_packages.sh",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 610,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34f6f7c4.23b168",
+        "type": "template",
+        "z": "a6398238.dbb24",
+        "name": "file to install packages",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "python",
+        "syntax": "plain",
+        "template": "#!/bin/bash \n\ncd /data\nsource envtest/bin/activate\nls -l\nwhich python\npip3 install sys",
+        "output": "str",
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "255ca056.4e641"
+            ]
+        ]
+    },
+    {
+        "id": "39f56651.847cca",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "create bash file that installs packages",
+        "info": "",
+        "x": 270,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fa6a51ee.d9239",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "execute the bash file to install packages",
+        "info": "",
+        "x": 330,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e757b049.aa745",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 680,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "9b520682.5cbbe8",
+        "type": "pythonshell in",
+        "z": "a6398238.dbb24",
+        "name": "example",
+        "pyfile": "/data/python/scripts/example.py",
+        "virtualenv": "/data/python/node_python",
+        "continuous": true,
+        "stdInData": true,
+        "x": 400,
+        "y": 920,
+        "wires": [
+            [
+                "e757b049.aa745"
+            ]
+        ]
+    },
+    {
+        "id": "4bd2821f.13aaac",
+        "type": "inject",
+        "z": "a6398238.dbb24",
+        "name": "inject number",
+        "props": [
+            {
+                "p": "payload",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 130,
+        "y": 920,
+        "wires": [
+            [
+                "9b520682.5cbbe8"
+            ]
+        ]
+    },
+    {
+        "id": "317f7a8.2b1ed86",
+        "type": "comment",
+        "z": "a6398238.dbb24",
+        "name": "inject a number to the python script and display it in the debug window",
+        "info": "",
+        "x": 430,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "45fc3c1b.2cdf44",
+        "type": "debug",
+        "z": "a6398238.dbb24",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 850,
+        "y": 820,
+        "wires": []
+    }
+]

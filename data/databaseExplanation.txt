@@ -1,40 +1,40 @@
 Overview of the machine database (machine.db)
 TABLES:
 
-*MOTORS*
-id=>describes the name of the switch (e.g. EM01)
-name=>describes the function of the (e.g. Drum Filter or Hydrocycloon)
-state=>describes current state: 0->off, 1->on, != {0,1}->differnt error state (e.g. 4->no connection possible, all error states are described in the states table)
-startTime=>describes the date and time the machine has started
-stopTime=>describes the date and time the machine has stopped
-timeNeeded=>describes the desired motor run time in minutes
-timeDone=>describes the time the motor has already run in minutes
+*DEVICE*
+DeviceID=>unique identifier of device
+SwitchID=>id of switch controlling the device
+Name=>name of the device (e.g. Drum Filter or Hydrocycloon)
+Description=>(optional) description of the device
 
-*SWITCHES*
-id=>describes the name of the switch (e.g. EM01)
-ipaddress=>describes the local ip (e.g. 192.168.1.123)
-localkey=>hold the localkey value for the tuya api
+*SWITCH*
+Switchid=>describes the name of the switch (e.g. EM01)
+IPAddress=>describes the local ip (e.g. 192.168.1.123)
+LocalKey=>hold the localkey value for the tuya api
+MeterIDS=>(optional) list of conditional meters
+MeterMin=>list of minimal meter values for a certain switch
+MeterMax=>list of maximal meter values for a certain switch
 
-*METERS*
-id=>used to identify the meter
-name=>used to describe the meter
-unit=>describes the measured quantity
-value=>absolute value of the measured quantity
+*METER*
+MeterID=>used to identify the meter
+Name=>used to describe the meter
+Description=>describes the measured quantity
+Value=>absolute value of the measured quantity
 
-*STATES*
-id=>number used to identify the state
-description=>describes the state
-error=>indicates if this is an error state (0->no, 1->yes)
+*STAGE*
+StageID=>used to identify the stage
+Name=>stage name
+SwitchIDS=>(optional) list of the switches turned on in the stage (empty if no switch on, e.g. resting stage)
+Time=>time in seconds needed for the stage
 
 *PROGRAM*
-id=>Name of the switch
-name=>name of the device connected to the switch
-timeSpent=>time in seconds that the switch has run
-timeNeeded=>time in seconds that the switch needs to run
-delaySpent=>time in seconds that the switch has delayed
-delayNeeded=>time in seconds that the switch needs to delay
+ProgramID=>used to identify the program
+Name=>program name
+Description=>(optional) program description
+StageIDS=>ordered list of the stages of the program
 
-*PROGRAMSTATE*
-id=>start (yes=1, no=0)
-running=>yes=1, no=0
-runtime=>time since start in seconds
+*MACHINESTATUS* (one entry special table)
+ProgramID=> (0=manual control, 1,2,3...=specific program)
+Pause=> (0=no, 1=yes (manually), 2=yes (because error), manual control possible during pause)
+ProgramRunTime=> in seconds
+

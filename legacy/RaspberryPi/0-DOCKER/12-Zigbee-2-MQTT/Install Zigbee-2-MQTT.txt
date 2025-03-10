@@ -1,0 +1,97 @@
+Zie: 
+https://www.zigbee2mqtt.io/information/docker.html
+https://www.zigbee2mqtt.io/information/configuration.html
+https://github.com/Koenkk/zigbee2mqtt/tree/master/docker
+
+Volumes:
+Onderstaande volumes zijn als het goed is in stap 1-Make-Volumes reeds aangemaakt.
+/docker-volumes/zigbee2mqtt/
+
+--------------------------------------------------------------------------------------------------------------
+
+JVi CC2531 (test stick) (see https://www.zigbee2mqtt.io/guide/adapters/flashing/flashing_the_cc2531.html)
+JVi Sonoff Zigbee 3.0 USB Dongle -E
+docker run \
+--name Zigbee2MQTT \
+-it \
+--network host \
+--restart=always \
+-v /docker-volumes/zigbee2mqtt/data:/app/data \
+--device=/dev/ttyACM0 \
+-e TZ=Europe/Amsterdam \
+-v /run/udev:/run/udev:ro \
+koenkk/zigbee2mqtt
+
+Na starten in docker in het configuration.yaml de serial port wijzigen naar (indien nog niet gebeurd)
+serial:
+  port: /dev/ttyACM0
+--------------------------------------------------------------------------------------------------------------
+
+JVi CC2652P JVi Sonoff Zigbee 3.0 USB Dongle Plus P
+docker run \
+--name Zigbee2MQTT \
+-it \
+--network host \
+--restart=always \
+-v /docker-volumes/zigbee2mqtt/data:/app/data \
+--device=/dev/ttyUSB0 \
+-e TZ=Europe/Amsterdam \
+-v /run/udev:/run/udev:ro \
+koenkk/zigbee2mqtt
+
+Na starten in docker in het configuration.yaml de serial port wijzigen naar (indien nog niet gebeurd)
+serial:
+  port: /dev/ttyUSB0
+
+
+--------------------------------------------------------------------------------------------------------------
+
+JVi CC2652R (zzh (CC2652R Stick)) (see https://electrolama.com/projects/zig-a-zig-ah/)
+docker run \
+--name Zigbee2MQTT \
+-it \
+--network host \
+--restart=always \
+-v /docker-volumes/zigbee2mqtt/data:/app/data \
+--device=/dev/ttyUSB0 \
+-e TZ=Europe/Amsterdam \
+koenkk/zigbee2mqtt
+
+Na starten in docker in het configuration.yaml de serial port wijzigen naar 
+serial:
+  port: /dev/ttyUSB0
+
+en daarna container restarten.
+Als er eerst een CC2531 heeft gedraaid, de data dir leegmaken.
+
+--------------------------------------------------------------------------------------------------------------
+JVi CC2652R Sonoff zigbee pro
+docker run \
+--name Zigbee2MQTT \
+-it \
+--network host \
+--restart=always \
+-v /docker-volumes/zigbee2mqtt/data:/app/data \
+-v /run/udev:/run/udev:ro \
+-e TZ=Europe/Amsterdam \
+koenkk/zigbee2mqtt
+
+Na starten in docker in het configuration.yaml de serial port wijzigen naar 
+serial:
+  port: tcp://192.168.1.182:8888
+
+en daarna container restarten.
+Als er eerst een CC2652 heeft gedraaid, de data dir leegmaken.
+
+--------------------------------------------------------------------------------------------------------------
+
+ORIGINAL
+docker run \
+-it \
+-v $(pwd)/data:/app/data \
+--device=/dev/ttyACM0 \
+-e TZ=Europe/Amsterdam \
+-v /run/udev:/run/udev:ro \
+--privileged=true \
+koenkk/zigbee2mqtt
+

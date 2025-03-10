@@ -1,0 +1,70 @@
+Rapsberry Pi MQTT monitor
+
+Dit is een Python3 script dat de CPU temperatuur van de Pi op de MQTT server published.
+Maar voordat je begint moet je eerst Phython3-pip installeren en de paho-mqtt client.
+See: https://github.com/hjelev/rpi-mqtt-monitor
+
+Quick start:
+Make sure you have PIP3 installed.
+Check pip version
+$ pip --version
+If not installed
+$ sudo apt update && sudo apt-get install python3-pip
+To check if pip3 is installed
+$ pip --version
+
+vanaf Python versie 3.11 (dit om error externally-managed-environment te voorkomen)
+----------------------Optie 1 ----------------------------
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED                (getest)
+of
+sudo mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+
+Then install this module needed for the script:
+$ pip3 install paho-mqtt
+
+----------------------Optie 2 ----------------------------
+$pip3 install paho-mqtt --break-system-packages
+
+Er zijn 2 source bestanden:het python script rpi-cpu2mqtt.py en het config bestand config.py. 
+In het config.py bestand moet de 'mqtt_host' en de 'mqtt_topic_prefix' worden ingevuld, dit is in de huidige situatie het IP adres van de Pi zelf.
+Het python3 script rpi-cpu2mqtt.py verstuurd de cpu temperatuur naar de MQTT server.
+Kopieer de 2 aangepaste bestanden naar locatie bv (\rootpi\docker\Python-Scripts)
+Dit path moet in de schedule regel van de crontab worden ingevoerd.
+
+
+To schedule the "rpi-cpu2mqtt.py" script every minute with Crontab.
+see: https://www.raspberrypi.org/documentation/linux/usage/cron.md
+see: https://crontab.guru/every-1-minutes
+
+Hiervoor moet je onderstaande regel toevoegen aan de crontab (Cron Table)
+Voer hiervoor onderstaand commando uit:
+
+crontab -e 	//je krijgt dan een lijstje te zien met een aantal editers. Kies default 1. Bin/nano
+voeg onderstaande regel toe:
+*/1 * * * *  /usr/bin/python3 /docker-volumes/Python-Scripts/rpi-cpu2mqtt.py
+
+afsluiten met cntr x en Enter
+
+Je kunt controleren welke scheduled task er aktief zijn met onderstaand commando:
+crontab -l
+
+
+Na invoering van de schedule task wordt deze gelijk actief dit kun je controleren met bv. MQTT.fx door te 
+MQTT.fx kun je downloaden via onderstaande link, en installeren op je PC.
+https://mqttfx.jensd.de/
+
+Connect met MQTT.fx naar je MQTT server op de Pi en subscribe op # , dit is een wildcard waarmee je alle binnenkomende berichten op je MQTT server ziet.
+Handmatig opvragen van de CPU temperatuur:  $vcgencmd measure_temp
+
+
+
+
+
+
+Zie ook 
+https://github.com/hjelev/rpi-mqtt-monitor/blob/master/src/rpi-cpu2mqtt.py#L63
+https://git.cjparish.uk/cparish/rpi-mqtt-monitor/-/blob/master/src/rpi-cpu2mqtt.py
+
+
+
+

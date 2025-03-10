@@ -1,0 +1,39 @@
+Zie voor meer informatie:
+https://nodered.org/docs/getting-started/docker
+
+Volumes:
+Onderstaande volume is als het goed is in stap 1-Make-Volumes reeds aangemaakt.
+/docker-volumes/node-red/data
+
+
+Actueel:
+
+Stap.1 (is al uitgevoerd in 1-Make Volumes)
+$sudo chown pi:pi -R /docker-volumes/node-red/data
+
+stap.2 (of zie mogelijkheid hieronder, portainer stacks is wel overzichtelijker)
+$docker run --name nodered -it --restart=always -p 1880:1880 -e TZ=Europe/Amsterdam -v /docker-volumes/node-red/data:/data nodered/node-red
+
+#############portainer stacks / docker compose#############
+Zie "Docker_compose_Node-Red.txt" hoe docker te runnen met portainer stacks
+
+raspberryvalley/nodered:rpi
+>>>(dit kan afhankelijk van systeem wel 2 minuten duren)
+
+Stap.3 Wacht op regel: x xxx xx:xx:xx - [info] Started flows
+Stap.4 na installatie console afsluiten met $^P^Q
+Stap.5 Controleer in Portainer of nodered is "running".
+
+
+#####
+The following commands are provided to work with the service:
+    $node-red-start - this starts the Node-RED service and displays its log output. Pressing Ctrl-C or closing the window does not stop the service; it keeps running in the background
+    $node-red-stop - this stops the Node-RED service
+    $node-red-restart - this stops and restarts the Node-RED service
+    $node-red-log - this displays the log output of the service
+#####
+
+#show nodered logs in bash
+docker logs -f nodered
+
+

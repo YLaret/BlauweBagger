@@ -1,0 +1,46 @@
+Zie voor meer informatie:
+https://hub.docker.com/_/eclipse-mosquitto
+https://www.youtube.com/watch?reload=9&v=L26JY2NH-Ys
+
+Volumes:
+Onderstaande volumes zijn als het goed is in stap 1-Make-Volumes reeds aangemaakt.
+/docker-volumes/mosquitto/config
+/docker-volumes/mosquitto/data
+/docker-volumes/mosquitto/log 
+
+Kopieer het bestand mosquitto.conf (als dit nog niet is gedaan) van je PC naar \rootpi\docker-volumes\mosquitto via de netwerk locatie op de PC.
+
+Default:
+Voer onderstaand commando uit met externe (extern gezien vanuit de container) configuratie (local op Pi) /docker-volumes/mosquitto/config, data en log directories:
+Hij kijkt dan naar /docker-volumes/mosquitto/config/mosquitto.config
+Run onderstaand commando op de commandline: 
+
+$docker run \
+--name mqtt \--restart=always \
+-e TZ=Europe/Amsterdam \
+--net=host \
+-it \
+-p 1883:1883 \
+-p 9001:9001 \
+-v /docker-volumes/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf \
+-v /docker-volumes/mosquitto/data:/mosquitto/data \
+-v /docker-volumes/mosquitto/log:/mosquitto/log \
+eclipse-mosquitto
+
+
+(optioneel kan gewenst versie worden toegevoegd, bv.  eclipse-mosquitto:2.0.9  )
+                                                                                                                                         
+wacht op de regel
+mosquitto version 2.0.9 running  (zonder versie toevoeging wordt er uiteraard een andere versie getoond)
+exit met ^p^q
+
+Controleer in Portainer of mqtt is "running".
+
+
+
+
+Optie-2 indien niet gekozen voor default:
+Voer onderstaand commando uit zonder externe config, dat en log directories:
+$docker run --name mqtt --restart=always -e TZ=Europe/Amsterdam --net=host -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto
+
+

@@ -1,0 +1,28 @@
+Zie voor meer informatie:
+https://howchoo.com/g/nmrlzmq1ymn/how-to-install-docker-on-your-raspberry-pi
+
+Voer volgende commando's uit:
+OPTIE-1:
+Hierbij wordt de download en sh gelijktijdig gestart en uitgevoerd.
+$curl -fsSL https://get.docker.com | sh             (dit kan afhankelijk van systeem wel 2 minuten duren)
+
+
+OPTIE-2:
+Alternatief: hierbij wordt het scripfile eerst gedownload en opgeslagen onder de 
+naar get-docker.sh, en met het commando sh wordt het script uitgevoerd.
+
+$curl -fsSL https://get.docker.com -o get-docker.sh
+$sudo sh get-docker.sh
+
+
+OPTIE-3
+Hierbij wordt eerst het volledige script gedownload en aansluitend uitgevoerd door sh
+$sh -c "$(curl -fsSL https://get.docker.com/)"
+
+
+//Onderstaand commando zorgt er voor dat non root users (lees in det geval user pi) docker kunnen gebruiken.
+$sudo usermod -aG docker pi
+$sudo reboot
+
+
+Nadat docker is geinstalleerd, installeeer dan Portainer (zie 3-Portainer)

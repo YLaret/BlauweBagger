@@ -1,0 +1,58 @@
+Zie voor meer informatie:
+https://www.portainer.io/installation/
+https://www.wundertech.net/portainer-raspberry-pi-install-how-to-install-docker-and-portainer/
+https://forums.docker.com/t/how-do-i-re-install-portainer-docker-to-reset-my-id-and-pw/102740
+https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux
+
+Volumes:
+Onderstaande volumes zijn als het goed is in stap 1-Make-Volumes reeds aangemaakt.
+/docker-volumes/portainer/data
+
+--------------------------------------------------------------------------------------
+
+Download Potainer:
+Met onderstaand commando wordt de laatste Portainer image voor de ARM processor (dat is wat Pi gebruikt) gedownload en geinstalleerd.
+
+OPTIE-1:
+
+Run onderstaand commando op de commandline:
+$docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /docker-volumes/portainer/data:/data portainer/portainer-ce
+
+
+
+
+OPTIE-2:
+
+$sudo docker pull portainer/portainer-ce:linux-arm
+
+$docker run \
+-d -p 8000:8000 \
+-p 9000:9000 \
+--name=portainer \
+--restart=always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /docker-volumes/portainer/data:/data \
+portainer/portainer-ce
+
+na openen webinterface van Portainer "IP_Adress_Pi":9000
+username: admin
+Password: mijn-password
+Select "Add Environments"
+Then select "connect to Docker"
+druk op Connect
+
+--------------------------------------------------------------------------------------
+
+Script: Reinstallation docker container Portainer
+
+#!/bin/bash
+check container list to check image ID:
+$docker images
+OR
+$docker ps -a
+
+
+
+$docker stop portainer
+$docker rm -v portainer
+$docker rmi [image ID]

@@ -1,0 +1,30 @@
+#With docker compose you can write a "config"/ compose file. This file let's you define multiple containers in 1 document.
+#In portainer you can import this run it, edit it like you normally would. You will have to use stacks
+#https://nodered.org/docs/getting-started/docker
+#https://www.portainer.io/blog/stacks-docker-compose-the-portainer-way
+
+# Node-RED Stack or Compose
+################################################################################
+# docker stack deploy node-red --compose-file docker-compose-node-red.yml
+# docker-compose -f docker-compose-node-red.yml -p myNoderedProject up
+################################################################################
+version: "3.7"
+
+services:
+  node-red:
+    container_name: nodered
+    image: nodered/node-red:latest
+    restart: always # Sets the container to restart whenever it stops/crashes
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - "1880:1880"
+    volumes:
+      - /docker-volumes/node-red/data:/data #general mounted node-red folder
+      - /docker-volumes/python:/python #location of python scripts and venv
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    user: root #adding root user makes it possible (the easy way) to access ttyUSB0 for example
+
+#####Safe mode, when node red crashes for some reason. For example a bad configured node and gets stuck in an infinite crash/reboot cycle => enable code below#####
+    #entrypoint: "npm start -- --userDir /data --safe"
