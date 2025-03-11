@@ -19,21 +19,20 @@ while True:
     
     # connect database
     db = sqlite3.connect('../data/machine.db', timeout=5)
-    
-    machineStatusData = db.execute('SELECT * FROM MACHINESTATUS').fetchall()
-    programData = db.execute('SELECT * FROM PROGRAM').fetchall()
     switchData = db.execute('SELECT * FROM SWITCH').fetchall()
-    deviceData = db.execute('SELECT * FROM DEVICE').fetchall()
-    meterData = db.execute('SELECT * FROM METER').fetchall()
-    stageData = db.execute('SELECT * FROM STAGE').fetchall()
-    
     db.close()
+    machineStatusData = mF.getTable("MACHINESTATUS",0)
+    programData = mF.getTable("PROGRAM",0)
+    deviceData = mF.getTable("DEVICE",0)
+    meterData = mF.getTable("METER",0)
+    stageData = mF.getTable("STAGE",0)
+    
     
     ###################
     ### LOGIC PHASE ###
     ###################
     ### CONNECT SWITCHES
-    switches = connectSwitches(switchData)
+    switches = mF.connectSwitches(switchData)
 
     ### GET MACHINE STATUS
     # extract current program
@@ -67,7 +66,7 @@ while True:
     ### CONTROL SWITCHES
     # if no full stop control turn on/off preferred switches
     if currentStage == 0:
-        shutDownSwitches()
+        mF.shutDownSwitches()
     else:
         for i,switch in enumerate(switches):
             if i+1 in [int(item) for item in stageData[currentStage-1][2].split(',')]:
