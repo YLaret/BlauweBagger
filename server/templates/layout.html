@@ -4,29 +4,33 @@
 	<head>
 		<title>BB-1</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="/static/styles.css">
+            
 	</head>
 	<nav>
-		<div>
+		<div class="navbar">
 			<ul>
-				<li>
-					<a href="/">
+				<li class="nav-item">
+					<a id="nav-link-overview" href="/">
 						<span>Overview</span>
 					</a>
 				</li>
-				<li>
-					<a href="/tableview">
+				<li class="nav-item">
+					<a id="nav-link-tableview" href="/tableview">
 						<span>Table View</span>
 					</a>
 				</li>
-				<li>
-					<a href="/program">
+				<li class="nav-item">
+					<a id="nav-link-program" href="/program">
 						<span>Program</span>
 					</a>
 				</li>
 			</ul>
+            <img src="static/images/BlauweBaggerLogo.png" class="nav-logo">
 		</div>
 	</nav>
 
 	<main>
 		{% block main %}{% endblock %}
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
 	</main>

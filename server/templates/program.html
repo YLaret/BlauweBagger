@@ -2,11 +2,8 @@
 
 {% block main %}
 
-	<div>
-		Programma Pagina
-	</div>
 	{% for table in tables %}
-	<div>
+	<div class="table-container">
 		<h1>{{ tableNames[loop.index-1] }}</h1>
 		<form action="/program/{{ tableNames[loop.index-1] }}" method="POST">
                 <table>

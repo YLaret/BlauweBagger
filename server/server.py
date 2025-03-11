@@ -11,8 +11,29 @@ tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS"]
 
 @app.route("/")
 def overview():
-    return render_template('overview.html')
+    machineStatus = sF.getTable("MACHINESTATUS",0)
+    programs = sF.getTable("PROGRAM",0)
+    return render_template('overview.html',tables=machineStatus,tableNames="MACHINESTATUS",programs=programs)
+    
+@app.route("/toggleswitch/<switch>")
 
+@app.route("/selectprogram/")
+
+@app.route("/start")
+def start():
+    sF.start()
+    return redirect("/")
+
+@app.route("/pause")
+def pause():
+    sF.pause()
+    return redirect("/")
+    
+@app.route("/stop")
+def stop():
+    sF.stop()
+    return redirect("/")
+    
 @app.route("/tableview")
 def tableview():
     tables = []

@@ -1,9 +1,57 @@
 {% extends "layout.html" %}
 
 {% block main %}
+    <div class="container">
+        <h1>Filtration Plant Control</h1>
+        <div>
+            Select Program
+            <form action="/selectprogram/" method="POST">
+            <select name="program">
+                {% for program in programs %}
+                <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Apply"/>
+            </form>
+        </div>
+        <div id="time-display">Time: 00:00:00</div>
+        <div class="controls">
+        <form action="/start">
+            <input type="submit" id="start-btn" value="Start"/>
+        </form>
+        <form action="/pause">
+            <input type="submit" id="pause-btn" value="Pause"/>
+        </form>
+        <form action="/stop">
+            <input type="submit" id="stop-btn" value="Stop"/>
+        </form>
+        </div>
+        <div class="switches">
+            <button class="toggle-switch" data-switch="1">Toggle Switch 1</button>
+            <button class="toggle-switch" data-switch="2">Toggle Switch 2</button>
+        </div>
+    </div>
 
-	<div>
-		Blauwe Bagger BB-1 Overview pagina
-	</div>
+    <div class="table-container">
+        <h1>{{ tableNames }}</h1>
+                <table>
+                        <thead>
+                                <tr>
+                {% for key, value in tables[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                           </thead>
+                        <tbody>
+                                {% for item in tables %}
+                                        <tr>
+                                                {% for key, value in item.items() %}
+                                                        <td>{{value}}</th>
+                                                {% endfor %}
+                                        </tr>
+                                {% endfor %}
+                        </tbody>
+                </table>
+        </div>
 
 {% endblock %}
