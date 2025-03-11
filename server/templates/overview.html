@@ -28,9 +28,15 @@
         </div>
         <div class="switches">
             {% for switch in switches %}
+            {% if switch["SwitchID"] in activeSwitches %}
+            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                <input type="submit" class="switch-active" id="switch-btn" value="{{ switch["Name"] }}"/>
+            </form>
+            {% else %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
                 <input type="submit" id="switch-btn" value="{{ switch["Name"] }}"/>
             </form>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

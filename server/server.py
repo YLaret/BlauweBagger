@@ -1,5 +1,6 @@
 # websever
 from flask import Flask, render_template, redirect
+import sqlite3
 
 # local functions
 import serverFunctions as sF
@@ -14,12 +15,12 @@ def overview():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)
     switches = sF.getTable("SWITCH",0)
+    stages = sF.getTable("STAGE",0)
     
     ### MESSY PART ###
-    db = sqlite3.connect('../data/machine.db', timeout=5)
-    programData = db.execute('SELECT * FROM PROGRAM').fetchall()
-    stageData = db.execute('SELECT * FROM STAGE').fetchall()
-    db.close()
+    print(machineStatus)
+    programID = int(machineStatus[0]["ProgramID"])
+    pause = int(machineStatus[0]["Pause"])
     
     ### FIND CURRENT STAGE
     # currentStage variable (0 if no stage => full stop)
@@ -31,7 +32,7 @@ def overview():
     # else if program running normally
     elif pause == 0:
         # calculate currentStage based on run time
-        stages = [int(item) for item in programData[programID-1][3].split(',')]
+        stages = [int(item) for item in program[programID-1]["StageIDS"].split(',')]
         stageTime = 0
         for stage in stages:
             stageTime = stageTime + stageData[stage-1][3]
@@ -39,8 +40,10 @@ def overview():
                 currentStage = stage
                 break
     activeSwitches = []
-    if currentStage not 0:
-        activeSwitches = [int(item) for item in stageData[currentStage-1][2].split(',')]
+    if currentStage != 0:
+        activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
+    print(activeSwitches)
+    print(currentStage)
     return render_template('overview.html',machineStatus=machineStatus,programs=programs,switches=switches)
     
 @app.route("/toggleswitch/<switch>")
