@@ -4,3 +4,4 @@ from .programStart import programStart
 from .updateStartTime import updateStartTime
 from .shutDownSwitches import shutDownSwitches
 from .updateRunningStop import updateRunningStop
+from .getTable import getTable
