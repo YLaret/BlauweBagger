@@ -42,6 +42,8 @@ while True:
     # extract program run time in seconds
     programRunTime = machineStatusData[0]["ProgramRunTime"]
 
+    print("ProgramID: " + str(programID) + " Pause: " + str(pause) + " ProgramRunTime: " + str(programRunTime))
+
     ### FIND CURRENT STAGE
     # currentStage variable (0 if no stage => full stop)
     currentStage = 0
@@ -52,10 +54,10 @@ while True:
     # else if program running normally
     elif pause == 0:
         # calculate currentStage based on run time
-        pstages = [int(item) for item in programs[programID-1]["StageIDS"].split(',')]
+        pstages = [int(item) for item in programData[programID-1]["StageIDS"].split(',')]
         stageTime = 0
         for stage in pstages:
-            stageTime = stageTime + stages[stage-1]["Time"]
+            stageTime = stageTime + stageData[stage-1]["Time"]
             if stageTime > programRunTime:
                 currentStage = stage
                 break
@@ -67,7 +69,7 @@ while True:
     # if no full stop control turn on/off preferred switches
     activeSwitches = []
     if currentStage != 0:
-        activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
+        activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
     if currentStage == 0:
         #mF.shutDownSwitches()
         print("Turning off all switches")
@@ -89,7 +91,13 @@ while True:
     ###################
     # connect database
     db = sqlite3.connect('../data/machine.db', timeout=5)
-    db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
+    if (pause == 0):
+        if stageTime < programRunTime:
+            print("Finished program!")
+            db.execute('UPDATE MACHINESTATUS SET Pause = 2')
+        else:
+            db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
+            
     db.commit()
     db.close()
     
