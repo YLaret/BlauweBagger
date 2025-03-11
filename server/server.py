@@ -18,10 +18,9 @@ def overview():
     stages = sF.getTable("STAGE",0)
     
     ### MESSY PART ###
-    print(machineStatus)
     programID = int(machineStatus[0]["ProgramID"])
     pause = int(machineStatus[0]["Pause"])
-    
+    programRunTime = machineStatus[0]["ProgramRunTime"]
     ### FIND CURRENT STAGE
     # currentStage variable (0 if no stage => full stop)
     currentStage = 0
@@ -32,10 +31,10 @@ def overview():
     # else if program running normally
     elif pause == 0:
         # calculate currentStage based on run time
-        stages = [int(item) for item in program[programID-1]["StageIDS"].split(',')]
+        pstages = [int(item) for item in programs[programID-1]["StageIDS"].split(',')]
         stageTime = 0
-        for stage in stages:
-            stageTime = stageTime + stageData[stage-1][3]
+        for stage in pstages:
+            stageTime = stageTime + stages[stage-1]["Time"]
             if stageTime > programRunTime:
                 currentStage = stage
                 break
@@ -44,7 +43,7 @@ def overview():
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     print(activeSwitches)
     print(currentStage)
-    return render_template('overview.html',machineStatus=machineStatus,programs=programs,switches=switches)
+    return render_template('overview.html',machineStatus=machineStatus,programs=programs,switches=switches,activeSwitches=activeSwitches)
     
 @app.route("/toggleswitch/<switch>")
 def toggleSwitch(switch):
