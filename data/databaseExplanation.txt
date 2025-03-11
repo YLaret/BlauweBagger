@@ -8,9 +8,12 @@ Name=>name of the device (e.g. Drum Filter or Hydrocycloon)
 Description=>(optional) description of the device
 
 *SWITCH*
-Switchid=>describes the name of the switch (e.g. EM01)
+SwitchID=>unique identifier of device
+Name=>describes the name of the switch (e.g. EM01)
+TuyaID=>Tuya device id
 IPAddress=>describes the local ip (e.g. 192.168.1.123)
 LocalKey=>hold the localkey value for the tuya api
+TuyaVersion=>float (usually 3.3 or 3.4)
 MeterIDS=>(optional) list of conditional meters
 MeterMin=>list of minimal meter values for a certain switch
 MeterMax=>list of maximal meter values for a certain switch
@@ -25,7 +28,7 @@ Value=>absolute value of the measured quantity
 StageID=>used to identify the stage
 Name=>stage name
 SwitchIDS=>(optional) list of the switches turned on in the stage (empty if no switch on, e.g. resting stage)
-Time=>time in seconds needed for the stage
+Time=>time in (floating) seconds needed for the stage
 
 *PROGRAM*
 ProgramID=>used to identify the program
@@ -36,5 +39,5 @@ StageIDS=>ordered list of the stages of the program
 *MACHINESTATUS* (one entry special table)
 ProgramID=> (0=manual control, 1,2,3...=specific program)
 Pause=> (0=no, 1=yes (manually), 2=yes (because error), manual control possible during pause)
-ProgramRunTime=> in seconds
+ProgramRunTime=> in (floating) seconds
 

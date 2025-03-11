@@ -1,31 +1,104 @@
 # local functions
 import machineFunctions as mF
-
 # date and time functions
 import datetime
-
-# initial connection to switches
-switches = mF.connectSwitches()
+# database library
+import sqlite3
+# sleep library
+import time
 
 # initial startTime
 startTime = datetime.datetime.now()
-
+#########################
+### MAIN MACHINE LOOP ###
+#########################
 while True:
-    # ensure connection to switches
-    switches = mF.connectSwitches()
+    ###################
+    ### READ PHASE ####
+    ###################
+    
+    # connect database
+    db = sqlite3.connect('../data/machine.db', timeout=5)
+    
+    machineStatusData = db.execute('SELECT * FROM MACHINESTATUS').fetchall()
+    programData = db.execute('SELECT * FROM PROGRAM').fetchall()
+    switchData = db.execute('SELECT * FROM SWITCH').fetchall()
+    deviceData = db.execute('SELECT * FROM DEVICE').fetchall()
+    meterData = db.execute('SELECT * FROM METER').fetchall()
+    stageData = db.execute('SELECT * FROM STAGE').fetchall()
+    
+    db.close()
+    
+    ###################
+    ### LOGIC PHASE ###
+    ###################
+    ### CONNECT SWITCHES
+    switches = connectSwitches(switchData)
 
-    # run only if the program is started
-    if mF.programStart():
-        # update startTime if not running already
-        startTime = mF.updateStartTime(startTime)
+    ### GET MACHINE STATUS
+    # extract current program
+    programID = int(machineStatusData[0])
+    # extract pause variable from machine status
+    pause = int(machineStatusData[1])
+    # extract program run time in seconds
+    programRunTime = machineStatusData[2]
 
-        # write the preferred state of the switches
-        mF.writePrefStateSwitches(switches,startTime)
+    ### FIND CURRENT STAGE
+    # currentStage variable (0 if no stage => full stop)
+    currentStage = 0
+    # if program paused allow manual control
+    if pause == 1:
+        # special manual stage
+        currentStage = 1
+    # else if program running normally
+    elif pause == 0:
+        # calculate currentStage based on run time
+        stages = [int(item) for item in programData[programID-1][3].split(',')]
+        stageTime = 0
+        for stage in stages:
+            stageTime = stageTime + stageData[stage-1][3]
+            if stageTime > programRunTime:
+                currentStage = stage
+                break
+              
+    ### READ METERS
+    #*#* TO DO *#*#
+    
+    ### CONTROL SWITCHES
+    # if no full stop control turn on/off preferred switches
+    if currentStage == 0:
+        shutDownSwitches()
     else:
-        print("Machine ready ....")
+        for i,switch in enumerate(switches):
+            if i+1 in [int(item) for item in stageData[currentStage-1][2].split(',')]:
+                switch.turn_on()
+            else:
+                switch.turn_off()
+   
+    ### CALCULATE LOOP TIME
+    loopTime = (datetime.datetime.now() - startTime).total_seconds()
+    startTime = datetime.datetime.now()
+   
+    ###################
+    ### WRITE PHASE ###
+    ###################
+    # connect database
+    db = sqlite3.connect('../data/machine.db', timeout=5)
+    db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
+    db.commit()
+    db.close()
+    
+    ###################
+    ### SLEEP PHASE ###
+    ###################
+    time.sleep(0.5)
+            
         
-        # shutdown all switches, disabled for test
-        mF.shutDownSwitches(switches)
 
-        # update running status
-        mF.updateRunningStop()
+    
+    
+    
+    
+    
+    
+    
