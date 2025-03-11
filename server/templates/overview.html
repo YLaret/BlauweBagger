@@ -27,23 +27,26 @@
         </form>
         </div>
         <div class="switches">
-            <button class="toggle-switch" data-switch="1">Toggle Switch 1</button>
-            <button class="toggle-switch" data-switch="2">Toggle Switch 2</button>
+            {% for switch in switches %}
+            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                <input type="submit" id="switch-btn" value="{{ switch["Name"] }}"/>
+            </form>
+            {% endfor %}
         </div>
     </div>
 
     <div class="table-container">
-        <h1>{{ tableNames }}</h1>
+        <h1>MACHINESTATUS</h1>
                 <table>
                         <thead>
                                 <tr>
-                {% for key, value in tables[0].items() %}
+                {% for key, value in machineStatus[0].items() %}
                                                 <th>{{key}}</th>
                                         {% endfor %}
                                 </tr>
                            </thead>
                         <tbody>
-                                {% for item in tables %}
+                                {% for item in machineStatus %}
                                         <tr>
                                                 {% for key, value in item.items() %}
                                                         <td>{{value}}</th>
