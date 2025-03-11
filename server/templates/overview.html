@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Filtration Plant Control</h1>
         <div>
-            Select Program
+            Select Program:
             <form action="/selectprogram/" method="POST">
             <select name="program">
                 {% for program in programs %}
@@ -27,8 +27,8 @@
         </form>
         </div>
         <div class="switches">
+            Switches:
             {% for switch in switches %}
-            {{ switch["SwitchID"]}}
             {% if switch["SwitchID"] in activeSwitches %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
                 <input type="submit" class="switch-active" id="switch-btn" value="{{ switch["Name"] }}"/>

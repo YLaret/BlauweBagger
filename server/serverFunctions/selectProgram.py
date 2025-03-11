@@ -11,6 +11,7 @@ def selectProgram():
 
     # update database
     db.execute('UPDATE MACHINESTATUS SET ProgramID =' + str(value))
+    db.execute('UPDATE MACHINESTATUS SET Pause = 2')
     
     # commit changes and close connection
     db.commit()
