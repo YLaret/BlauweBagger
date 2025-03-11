@@ -36,11 +36,11 @@ while True:
 
     ### GET MACHINE STATUS
     # extract current program
-    programID = int(machineStatusData[0])
+    programID = int(machineStatusData[0]["ProgramID"])
     # extract pause variable from machine status
-    pause = int(machineStatusData[1])
+    pause = int(machineStatusData[0]["Pause"])
     # extract program run time in seconds
-    programRunTime = machineStatusData[2]
+    programRunTime = machineStatusData[0]["ProgramRunTime"]
 
     ### FIND CURRENT STAGE
     # currentStage variable (0 if no stage => full stop)
@@ -52,10 +52,10 @@ while True:
     # else if program running normally
     elif pause == 0:
         # calculate currentStage based on run time
-        stages = [int(item) for item in programData[programID-1][3].split(',')]
+        pstages = [int(item) for item in programs[programID-1]["StageIDS"].split(',')]
         stageTime = 0
-        for stage in stages:
-            stageTime = stageTime + stageData[stage-1][3]
+        for stage in pstages:
+            stageTime = stageTime + stages[stage-1]["Time"]
             if stageTime > programRunTime:
                 currentStage = stage
                 break
@@ -65,14 +65,20 @@ while True:
     
     ### CONTROL SWITCHES
     # if no full stop control turn on/off preferred switches
+    activeSwitches = []
+    if currentStage != 0:
+        activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     if currentStage == 0:
-        mF.shutDownSwitches()
+        #mF.shutDownSwitches()
+        print("Turning off all switches")
     else:
         for i,switch in enumerate(switches):
-            if i+1 in [int(item) for item in stageData[currentStage-1][2].split(',')]:
-                switch.turn_on()
+            if i+1 in activeSwitches:
+                #switch.turn_on()
+                print("Turning on switch: " + str(i+1))
             else:
-                switch.turn_off()
+                #switch.turn_off()
+                print("Turning off switch: " + str(i+1))
    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
