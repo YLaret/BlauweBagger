@@ -21,7 +21,10 @@ def toggleSwitch(switch):
     sF.toggleSwitch(switch)
     return redirect("/")
 
-@app.route("/selectprogram/")
+@app.route("/selectprogram/", methods=["POST"])
+def selectProgram():
+    sF.selectProgram()
+    return redirect("/")
 
 @app.route("/start")
 def start():
