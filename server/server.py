@@ -7,7 +7,7 @@ import serverFunctions as sF
 app = Flask(__name__)
 
 # define table names, this will need something different in the future
-tableNames = ["motors","meters","states","switches","program","programStatus"]
+tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS"]
 
 @app.route("/")
 def overview():
@@ -17,14 +17,14 @@ def overview():
 def tableview():
     tables = []
     for tableName in tableNames:
-        tables.append(sF.getTable(tableName))
+        tables.append(sF.getTable(tableName,0))
     return render_template('tableview.html',tables=tables,tableNames=tableNames)
 
 @app.route("/program")
 def program():
     tables = []
     for tableName in tableNames:
-        tables.append(sF.getTable(tableName))
+        tables.append(sF.getTable(tableName,1))
     return render_template('program.html',tables=tables,tableNames=tableNames)
 
 @app.route("/program/<table>", methods=["POST"])

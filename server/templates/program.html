@@ -19,9 +19,10 @@
                         </thead>
                         <tbody>
                                	{% for item in table %}
+                                {% set outer_loop = loop %}
                                        	<tr>
                                                	{% for key, value in item.items() %}
-							<td><input name="{{item.id|string + key}}" value="{{value}}" /></th>
+							<td><input name="{{outer_loop.index|string + key}}" value="{{value}}" /></th>
                                                	{% endfor %}
                                        	</tr>
                                 {% endfor %}

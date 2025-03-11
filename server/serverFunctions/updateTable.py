@@ -11,14 +11,42 @@ def updateTable(table):
     cs = db.execute('SELECT * FROM ' + table)
     ns = [description[0] for description in cs.description]
 
+    # count rows
+    rows = 0
+    
     # update the rows and columns
-    for ci in cs:
+    for i,ci in enumerate(cs):
+        rows = i
         for ni in ns:
             # get form data
-            value = request.form.get(str(ci[0]) + str(ni))
+            value = request.form.get(str(i+1) + str(ni))
+            
+            print(value)
+            
             # update database
             db.execute('UPDATE ' + str(table) + ' SET ' + str(ni) + '="' + str(value) + '" WHERE ' + str(ns[0]) + '="' + str(ci[0]) + '"')
     
+    # allow for addition of 1 row if not none
+    values = ""
+    columns = ""
+    for ni in ns:
+        # value
+        value = request.form.get(str(rows+2) + str(ni))
+        if value != "None":
+            try:
+                float(value)
+            except ValueError:
+                value = '"'+str(value)+'"'
+            values = values + str(value) + ','
+            columns = columns + ni + ','
+    
+    values = values[:-1]
+    columns = columns[:-1]
+    
+    query = 'INSERT INTO ' + str(table) + ' ('+columns+') VALUES (' + values + ')'
+    print(query)
+    db.execute(query)
+
     # commit changes and close connection
     db.commit()
     db.close()
