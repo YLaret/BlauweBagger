@@ -42,8 +42,8 @@ def updateTable(table):
     values = values[:-1]
     columns = columns[:-1]
     
-    print(query)
     query = 'INSERT INTO ' + str(table) + ' ('+columns+') VALUES (' + values + ')'
+    print(query)
 
     if values and columns:
         db.execute(query)
