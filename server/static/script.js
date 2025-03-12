@@ -35,10 +35,10 @@ function updatePage() {
                     for (let i = 0; i < switches.length; i++) {
                         const id = parseInt(switches.item(i).id)
                         if (data.activeSwitches && data.activeSwitches.includes(id)) {
-                            switches.item(i).add("switch-active")
+                            switches.item(i).classList.add("switch-active")
                             console.log
                         } else {
-                            switches.item(i).remove("switch-active")
+                            switches.item(i).classList.remove("switch-active")
                         }
                     }
                     /*let meter = document.getElementById("meter");
