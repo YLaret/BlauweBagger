@@ -28,7 +28,7 @@ def updateTable(table):
     values = ""
     columns = ""
     for i,ni in enumerate(ns):
-        if i>1:
+        if i>0:
             # value
             value = request.form.get(str(rows+2) + str(ni))
             if value != "None":
@@ -43,7 +43,6 @@ def updateTable(table):
     columns = columns[:-1]
     
     query = 'INSERT INTO ' + str(table) + ' ('+columns+') VALUES (' + values + ')'
-    print(query)
 
     if values and columns:
         db.execute(query)
