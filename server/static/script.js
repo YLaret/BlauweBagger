@@ -32,7 +32,7 @@ function updatePage() {
                         meters.item(i).innerText = data.meters[i];
                     }
                     const switches = document.getElementsByClassName("switches")
-                    for (let i = 0; i < switches.length; ++) {
+                    for (let i = 0; i < switches.length; i++) {
                         const id = parseInt(switches.item(i).id)
                         if data.activeSwitches.includes(id) {
                             switches.item(i).add("switch-active")
