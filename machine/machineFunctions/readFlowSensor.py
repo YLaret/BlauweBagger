@@ -27,8 +27,8 @@ def readFlowSensor():
     f25ad = (data[2]/4095*16*8.8125)
 
     data = [f250qa,f200qa,f25ad]
-
+    
+    # Piece of mind close out
+    sensy_boi.serial.close()
+    
     return data
-
-# Piece of mind close out
-sensy_boi.serial.close()
