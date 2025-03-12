@@ -31,11 +31,12 @@ function updatePage() {
                     for (let i = 0; i < meters.length; i++) {
                         meters.item(i).innerText = data.meters[i];
                     }
-                    const switches = document.getElementsByClassName("switches")
+                    const switches = document.getElementsByClassName("switch-btn")
                     for (let i = 0; i < switches.length; i++) {
                         const id = parseInt(switches.item(i).id)
-                        if (data.activeSwitches.includes(id)) {
+                        if (data.activeSwitches && data.activeSwitches.includes(id)) {
                             switches.item(i).add("switch-active")
+                            console.log
                         } else {
                             switches.item(i).remove("switch-active")
                         }
