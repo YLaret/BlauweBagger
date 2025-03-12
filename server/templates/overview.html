@@ -10,6 +10,7 @@
                     id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
                 </div>
             </div>
+            {% endfor %}
         </div>
         <div>
             ProgramRunTime: <div id=program-run-time>{{ machineStatus[0]["ProgramRunTime"]}}</div>
