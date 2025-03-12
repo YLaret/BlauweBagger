@@ -54,8 +54,7 @@ def updatePage():
     meterData= sF.getTable("METER",0)
     meters = []
     for meter in meterData:
-        meters.append(meter["Value"])
-    print(meters)
+        meters.append(float(meter["Value"]))
     programRunTime = machineStatus[0]["ProgramRunTime"]
 
     ### MESSY PART ###
