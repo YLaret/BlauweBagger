@@ -56,9 +56,9 @@ def updatePage():
     print(meterData)
     for meter in meterData:
         meters.append(float(meter["Value"]))
-        print(float(meter["Value"]))
+        
     programRunTime = machineStatus[0]["ProgramRunTime"]
-    print(meters)
+    
     ### MESSY PART ###
     programID = int(machineStatus[0]["ProgramID"])
     pause = int(machineStatus[0]["Pause"])
@@ -84,9 +84,6 @@ def updatePage():
     if currentStage != 0:
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     ###################
-    print(activeSwitches)
-    print(meters)
-    print(programRunTime)
     return jsonify({'activeSwitches':activeSwitches,'meters':meters,'programRunTime':programRunTime})
 
 @app.route("/toggleswitch/<switch>")

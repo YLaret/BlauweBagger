@@ -30,15 +30,19 @@ function updatePage() {
                     const meters = document.getElementsByClassName("meters");
                     for (let i = 0; i < meters.length; i++) {
                         meters.item(i).innerText = data.meters[i];
+                        console.log(meters.item(i))
+                        console.log(meters.item(i).innerText)
                     }
                     const switches = document.getElementsByClassName("switch-btn")
-                    for (let i = 0; i < switches.length; i++) {
-                        const id = parseInt(switches.item(i).id)
-                        if (data.activeSwitches && data.activeSwitches.includes(id)) {
-                            switches.item(i).classList.add("switch-active")
-                            console.log
-                        } else {
-                            switches.item(i).classList.remove("switch-active")
+                    if (activeSwitches) {
+                        for (let i = 0; i < switches.length; i++) {
+                            const id = parseInt(switches.item(i).id)
+                            if (data.activeSwitches && data.activeSwitches.includes(id)) {
+                                switches.item(i).classList.add("switch-active")
+                                console.log
+                            } else {
+                                switches.item(i).classList.remove("switch-active")
+                            }
                         }
                     }
                     /*let meter = document.getElementById("meter");
