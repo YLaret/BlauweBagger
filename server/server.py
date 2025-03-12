@@ -58,7 +58,7 @@ def updatePage():
         meters.append(float(meter["Value"]))
         print(float(meter["Value"]))
     programRunTime = machineStatus[0]["ProgramRunTime"]
-
+    print(meters)
     ### MESSY PART ###
     programID = int(machineStatus[0]["ProgramID"])
     pause = int(machineStatus[0]["Pause"])
