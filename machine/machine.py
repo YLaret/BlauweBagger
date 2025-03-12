@@ -19,8 +19,7 @@ while True:
     
     # connect database
     db = sqlite3.connect('../data/machine.db', timeout=5)
-    switchData = db.execute('SELECT * FROM SWITCH').fetchall()
-    db.close()
+    switchData = mF.getTable("SWITCH",0)
     machineStatusData = mF.getTable("MACHINESTATUS",0)
     programData = mF.getTable("PROGRAM",0)
     deviceData = mF.getTable("DEVICE",0)
@@ -33,6 +32,7 @@ while True:
     ###################
     ### CONNECT SWITCHES
     switches = mF.connectSwitches(switchData)
+    print(switches)
 
     ### GET MACHINE STATUS
     # extract current program
