@@ -18,7 +18,6 @@ while True:
     ###################
     
     # connect database
-    db = sqlite3.connect('../data/machine.db', timeout=5)
     switchData = mF.getTable("SWITCH",0)
     machineStatusData = mF.getTable("MACHINESTATUS",0)
     programData = mF.getTable("PROGRAM",0)
