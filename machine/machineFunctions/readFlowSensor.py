@@ -28,7 +28,7 @@ def readFlowSensor():
 
     data = [f250qa,f200qa,f25ad]
 
-return data
+    return data
 
 # Piece of mind close out
 sensy_boi.serial.close()
