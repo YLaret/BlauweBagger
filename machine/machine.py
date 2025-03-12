@@ -63,7 +63,7 @@ while True:
                 break
               
     ### READ METERS
-    #*#* TO DO *#*#
+    meters = mF.readFlowSensor()
     
     ### CONTROL SWITCHES
     # if no full stop control turn on/off preferred switches
@@ -97,7 +97,9 @@ while True:
             db.execute('UPDATE MACHINESTATUS SET Pause = 2')
         else:
             db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
-            
+    for i,meter in enumerate(meterData):
+        db.execute('UPDATE METER SET Value = ' +str(meters[i]) ' WHERE MeterID = '+str(meter["MeterID"]))
+    
     db.commit()
     db.close()
     

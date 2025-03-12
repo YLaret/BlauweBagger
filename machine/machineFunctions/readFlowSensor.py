@@ -26,7 +26,7 @@ def readFlowSensor.py():
     f250qa = (data[1]/4095*16*14.84375)
     f25ad = (data[2]/4095*16*8.8125)
 
-    data = [f200qa,f250qa,f25ad]
+    data = [f250qa,f200qa,f25ad]
 
 return data
 
