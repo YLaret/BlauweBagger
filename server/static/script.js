@@ -23,15 +23,10 @@ function updatePage() {
             fetch('/updatepage')
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.activeSwitches);
-                    console.log(data.meters);
-                    console.log(data.programRunTime);
                     document.getElementById("program-run-time").innerText = data.programRunTime
                     const meters = document.getElementsByClassName("meters");
                     for (let i = 0; i < meters.length; i++) {
                         meters.item(i).innerText = data.meters[i];
-                        console.log(meters.item(i))
-                        console.log(meters.item(i).innerText)
                     }
                     const switches = document.getElementsByClassName("switch-btn")
                     if (activeSwitches) {
