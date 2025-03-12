@@ -16,7 +16,7 @@ def overview():
     programs = sF.getTable("PROGRAM",0)
     switches = sF.getTable("SWITCH",0)
     stages = sF.getTable("STAGE",0)
-    meters = sF.getTable("METERS",0)
+    meters = sF.getTable("METER",0)
     
     ### MESSY PART ###
     programID = int(machineStatus[0]["ProgramID"])
@@ -48,7 +48,7 @@ def overview():
 @app.route("/updatevalues")
 def updateValues():
     machineStatus = sF.getTable("MACHINESTATUS",0)
-    meterData= sF.getTable("METERS",0)
+    meterData= sF.getTable("METER",0)
     meters = []
     for meter in meterData:
         meters.append(meter["Value"])
