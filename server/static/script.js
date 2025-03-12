@@ -26,6 +26,7 @@ function updatePage() {
                     console.log(data.activeSwitches);
                     console.log(data.meters);
                     console.log(data.programRunTime);
+                    document.getElementById("program-run-time").innerText = data.programRunTime
                     /*let meter = document.getElementById("meter");
                     meter.value = data.reading;
                     document.getElementById("meter_value").innerText = data.reading;*/
@@ -33,5 +34,5 @@ function updatePage() {
                 .catch(error => console.error('Error fetching meter reading:', error));
         }
 
-setInterval(updatePage, 2000); // Update every 2 seconds
+setInterval(updatePage, 200); // Update every 2 seconds
 window.onload = updatePage; // Initial load

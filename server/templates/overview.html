@@ -4,6 +4,9 @@
     <div class="container">
         <h1>Filtration Plant Control</h1>
         <div>
+            ProgramRunTime: <div id=program-run-time>0</div>
+        </div>
+        <div>
             Select Program:
             <form action="/selectprogram/" method="POST">
             <select name="program">
@@ -34,7 +37,7 @@
             </form>
             {% else %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" id="switch-btn" value="{{ switch["Name"] }}"/>
+                <input type="submit" class="switch-btn" value="{{ switch["Name"] }}"/>
             </form>
             {% endif %}
             {% endfor %}
