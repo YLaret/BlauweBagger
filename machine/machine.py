@@ -9,6 +9,9 @@ import time
 
 # initial startTime
 startTime = datetime.datetime.now()
+
+switchData = mF.getTable("SWITCH",0)
+switches = mF.connectSwitches(switchData)
 #########################
 ### MAIN MACHINE LOOP ###
 #########################
@@ -18,7 +21,7 @@ while True:
     ###################
     
     # connect database
-    switchData = mF.getTable("SWITCH",0)
+    #switchData = mF.getTable("SWITCH",0)
     machineStatusData = mF.getTable("MACHINESTATUS",0)
     programData = mF.getTable("PROGRAM",0)
     deviceData = mF.getTable("DEVICE",0)
@@ -30,7 +33,7 @@ while True:
     ### LOGIC PHASE ###
     ###################
     ### CONNECT SWITCHES
-    switches = mF.connectSwitches(switchData)
+    #switches = mF.connectSwitches(switchData)
 
     ### GET MACHINE STATUS
     # extract current program
