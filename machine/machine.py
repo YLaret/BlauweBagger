@@ -63,7 +63,7 @@ while True:
                 break
               
     ### READ METERS
-    #meters = mF.readFlowSensor()
+    meters = mF.readFlowSensor()
     
     ### CONTROL SWITCHES
     # if no full stop control turn on/off preferred switches
@@ -71,15 +71,15 @@ while True:
     if currentStage != 0:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
     if currentStage == 0:
-        #mF.shutDownSwitches()
+        mF.shutDownSwitches()
         print("Turning off all switches")
     else:
         for i,switch in enumerate(switches):
             if i+1 in activeSwitches:
-                #switch.turn_on()
+                switch.turn_on()
                 print("Turning on switch: " + str(i+1))
             else:
-                #switch.turn_off()
+                switch.turn_off()
                 print("Turning off switch: " + str(i+1))
    
     ### CALCULATE LOOP TIME
@@ -97,8 +97,8 @@ while True:
             db.execute('UPDATE MACHINESTATUS SET Pause = 2')
         else:
             db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
-    #for i,meter in enumerate(meterData):
-    #db.execute('UPDATE METER SET Value = ' +str(meters[i]) ' WHERE MeterID = '+str(meter["MeterID"]))
+    for i,meter in enumerate(meterData):
+    db.execute('UPDATE METER SET Value = ' +str(meters[i]) ' WHERE MeterID = '+str(meter["MeterID"]))
     
     db.commit()
     db.close()
