@@ -7,7 +7,7 @@
             {% for meter in meters %}
             <div> {{ meter["Name"] }} 
                 <div 
-                    id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
+                    class ="meters" id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
                 </div>
             </div>
             {% endfor %}
