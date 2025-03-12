@@ -27,6 +27,19 @@ function updatePage() {
                     console.log(data.meters);
                     console.log(data.programRunTime);
                     document.getElementById("program-run-time").innerText = data.programRunTime
+                    const meters = document.getElementsByClassName("meters");
+                    for (let i = 0; i < meters.length; i++) {
+                        meters.item(i).innerText = data.meters[i];
+                    }
+                    const switches = document.getElementsByClassName("switches")
+                    for (let i = 0; i < switches.length; ++) {
+                        const id = parseInt(switches.item(i).id)
+                        if data.activeSwitches.includes(id) {
+                            switches.item(i).add("switch-active")
+                        } else {
+                            switches.item(i).remove("switch-active")
+                        }
+                    }
                     /*let meter = document.getElementById("meter");
                     meter.value = data.reading;
                     document.getElementById("meter_value").innerText = data.reading;*/

@@ -3,8 +3,16 @@
 {% block main %}
     <div class="container">
         <h1>Filtration Plant Control</h1>
+        <div> Meters:
+            {% for meter in meters %}
+            <div> {{ meter["Name"] }} 
+                <div 
+                    id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
+                </div>
+            </div>
+        </div>
         <div>
-            ProgramRunTime: <div id=program-run-time>0</div>
+            ProgramRunTime: <div id=program-run-time>{{ machineStatus[0]["ProgramRunTime"]}}</div>
         </div>
         <div>
             Select Program:
@@ -33,11 +41,11 @@
             {% for switch in switches %}
             {% if switch["SwitchID"] in activeSwitches %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-active" id="switch-btn" value="{{ switch["Name"] }}"/>
+                <input type="submit" class="switch-active switch-btn switches" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
             </form>
             {% else %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-btn" value="{{ switch["Name"] }}"/>
+                <input type="submit" class="switch-btn switches" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
             </form>
             {% endif %}
             {% endfor %}
