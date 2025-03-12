@@ -56,7 +56,7 @@ def updatePage():
     print(meterData)
     for meter in meterData:
         meters.append(float(meter["Value"]))
-        print(meter["Value"])
+        print(float(meter["Value"]))
     programRunTime = machineStatus[0]["ProgramRunTime"]
 
     ### MESSY PART ###
