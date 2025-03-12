@@ -42,7 +42,7 @@
             {% for switch in switches %}
             {% if switch["SwitchID"] in activeSwitches %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-active switch-btn switches" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+                <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
             </form>
             {% else %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
