@@ -82,6 +82,9 @@ def updatePage():
     if currentStage != 0:
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     ###################
+    print(activeSwitches)
+    print(meters)
+    print(programRunTime)
     return jsonify({'activeSwitches':activeSwitches,'meters':meters,'programRunTime':programRunTime})
 
 @app.route("/toggleswitch/<switch>")
