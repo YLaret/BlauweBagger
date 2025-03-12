@@ -18,3 +18,18 @@ if (currentPath == "/")
     navlinktableview.classList.remove('active')
     navlinkprogram.classList.add('active')
 }
+
+function updatePage() {
+            fetch('/updatepage')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.readin);
+                    /*let meter = document.getElementById("meter");
+                    meter.value = data.reading;
+                    document.getElementById("meter_value").innerText = data.reading;*/
+                })
+                .catch(error => console.error('Error fetching meter reading:', error));
+        }
+
+setInterval(updateMeter, 2000); // Update every 2 seconds
+window.onload = updatePage; // Initial load
