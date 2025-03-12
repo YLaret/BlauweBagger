@@ -45,8 +45,8 @@ def overview():
     ###################
     return render_template('overview.html',machineStatus=machineStatus,programs=programs,switches=switches,activeSwitches=activeSwitches,meters=meters)
 
-@app.route("/updatevalues")
-def updateValues():
+@app.route("/updatepage")
+def updatePage():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     meterData= sF.getTable("METER",0)
     meters = []
