@@ -23,7 +23,7 @@ function updatePage() {
             fetch('/updatepage')
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.readin);
+                    console.log(data.reading);
                     /*let meter = document.getElementById("meter");
                     meter.value = data.reading;
                     document.getElementById("meter_value").innerText = data.reading;*/
