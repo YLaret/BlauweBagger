@@ -48,6 +48,9 @@ def overview():
 @app.route("/updatepage")
 def updatePage():
     machineStatus = sF.getTable("MACHINESTATUS",0)
+    programs = sF.getTable("PROGRAM",0)
+    switches = sF.getTable("SWITCH",0)
+    stages = sF.getTable("STAGE",0)
     meterData= sF.getTable("METER",0)
     meters = []
     for meter in meterData:
