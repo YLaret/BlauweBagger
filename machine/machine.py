@@ -77,6 +77,7 @@ while True:
     else:
         for i,switch in enumerate(switches):
             if i > 1:
+                print(switch.status())
                 if i+1 in activeSwitches:
                     switch.turn_on()
                     print("Turning on switch: " + str(i+1))
