@@ -31,5 +31,5 @@ function updatePage() {
                 .catch(error => console.error('Error fetching meter reading:', error));
         }
 
-setInterval(updateMeter, 2000); // Update every 2 seconds
+setInterval(updatePage, 2000); // Update every 2 seconds
 window.onload = updatePage; // Initial load
