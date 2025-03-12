@@ -26,10 +26,21 @@ The databse follows a relational model with the following layout:
 * Program view with timing possibilities
 
 ## Installation
+### Installing Rasbian
+* Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
+* Use Rasbian Imager to etch OS on an SD card
+* Turn on SSH, configure wifi (`BlauweBagger_5G`) and add user
+* Install pip and git:
+* `sudo apt update`
+* `sudo apt upgrade`
+* `sudo apt install pip`
+* `sudo apt install git`
+
+
 Make sure python and pip are installed
 * Clone the repository `git clone https://github.com/YLaret/BlauweBagger`
 * Go to the BlauweBagger directory `cd BlauweBagger`
-* Install the python dependencies `pip install -r requirements.txt`
+* Install the python dependencies `sudo pip install -r requirements.txt --break-system-packages`
 
 ## Running the webserver
 To run the webserver in developer modus:
