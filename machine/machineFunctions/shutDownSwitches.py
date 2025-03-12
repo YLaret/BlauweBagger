@@ -1,5 +1,6 @@
 def shutDownSwitches(switches):
     # turn of each switch
-    for switch in switches:
-        switch.turn_off()
+    for i,switch in enumerate(switches):
+        if i>1:
+            switch.turn_off()
     return
