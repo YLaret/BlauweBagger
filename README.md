@@ -75,10 +75,27 @@ WantedBy=multi-user.target
 * `sudo systemctl start BlauweBagger`
 * `sudo systemctl enable BlauweBagger`
 
-* Change permissions:
+* Create start up script to fix permissions:
+`sudo nano /etc/systemd/system/FixSocketPermissions.service`
+* Copy and past the following:
 ```
-sudo chown pi:www-data /home/pi/BlauweBagger/server/server.sock
-sudo chmod 660 /home/pi/BlauweBagger/server/server.sock
+[Unit]
+Description=Fix socket permissions
+After=network.target BlauweBagger.service
+
+[Service]
+ExecStart=/bin/bash -c "sudo chown pi:www-data /home/pi/BlauweBagger/server/server.sock; sudo chmod 660 /home/pi/BlauweBagger/server/server.sock"
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+* Activate script:
+```
+sudo systemctl daemon-reload
+sudo systemctl enable FixSocketPermissions
+sudo systemctl start FixSocketPermissions
 ```
 
 * Configure Nginx to proxy Request:
