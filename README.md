@@ -30,6 +30,8 @@ The database follows a relational model with the following layout:
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
 * Use Rasbian Imager to etch OS on an SD card
 * Turn on SSH and add user
+* SSH into the Pi:
+* `ssh [username]@[ipaddress]`
 * Install pip and git:
 * `sudo apt update`
 * `sudo apt upgrade`
