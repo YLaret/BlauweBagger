@@ -76,13 +76,17 @@ while True:
         mF.shutDownSwitches(switches)
     else:
         for i,switch in enumerate(switches):
-            time.sleep(0.1) # do not spam the channel...
+            TiD = 1
+            if switch["TuyaVersion"] == 3.3:
+                TiD = 1
+            else if switch["TuyaVersion"] == 3.4:
+                TiD = 17
             if i+1 in activeSwitches:
                 print("Turning on switch: " + str(i+1))
-                switch.turn_on(nowait=True)
+                switch.set_value(TiD,True,nowait=True)
             else:
                 print("Turning off switch: " + str(i+1))
-                switch.turn_off(nowait=True)
+                switch.set_value(TiD,False,nowait=True)
    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
@@ -108,7 +112,7 @@ while True:
     ###################
     ### SLEEP PHASE ###
     ###################
-    time.sleep(0.3)
+    time.sleep(0.5)
             
         
 
