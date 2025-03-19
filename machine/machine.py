@@ -76,14 +76,13 @@ while True:
         print("Turning off all switches")
     else:
         for i,switch in enumerate(switches):
-            if i > 1:
-                print(switch.status())
-                if i+1 in activeSwitches:
-                    switch.turn_on()
-                    print("Turning on switch: " + str(i+1))
-                else:
-                    switch.turn_off()
-                    print("Turning off switch: " + str(i+1))
+            print(switch.status())
+            if i+1 in activeSwitches:
+                switch.turn_on()
+                print("Turning on switch: " + str(i+1))
+            else:
+                switch.turn_off()
+                print("Turning off switch: " + str(i+1))
    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
