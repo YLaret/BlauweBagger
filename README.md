@@ -29,14 +29,15 @@ The database follows a relational model with the following layout:
 ### Installing Rasbian
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
 * Use Rasbian Imager to etch OS on an SD card
-* Turn on SSH and add user
+* Turn on SSH and add user `pi` with password [...]
 * SSH into the Pi:
 * `ssh [username]@[ipaddress]`
-* Install pip and git:
+* Install pip, git and nginx:
 * `sudo apt update`
 * `sudo apt upgrade`
 * `sudo apt install pip`
 * `sudo apt install git`
+* `sudo apt install nginx`
 
 
 Make sure python and pip are installed
@@ -44,12 +45,52 @@ Make sure python and pip are installed
 * Go to the BlauweBagger directory `cd BlauweBagger`
 * Install the python dependencies `sudo pip install -r requirements.txt --break-system-packages`
 
-## Running the webserver
+## Running the webserver (for quick dev)
 To run the webserver in developer modus:
 * `cd server`
 * `export FLASK_APP=server`
 * `flask run --host=0.0.0.0`
 * After making some changes to the `server.py`, the server can be stopped by Ctr+C and restarted by the previous command
+
+## Installing the webserver (permanent usage)
+* Create a service for the server:
+* `sudo nano /etc/systemd/system/BlauweBagger.service`
+* Copy paste the following:
+`
+[Unit]
+Description=uWSGI instance to serve BlauweBagger server
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory=/home/pi/BlauweBagger/server
+ExecStart=/usr/local/bin/uwsgi --ini server.ini
+
+[Install]
+WantedBy=multi-user.target
+`
+* Enable the service:
+* `sudo systemctl start BlauweBagger`
+* `sudo systemctl enable BlauweBagger`
+
+* Configure Nginx to proxy Request:
+# `sudo nano /etc/nginx/sites-available/BlauweBagger`
+* Copy paste the following:
+`
+server {
+    listen 80;
+    server_name 192.168.0.200;
+location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/home/pi/BlauweBagger/server.sock;
+    }
+}
+`
+* Link to enabled sites:
+* `sudo ln -s /etc/nginx/sites-available/BlauweBagger /etc/nginx/sites-enabled`
+* Restart Nginx:
+* `sudo systemctl restart nginx`
 
 ## Running the machine program
 To run the machine program in developer modus:
