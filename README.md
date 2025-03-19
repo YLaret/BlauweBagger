@@ -85,7 +85,7 @@ server {
     server_name 192.168.0.200;
 location / {
         include uwsgi_params;
-        uwsgi_pass unix:/home/pi/BlauweBagger/server.sock;
+        uwsgi_pass unix:/home/pi/BlauweBagger/server/server.sock;
     }
 }
 ```
