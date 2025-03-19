@@ -75,6 +75,12 @@ WantedBy=multi-user.target
 * `sudo systemctl start BlauweBagger`
 * `sudo systemctl enable BlauweBagger`
 
+* Change permissions:
+```
+sudo chown pi:www-data /home/pi/BlauweBagger/server/server.sock
+sudo chmod 660 /home/pi/BlauweBagger/server/server.sock
+```
+
 * Configure Nginx to proxy Request:
 * `sudo nano /etc/nginx/sites-available/BlauweBagger`
 * Copy paste the following:
@@ -100,3 +106,28 @@ To run the machine program in developer modus:
 * `python machine.py`
 
 Exit the program with Ctr+C
+
+## Installing the machine program
+* Create the service `sudo nano /etc/systemd/system/BlauweBaggerMachine.service`
+* Copy and past the following:
+```
+[Unit]
+Description=Python script controlling the machine
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/BlauweBagger/machine
+ExecStart=/usr/bin/python /home/pi/BlauweBagger/machine/machine.py
+Restart=on-abort
+
+
+[Install]
+WantedBy=multi-user.target
+```
+* Start the script
+```
+sudo systemctl daemon-reload
+sudo systemctl start BlauweBaggerMachine
+sudo systemctl enable BlauweBaggerMachine
+```
