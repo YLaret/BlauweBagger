@@ -80,7 +80,7 @@ while True:
             if switchData[i]["TuyaVersion"] == 3.3:
                 TiD = 1
             elif switchData[i]["TuyaVersion"] == 3.4:
-                TiD = 17
+                TiD = 16
             if i+1 in activeSwitches:
                 print("Turning on switch: " + str(i+1))
                 switch.set_value(TiD,True,nowait=True)

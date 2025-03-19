@@ -6,6 +6,6 @@ def shutDownSwitches(switches,switchData):
         if switchData[i]["TuyaVersion"] == 3.3:
             TiD = 1
         elif switchData[i]["TuyaVersion"] == 3.4:
-            TiD = 17
+            TiD = 16
         switch.set_value(TiD,False,nowait=True)
     return
