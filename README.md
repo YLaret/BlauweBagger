@@ -56,7 +56,8 @@ To run the webserver in developer modus:
 * Create a service for the server:
 * `sudo nano /etc/systemd/system/BlauweBagger.service`
 * Copy paste the following:
-`
+
+```
 [Unit]
 Description=uWSGI instance to serve BlauweBagger server
 After=network.target
@@ -69,7 +70,7 @@ ExecStart=/usr/local/bin/uwsgi --ini server.ini
 
 [Install]
 WantedBy=multi-user.target
-`
+```
 * Enable the service:
 * `sudo systemctl start BlauweBagger`
 * `sudo systemctl enable BlauweBagger`
@@ -77,7 +78,8 @@ WantedBy=multi-user.target
 * Configure Nginx to proxy Request:
 * `sudo nano /etc/nginx/sites-available/BlauweBagger`
 * Copy paste the following:
-`
+
+```
 server {
     listen 80;
     server_name 192.168.0.200;
@@ -86,7 +88,7 @@ location / {
         uwsgi_pass unix:/home/pi/BlauweBagger/server.sock;
     }
 }
-`
+```
 * Link to enabled sites:
 * `sudo ln -s /etc/nginx/sites-available/BlauweBagger /etc/nginx/sites-enabled`
 * Restart Nginx:
