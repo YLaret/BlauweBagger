@@ -76,6 +76,7 @@ while True:
         mF.shutDownSwitches(switches)
     else:
         for i,switch in enumerate(switches):
+            sleep(0.1) # do not spam the channel...
             if i+1 in activeSwitches:
                 print("Turning on switch: " + str(i+1))
                 switch.turn_on(nowait=True)
@@ -107,7 +108,7 @@ while True:
     ###################
     ### SLEEP PHASE ###
     ###################
-    time.sleep(0.5)
+    time.sleep(0.3)
             
         
 

@@ -29,7 +29,7 @@ function updatePage() {
                         meters.item(i).innerText = data.meters[i];
                     }
                     const switches = document.getElementsByClassName("switch-btn")
-                    if (activeSwitches) {
+                    if (data.activeSwitches) {
                         for (let i = 0; i < switches.length; i++) {
                             const id = parseInt(switches.item(i).id)
                             if (data.activeSwitches && data.activeSwitches.includes(id)) {
@@ -47,5 +47,5 @@ function updatePage() {
                 .catch(error => console.error('Error fetching meter reading:', error));
         }
 
-setInterval(updatePage, 200); // Update every 2 seconds
+setInterval(updatePage, 500); // Update every 500 ms
 window.onload = updatePage; // Initial load
