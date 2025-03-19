@@ -75,7 +75,7 @@ WantedBy=multi-user.target
 * `sudo systemctl enable BlauweBagger`
 
 * Configure Nginx to proxy Request:
-# `sudo nano /etc/nginx/sites-available/BlauweBagger`
+* `sudo nano /etc/nginx/sites-available/BlauweBagger`
 * Copy paste the following:
 `
 server {
