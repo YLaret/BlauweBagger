@@ -78,6 +78,8 @@ INSERT INTO METER (Name, Description, Value) VALUES
 INSERT INTO METER (Name, Description, Value) VALUES
 ('F25QA','(BROKEN) Clean water meter [L/min]',0);
 
+INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
+('Zanderige bagger','Extra focus op ontzanding','1');
 
 %%%% EXCLUDE %%%%
 INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
