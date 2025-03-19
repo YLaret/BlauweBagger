@@ -72,17 +72,16 @@ while True:
     if currentStage != 0:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
     if currentStage == 0:
-        mF.shutDownSwitches(switches)
         print("Turning off all switches")
+        mF.shutDownSwitches(switches)
     else:
         for i,switch in enumerate(switches):
-            print(switch.status())
             if i+1 in activeSwitches:
-                switch.turn_on()
                 print("Turning on switch: " + str(i+1))
+                switch.turn_on(nowait=True)
             else:
-                switch.turn_off()
                 print("Turning off switch: " + str(i+1))
+                switch.turn_off(nowait=True)
    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
