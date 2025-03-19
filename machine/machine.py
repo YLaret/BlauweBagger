@@ -73,13 +73,13 @@ while True:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
     if currentStage == 0:
         print("Turning off all switches")
-        mF.shutDownSwitches(switches)
+        mF.shutDownSwitches(switches,switchData)
     else:
         for i,switch in enumerate(switches):
             TiD = 1
-            if switch["TuyaVersion"] == 3.3:
+            if switchData[i]["TuyaVersion"] == 3.3:
                 TiD = 1
-            elif switch["TuyaVersion"] == 3.4:
+            elif switchData[i]["TuyaVersion"] == 3.4:
                 TiD = 17
             if i+1 in activeSwitches:
                 print("Turning on switch: " + str(i+1))
