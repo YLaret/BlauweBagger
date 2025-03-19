@@ -79,7 +79,7 @@ while True:
             TiD = 1
             if switch["TuyaVersion"] == 3.3:
                 TiD = 1
-            else if switch["TuyaVersion"] == 3.4:
+            elif switch["TuyaVersion"] == 3.4:
                 TiD = 17
             if i+1 in activeSwitches:
                 print("Turning on switch: " + str(i+1))
