@@ -1,3 +1,4 @@
+import time
 def shutDownSwitches(switches):
     # turn of each switch
     for i,switch in enumerate(switches):
