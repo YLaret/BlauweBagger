@@ -7,7 +7,7 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 * `server.py` will be based around Flask and nginx
 
 ### Database Architecture
-The databse follows a relational model with the following layout:
+The database follows a relational model with the following layout:
 ![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/databaseArchitecture_v2.jpeg)
 
 ## General Design Requirements
@@ -29,7 +29,7 @@ The databse follows a relational model with the following layout:
 ### Installing Rasbian
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
 * Use Rasbian Imager to etch OS on an SD card
-* Turn on SSH, configure wifi (`BlauweBagger_5G`) and add user
+* Turn on SSH and add user
 * Install pip and git:
 * `sudo apt update`
 * `sudo apt upgrade`
