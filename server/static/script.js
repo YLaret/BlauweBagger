@@ -19,6 +19,7 @@ if (currentPath == "/")
     navlinkprogram.classList.add('active')
 }
 
+/*
 function updatePage() {
             fetch('/updatepage')
                 .then(response => response.json())
@@ -42,10 +43,42 @@ function updatePage() {
                     }
                     /*let meter = document.getElementById("meter");
                     meter.value = data.reading;
-                    document.getElementById("meter_value").innerText = data.reading;*/
+                    document.getElementById("meter_value").innerText = data.reading;
                 })
                 .catch(error => console.error('Error fetching meter reading:', error));
         }
+*/
+function updatePage() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/updatepage", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            document.getElementById("program-run-time").innerText = data.programRunTime;
+
+            var meters = document.getElementsByClassName("meters");
+            for (var i = 0; i < meters.length; i++) {
+                meters[i].innerText = data.meters[i];
+            }
+
+            var switches = document.getElementsByClassName("switch-btn");
+            if (data.activeSwitches) {
+                for (var i = 0; i < switches.length; i++) {
+                    var id = parseInt(switches[i].id, 10);
+                    if (data.activeSwitches.includes(id)) {
+                        switches[i].classList.add("switch-active");
+                    } else {
+                        switches[i].classList.remove("switch-active");
+                    }
+                }
+            }
+        }
+    };
+    xhr.onerror = function () {
+        console.error('Error fetching meter reading');
+    };
+    xhr.send();
+}
 
 setInterval(updatePage, 500); // Update every 500 ms
 window.onload = updatePage; // Initial load

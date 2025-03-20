@@ -4,23 +4,26 @@
 	<head>
 		<title>BB-1</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="stylesheet" href="/static/styles.css">
+        <link rel="manifest" href="/static/manifest.json">
 	</head>
 	<nav>
 		<div class="navbar">
 			<ul>
 				<li class="nav-item">
-					<a id="nav-link-overview" href="/">
+					<a id="nav-link-overview" href="/" target="_self">
 						<span>Overview</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a id="nav-link-tableview" href="/tableview">
+					<a id="nav-link-tableview" href="/tableview" target="_self">
 						<span>Table View</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a id="nav-link-program" href="/program">
+					<a id="nav-link-program" href="/program" target="_self">
 						<span>Program</span>
 					</a>
 				</li>
