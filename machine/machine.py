@@ -7,9 +7,18 @@ import sqlite3
 # sleep library
 import time
 
-# initial startTime
-startTime = datetime.datetime.now()
+### ONLY VARS TO CHANGE ###
+# time the loop sleeps
+snooze = 0.1
+# interval between sending data to the tuya switches
+# 10s works, 3s not, perhaps 6s works too
+switchInterval = 10;
 
+# initial startTime and switchTime
+startTime = datetime.datetime.now()
+switchTime = datetime.datetime.now() - datetime.timedelta(seconds=switchInterval)
+
+### CONNECT SWITCHES
 switchData = mF.getTable("SWITCH",0)
 switches = mF.connectSwitches(switchData)
 #########################
@@ -71,22 +80,25 @@ while True:
     activeSwitches = []
     if currentStage != 0:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
-    if currentStage == 0:
-        print("Turning off all switches")
-        mF.shutDownSwitches(switches,switchData)
-    else:
-        for i,switch in enumerate(switches):
-            TiD = 1
-            if switchData[i]["TuyaVersion"] == 3.3:
+    # send data to switches
+    if (datetime.datetime.now() - switchTime).total_seconds() >= switchInterval:
+        if currentStage == 0:
+            print("Turning off all switches")
+            mF.shutDownSwitches(switches,switchData)
+        else:
+            for i,switch in enumerate(switches):
                 TiD = 1
-            elif switchData[i]["TuyaVersion"] == 3.4:
-                TiD = 16
-            if i+1 in activeSwitches:
-                print("Turning on switch: " + str(i+1))
-                switch.set_value(TiD,True,nowait=True)
-            else:
-                print("Turning off switch: " + str(i+1))
-                switch.set_value(TiD,False,nowait=True)
+                if switchData[i]["TuyaVersion"] == 3.3:
+                    TiD = 1
+                elif switchData[i]["TuyaVersion"] == 3.4:
+                    TiD = 16
+                if i+1 in activeSwitches:
+                    print("Turning on switch: " + str(i+1))
+                    switch.set_value(TiD,True,nowait=True)
+                else:
+                    print("Turning off switch: " + str(i+1))
+                    switch.set_value(TiD,False,nowait=True)
+        switchTime = datetime.datetime.now()
    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
@@ -112,7 +124,7 @@ while True:
     ###################
     ### SLEEP PHASE ###
     ###################
-    time.sleep(0.5)
+    time.sleep(snooze)
             
         
 
