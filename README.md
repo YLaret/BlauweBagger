@@ -117,14 +117,14 @@ location / {
 * Restart Nginx:
 * `sudo systemctl restart nginx`
 
-## Running the machine program
+## Running the machine program (quick dev)
 To run the machine program in developer modus:
 * `cd machine`
 * `python machine.py`
 
 Exit the program with Ctr+C
 
-## Installing the machine program
+## Installing the machine program (permanent usage)
 * Create the service `sudo nano /etc/systemd/system/BlauweBaggerMachine.service`
 * Copy and past the following:
 ```
