@@ -38,5 +38,5 @@ def getMachineStatus(machineStatus,programs,stages):
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
         
     ## OUTPUT DATA
-    result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':stages[currentStage]["Name"],'activeSwitches':activeSwitches}
+    return result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':stages[currentStage]["Name"],'activeSwitches':activeSwitches}
     
