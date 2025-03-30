@@ -1,4 +1,4 @@
-def getMachineStatus(machineStatus,programs,stages)
+def getMachineStatus(machineStatus,programs,stages):
     programID = int(machineStatus[0]["ProgramID"])
     pause = int(machineStatus[0]["Pause"])
     programRunTime = machineStatus[0]["ProgramRunTime"]
