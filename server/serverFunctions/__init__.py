@@ -5,3 +5,4 @@ from .selectProgram import selectProgram
 from .start import start
 from .stop import stop
 from .toggleSwitch import toggleSwitch
+from .getMachineStatus import getMachineStatus

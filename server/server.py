@@ -18,32 +18,10 @@ def overview():
     stages = sF.getTable("STAGE",0)
     meters = sF.getTable("METER",0)
     
-    ### MESSY PART ###
-    programID = int(machineStatus[0]["ProgramID"])
-    pause = int(machineStatus[0]["Pause"])
-    programRunTime = machineStatus[0]["ProgramRunTime"]
-    ### FIND CURRENT STAGE
-    # currentStage variable (0 if no stage => full stop)
-    currentStage = 0
-    # if program paused allow manual control
-    if pause == 1:
-        # special manual stage
-        currentStage = 1
-    # else if program running normally
-    elif pause == 0:
-        # calculate currentStage based on run time
-        pstages = [int(item) for item in programs[programID-1]["StageIDS"].split(',')]
-        stageTime = 0
-        for stage in pstages:
-            stageTime = stageTime + stages[stage-1]["Time"]
-            if stageTime > programRunTime:
-                currentStage = stage
-                break
-    activeSwitches = []
-    if currentStage != 0:
-        activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
-    ###################
-    return render_template('overview.html',machineStatus=machineStatus,programs=programs,switches=switches,activeSwitches=activeSwitches,meters=meters)
+    # current machine status
+    CMS = sF.getMachineStatus(machineStatus,programs,stages)
+    
+    return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
 
 @app.route("/updatepage")
 def updatePage():
@@ -84,7 +62,7 @@ def updatePage():
     if currentStage != 0:
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     ###################
-    return jsonify({'activeSwitches':activeSwitches,'meters':meters,'programRunTime':programRunTime})
+    return #jsonify({'activeSwitches':activeSwitches,'meters':meters,'programRunTime':programRunTime})
 
 @app.route("/toggleswitch/<switch>")
 def toggleSwitch(switch):

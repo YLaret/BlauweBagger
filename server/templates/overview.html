@@ -2,7 +2,7 @@
 
 {% block main %}
     <div class="container">
-        <h1>Filtration Plant Control</h1>
+        <h1>Main Control Panel</h1>
         <div> Meters:
             {% for meter in meters %}
             <div> {{ meter["Name"] }} 
@@ -13,7 +13,19 @@
             {% endfor %}
         </div>
         <div>
-            ProgramRunTime: <div id=program-run-time>{{ machineStatus[0]["ProgramRunTime"]}}</div>
+            Program: <div id=program-name>{{ CMS['programName'] }}</div>
+        </div>
+        <div>
+            Stage: <div id=stage-name>{{ CMS['stageName'] }}</div>
+        </div>
+        <div>
+            Next-Stage: <div id=stage-name>{{ CMS['nextStageName'] }}</div>
+        </div>
+        <div>
+            ProgramTime: <div id=program-run-time>{{ CMS['programRunTime'] }}/{{ CMS['totalProgramTime'] }} s</div>
+        </div>
+        <div>
+            StageTime: <div id=stage-run-time>{{ CMS['stageRunTime'] }}/{{ CMS['totalStageTime'] }} s</div>
         </div>
         <div>
             Select Program:
@@ -23,7 +35,7 @@
                 <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
                 {% endfor %}
             </select>
-            <input type="submit" value="Apply"/>
+            <input type="submit" value="Select"/>
             </form>
         </div>
         <div class="controls">
@@ -40,7 +52,7 @@
         <div class="switches">
             Switches:
             {% for switch in switches %}
-            {% if switch["SwitchID"] in activeSwitches %}
+            {% if switch["SwitchID"] in CMS['activeSwitches'] %}
             <form action="/toggleswitch/{{ switch["SwitchID"] }}">
                 <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
             </form>
@@ -53,26 +65,5 @@
         </div>
     </div>
 
-    <div class="table-container">
-        <h1>MACHINESTATUS</h1>
-                <table>
-                        <thead>
-                                <tr>
-                {% for key, value in machineStatus[0].items() %}
-                                                <th>{{key}}</th>
-                                        {% endfor %}
-                                </tr>
-                           </thead>
-                        <tbody>
-                                {% for item in machineStatus %}
-                                        <tr>
-                                                {% for key, value in item.items() %}
-                                                        <td>{{value}}</th>
-                                                {% endfor %}
-                                        </tr>
-                                {% endfor %}
-                        </tbody>
-                </table>
-        </div>
 
 {% endblock %}
