@@ -20,7 +20,7 @@ def overview():
     
     # round the meter reading
     for i in len(meterData):
-        meterData[i]["Value"] = round(float(meterData[i]["Value"]))
+        meters[i]["Value"] = round(float(meters[i]["Value"]))
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
