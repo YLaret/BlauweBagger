@@ -3,11 +3,16 @@
 {% block main %}
     <div class="container">
         <h1>Main Control Panel</h1>
-        <div>
+        <div class="meters-container">
             {% for meter in meters %}
-            <div> {{ meter["Name"] }} 
-                <div 
-                    class ="meters" id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
+            <div class="meter-item-container"> {{ meter["Name"] }}
+                <div class="meter-value-container">
+                    <div
+                        class ="meters" id="{{ meter["MeterID"] }}">{{ meter["Value"] }}
+                    </div>
+                    <div class="meter-unit">
+                        L/min
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -19,13 +24,13 @@
             Stage: <div id="stage-name">{{ CMS['stageName'] }}</div>
         </div>
         <div>
-            Next-Stage: <div id="stage-name">{{ CMS['nextStageName'] }}</div>
+            Next-Stage: <div id="next-stage-name">{{ CMS['nextStageName'] }}</div>
         </div>
         <div>
-            ProgramTime: <div id="program-run-time">{{ CMS['programRunTime'] }}/{{ CMS['totalProgramTime'] }} s</div>
+            Program Time: <div id="program-run-time">{{ CMS['programRunTime'] }}</div><div>/</div><div id="total-stage-time">{{ CMS['totalProgramTime'] }} </div>
         </div>
         <div>
-            StageTime: <div id="stage-run-time">{{ CMS['stageRunTime'] }}</div><div>/</div><div id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
+            Stage Time: <div id="stage-run-time">{{ CMS['stageRunTime'] }}</div><div>/</div><div id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
         </div>
         <div class="switches">
             {% for switch in switches %}

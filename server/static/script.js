@@ -33,7 +33,11 @@ function updatePage() {
             }
             
             // program stage update
+            document.getElementById("program-name").innerText = data.programName;
+            document.getElementById("stage-name").innerText = data.stageName;
+            document.getElementById("next-stage-name").innerText = data.nextStageName;
             document.getElementById("program-run-time").innerText = data.programRunTime;
+            document.getElementById("total-program-time").innerText = data.totalProgramTime;
             document.getElementById("stage-run-time").innerText = data.stageRunTime;
             document.getElementById("total-stage-time").innerText = data.totalStageTime;
             
