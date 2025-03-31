@@ -17,20 +17,40 @@
             </div>
             {% endfor %}
         </div>
-        <div>
-            Program: <div id="program-name">{{ CMS['programName'] }}</div>
-        </div>
-        <div>
-            Stage: <div id="stage-name">{{ CMS['stageName'] }}</div>
-        </div>
-        <div>
-            Next-Stage: <div id="next-stage-name">{{ CMS['nextStageName'] }}</div>
-        </div>
-        <div>
-            Program Time: <div id="program-run-time">{{ CMS['programRunTime'] }}</div><div>/</div><div id="total-program-time">{{ CMS['totalProgramTime'] }} </div>
-        </div>
-        <div>
-            Stage Time: <div id="stage-run-time">{{ CMS['stageRunTime'] }}</div><div>/</div><div id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
+        
+        <div class="program-state-container">
+            <div class="program-name-container">
+                <div>
+                    <div class="pre-name">Program:</div>
+                    <div class="name" id="program-name">{{ CMS['programName'] }}</div>
+                </div>
+                <div>
+                    <div class="pre-name"> Stage:</div>
+                    <div class="name" id="stage-name">{{ CMS['stageName'] }}</div>
+                </div>
+                <div>
+                    <div class="pre-name">Next-Stage:</div>
+                    <div class="name" id="next-stage-name">{{ CMS['nextStageName'] }}</div>
+                </div>
+            </div>
+            <div class="program-time-container">
+                <div class="time-item-container">
+                    <div class="pre-time">Program Time:</div>
+                    <div class="time-container">
+                        <div class="time" id="program-run-time">{{ CMS['programRunTime'] }}</div>
+                        <div class="program-slash">/</div>
+                        <div class="total-time" id="total-program-time">{{ CMS['totalProgramTime'] }} </div>
+                    </div>
+                </div>
+                <div class="time-item-container">
+                    <div class="pre-time">Stage Time:</div>
+                    <div class="time-container">
+                        <div class="time" id="stage-run-time">{{ CMS['stageRunTime'] }}</div>
+                        <div class="program-slash">/</div>
+                        <div class="total-time" id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="switches">
             {% for switch in switches %}
@@ -45,27 +65,28 @@
             {% endif %}
             {% endfor %}
         </div>
-        <div class="controls">
-        <form action="/start">
-            <input type="submit" id="start-btn" value="Start"/>
-        </form>
-        <form action="/pause">
-            <input type="submit" id="pause-btn" value="Pause"/>
-        </form>
-        <form action="/stop">
-            <input type="submit" id="stop-btn" value="Stop"/>
-        </form>
-        </div>
-        <div>
-            Select Program:
-            <form action="/selectprogram/" method="POST">
-            <select name="program">
-                {% for program in programs %}
-                <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Select"/>
-            </form>
+        <div class="control-select-container">
+            <div class="controls">
+                <form action="/start">
+                    <input type="submit" id="start-btn" value="Start"/>
+                </form>
+                <form action="/pause">
+                    <input type="submit" id="pause-btn" value="Pause"/>
+                </form>
+                <form action="/stop">
+                    <input type="submit" id="stop-btn" value="Stop"/>
+                </form>
+            </div>
+            <div class="select-program-container">
+                <form action="/selectprogram/" method="POST">
+                <select name="program">
+                    {% for program in programs %}
+                    <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Select"/>
+                </form>
+            </div>
         </div>
     </div>
 
