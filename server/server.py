@@ -18,6 +18,9 @@ def overview():
     stages = sF.getTable("STAGE",0)
     meters = sF.getTable("METER",0)
     
+    # round the meter reading
+    for i in len(meterData):
+        meterData[i]["Value"] = round(float(meterData[i]["Value"]))
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
@@ -32,8 +35,9 @@ def updatePage():
     meterData= sF.getTable("METER",0)
     meters = []
     
+    # process meter reading
     for meter in meterData:
-        meters.append(float(meter["Value"]))
+        meters.append(round(float(meter["Value"]),1))
 
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
