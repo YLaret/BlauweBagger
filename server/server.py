@@ -19,7 +19,7 @@ def overview():
     meters = sF.getTable("METER",0)
     
     # round the meter reading
-    for i in len(meters):
+    for i,meter in enumerate(meters):
         meters[i]["Value"] = round(float(meters[i]["Value"]))
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
