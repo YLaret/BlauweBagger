@@ -51,7 +51,7 @@ function updatePage() {
             }
             
             // controls update state
-            var start = getElementById("start-btn");
+            var start = document.getElementById("start-btn");
             if (data.pause == 0) {
                 start.classList.add("start-active");
             } else {
