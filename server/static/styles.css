@@ -193,13 +193,13 @@ nav a:hover {
 }
 .name-item-container {
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
     min-width:350px;
 }
 
 .time-item-container {
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
     min-width:350px;
 }
 
@@ -227,6 +227,9 @@ nav a:hover {
 }
 
 /* CONTROL */
+input:is([type="button"], [type="submit"], [type="reset"]) {
+    all:unset;
+}
 .control-select-container {
     background-color: #E7E7E9;
     padding: 15px;
@@ -259,6 +262,9 @@ nav a:hover {
     border-width:0.5px;
     border-color:#3F4D92;
     background-color:#B8BED5;
+    padding: 10px 20px;
+    font-size:16px;
+    cursor:pointer;
 }
 
 #start-btn {
