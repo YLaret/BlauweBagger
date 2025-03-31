@@ -25,7 +25,7 @@ def getMachineStatus(machineStatus,programs,stages):
             if stageTime > programRunTime and found == 0:
                 currentStage = pstages[i]
                 if i+1 < len(pstages):
-                    nextStageName = stages[pstages[i+1]]["Name"]
+                    nextStageName = stages[pstages[i+1]-1]["Name"]
                 found = 1
                 prevStageTime = stageTime - stages[pstages[i]-1]["Time"]
                 totalStageTime = stages[pstages[i]-1]["Time"]
