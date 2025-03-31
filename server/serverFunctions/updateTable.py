@@ -31,7 +31,7 @@ def updateTable(table):
         if i>0:
             # value
             value = request.form.get(str(rows+2) + str(ni))
-            if value != "None":
+            if value and value != "None":
                 try:
                     float(value)
                 except ValueError:
