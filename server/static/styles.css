@@ -120,7 +120,7 @@ nav a:hover {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     border-bottom:2px solid black;
@@ -136,7 +136,7 @@ nav a:hover {
 /* METERS */
 .meters-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-color: #E7E7E9;
     padding: 15px;
     border-radius: 15px;
@@ -172,7 +172,7 @@ nav a:hover {
 /* PROGRAM INFO */
 .program-state-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     background-color: #E7E7E9;
     padding: 15px;
     border-radius: 15px;
