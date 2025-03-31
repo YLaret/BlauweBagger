@@ -3,7 +3,7 @@
 {% block main %}
     <div class="container">
         <h1>Main Control Panel</h1>
-        <div> Meters:
+        <div>
             {% for meter in meters %}
             <div> {{ meter["Name"] }} 
                 <div 
@@ -13,30 +13,32 @@
             {% endfor %}
         </div>
         <div>
-            Program: <div id=program-name>{{ CMS['programName'] }}</div>
+            Program: <div id="program-name">{{ CMS['programName'] }}</div>
         </div>
         <div>
-            Stage: <div id=stage-name>{{ CMS['stageName'] }}</div>
+            Stage: <div id="stage-name">{{ CMS['stageName'] }}</div>
         </div>
         <div>
-            Next-Stage: <div id=stage-name>{{ CMS['nextStageName'] }}</div>
+            Next-Stage: <div id="stage-name">{{ CMS['nextStageName'] }}</div>
         </div>
         <div>
-            ProgramTime: <div id=program-run-time>{{ CMS['programRunTime'] }}/{{ CMS['totalProgramTime'] }} s</div>
+            ProgramTime: <div id="program-run-time">{{ CMS['programRunTime'] }}/{{ CMS['totalProgramTime'] }} s</div>
         </div>
         <div>
-            StageTime: <div id=stage-run-time>{{ CMS['stageRunTime'] }}/{{ CMS['totalStageTime'] }} s</div>
+            StageTime: <div id="stage-run-time">{{ CMS['stageRunTime'] }}</div><div>/</div><div id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
         </div>
-        <div>
-            Select Program:
-            <form action="/selectprogram/" method="POST">
-            <select name="program">
-                {% for program in programs %}
-                <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Select"/>
+        <div class="switches">
+            {% for switch in switches %}
+            {% if switch["SwitchID"] in CMS['activeSwitches'] %}
+            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
             </form>
+            {% else %}
+            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                <input type="submit" class="switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+            </form>
+            {% endif %}
+            {% endfor %}
         </div>
         <div class="controls">
         <form action="/start">
@@ -49,19 +51,16 @@
             <input type="submit" id="stop-btn" value="Stop"/>
         </form>
         </div>
-        <div class="switches">
-            Switches:
-            {% for switch in switches %}
-            {% if switch["SwitchID"] in CMS['activeSwitches'] %}
-            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+        <div>
+            Select Program:
+            <form action="/selectprogram/" method="POST">
+            <select name="program">
+                {% for program in programs %}
+                <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Select"/>
             </form>
-            {% else %}
-            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
-            </form>
-            {% endif %}
-            {% endfor %}
         </div>
     </div>
 

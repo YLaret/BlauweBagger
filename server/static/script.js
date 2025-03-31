@@ -19,48 +19,25 @@ if (currentPath == "/")
     navlinkprogram.classList.add('active')
 }
 
-/*
-function updatePage() {
-            fetch('/updatepage')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("program-run-time").innerText = data.programRunTime
-                    const meters = document.getElementsByClassName("meters");
-                    for (let i = 0; i < meters.length; i++) {
-                        meters.item(i).innerText = data.meters[i];
-                    }
-                    const switches = document.getElementsByClassName("switch-btn")
-                    if (data.activeSwitches) {
-                        for (let i = 0; i < switches.length; i++) {
-                            const id = parseInt(switches.item(i).id)
-                            if (data.activeSwitches && data.activeSwitches.includes(id)) {
-                                switches.item(i).classList.add("switch-active")
-                                console.log
-                            } else {
-                                switches.item(i).classList.remove("switch-active")
-                            }
-                        }
-                    }
-                    /*let meter = document.getElementById("meter");
-                    meter.value = data.reading;
-                    document.getElementById("meter_value").innerText = data.reading;
-                })
-                .catch(error => console.error('Error fetching meter reading:', error));
-        }
-*/
 function updatePage() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/updatepage", true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
-            document.getElementById("program-run-time").innerText = data.programRunTime;
-
+            
+            // meters update state
             var meters = document.getElementsByClassName("meters");
             for (var i = 0; i < meters.length; i++) {
                 meters[i].innerText = data.meters[i];
             }
-
+            
+            // program stage update
+            document.getElementById("program-run-time").innerText = data.programRunTime;
+            document.getElementById("stage-run-time").innerText = data.stageRunTime;
+            document.getElementById("total-stage-time").innerText = data.totalStageTime;
+            
+            // switches update state
             var switches = document.getElementsByClassName("switch-btn");
             if (data.activeSwitches) {
                 for (var i = 0; i < switches.length; i++) {
@@ -72,10 +49,18 @@ function updatePage() {
                     }
                 }
             }
+            
+            // controls update state
+            var start = getElementById("start-btn");
+            if data.pause == 0 {
+                start.classList.add("start-active");
+            } else {
+                start.classList.remove("start-active");
+            }
         }
     };
     xhr.onerror = function () {
-        console.error('Error fetching meter reading');
+        console.error('Error fetching CMS reading');
     };
     xhr.send();
 }
