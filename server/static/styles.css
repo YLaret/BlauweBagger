@@ -187,3 +187,58 @@ nav a:hover {
 }
 
 /* PROGRAM INFO */
+.program-state-container {
+    display:flex;
+    justify-content: space-evenly;
+    background-color: #E7E7E9;
+    padding:15px;
+    border-radius:15px;
+    border-style:solid;
+    width:90%;
+    margin:auto;
+    padding:20px;
+}
+.program-name-container {
+    background-color: white;
+    padding:15px;
+    border-radius:15px;
+}
+.program-time-container {
+    background-color: white;
+    padding:15px;
+    border-radius:15px;
+}
+.name-item-container {
+    display:flex;
+    justify-content: space-between;
+    min-width:350px;
+}
+
+.time-item-container {
+    display:flex;
+    justify-content: space-between;
+    min-width:350px;
+}
+
+.time-container {
+    display:flex;
+    justify-content: end;
+}
+
+.time {
+    font-size:1.5em;
+}
+.name {
+    font-size:1.2em;
+}
+#program-name {
+    font-weight: bold;
+}
+
+.program-slash {
+    margin-top:auto;
+    font-size:1.2em;
+}
+.total-time {
+    margin-top:auto;
+}
