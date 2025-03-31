@@ -52,20 +52,20 @@
                 </div>
             </div>
         </div>
-        <div class="switches">
-            {% for switch in switches %}
-            {% if switch["SwitchID"] in CMS['activeSwitches'] %}
-            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
-            </form>
-            {% else %}
-            <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                <input type="submit" class="switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
-            </form>
-            {% endif %}
-            {% endfor %}
-        </div>
         <div class="control-select-container">
+            <div class="switches">
+                {% for switch in switches %}
+                {% if switch["SwitchID"] in CMS['activeSwitches'] %}
+                <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                    <input type="submit" class="switch-active switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+                </form>
+                {% else %}
+                <form action="/toggleswitch/{{ switch["SwitchID"] }}">
+                    <input type="submit" class="switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+                </form>
+                {% endif %}
+                {% endfor %}
+            </div>
             <div class="controls">
                 <form action="/start">
                     <input type="submit" id="start-btn" value="Start"/>
