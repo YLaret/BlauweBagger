@@ -34,6 +34,9 @@
             </div>
             <div class="program-time-container">
                 <div class="time-item-container">
+                    <progress id="program-process" value="{{ CMS['programRunTime'] }}" max="{{ CMS['totalProgramTime'] }}"></progress>
+                </div>
+                <div class="time-item-container">
                     <div class="pre-time">Program Time:</div>
                     <div class="time-container">
                         <div class="time" id="program-run-time">{{ CMS['programRunTime'] }}</div>
