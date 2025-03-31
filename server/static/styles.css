@@ -226,6 +226,11 @@ nav a:hover {
     margin-top:auto;
 }
 
+#program-progress {
+    margin: auto;
+    margin-bottom: 7px;
+}
+
 /* CONTROL */
 .control-select-container {
     background-color: #E7E7E9;

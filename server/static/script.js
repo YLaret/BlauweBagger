@@ -40,6 +40,9 @@ function updatePage() {
             document.getElementById("total-program-time").innerText = data.totalProgramTime;
             document.getElementById("stage-run-time").innerText = data.stageRunTime;
             document.getElementById("total-stage-time").innerText = data.totalStageTime;
+            var progress = document.getElementById("program-progress");
+            progress.value = data.programRunTime;
+            progress.max = data.totalProgramTime
             
             // switches update state
             var switches = document.getElementsByClassName("switch-btn");
