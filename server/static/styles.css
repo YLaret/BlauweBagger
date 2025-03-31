@@ -154,3 +154,36 @@ nav a:hover {
 .stop-active {
     background: red;
 }
+
+/* METERS */
+.meters-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.meter-item-container {
+    padding:15px;
+    background-color:#E7E7E9;
+    border-radius:15px;
+    border-style:solid;
+    font-size:1.5em;
+    font-style:italic;
+    font-weight:bold;
+}
+.meter-value-container {
+    display:flex;
+    justify-content: space-around;
+    font-style:normal;
+    padding:3px;
+    font-weight:normal
+}
+.meters {
+    font-size:2.5em;
+    padding:5px;
+}
+.meter-unit {
+    margin-top:auto;
+    padding:10px
+}
+
+/* PROGRAM INFO */
