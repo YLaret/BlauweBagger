@@ -280,10 +280,10 @@ nav a:hover {
 .switch-active {
     background:#3F4D92 !important;
     color:white !important;
-    border-radius:2px;
+    border-radius:7px;
     border:none;
     border-style:solid;
-    border-width:0.5px;
+    border-width:2px;
     border-color:#3F4D92;
     padding: 10px 20px;
     font-size:16px;
