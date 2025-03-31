@@ -227,9 +227,6 @@ nav a:hover {
 }
 
 /* CONTROL */
-input:is([type="button"], [type="submit"], [type="reset"]) {
-    all:unset;
-}
 .control-select-container {
     background-color: #E7E7E9;
     padding: 15px;
@@ -265,6 +262,7 @@ input:is([type="button"], [type="submit"], [type="reset"]) {
     padding: 10px 20px;
     font-size:16px;
     cursor:pointer;
+    -webkit-appearance: none;
 }
 
 #start-btn {
