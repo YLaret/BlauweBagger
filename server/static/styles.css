@@ -276,6 +276,11 @@ nav a:hover {
 .switch-active {
     background:#3F4D92 !important;
     color:white !important;
+    border-radius:2px;
+    border:none;
+    border-style:solid;
+    border-width:0.5px;
+    border-color:#3F4D92;
 }
 
 .start-active {
