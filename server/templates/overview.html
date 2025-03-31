@@ -40,6 +40,7 @@
                         <div class="time" id="program-run-time">{{ CMS['programRunTime'] }}</div>
                         <div class="program-slash">/</div>
                         <div class="total-time" id="total-program-time">{{ CMS['totalProgramTime'] }} </div>
+                        <div class="total-time">s</div>
                     </div>
                 </div>
                 <div class="time-item-container">
@@ -48,6 +49,7 @@
                         <div class="time" id="stage-run-time">{{ CMS['stageRunTime'] }}</div>
                         <div class="program-slash">/</div>
                         <div class="total-time" id="total-stage-time">{{ CMS['totalStageTime'] }} </div>
+                        <div class="total-time">s</div>
                     </div>
                 </div>
             </div>
@@ -61,20 +63,20 @@
                 </form>
                 {% else %}
                 <form action="/toggleswitch/{{ switch["SwitchID"] }}">
-                    <input type="submit" class="switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
+                    <input type="submit" class="overview-btn switch-btn" id="{{ switch["SwitchID"] }}" value="{{ switch["Name"] }}"/>
                 </form>
                 {% endif %}
                 {% endfor %}
             </div>
             <div class="controls">
                 <form action="/start">
-                    <input type="submit" id="start-btn" value="Start"/>
+                    <input class="overview-btn" type="submit" id="start-btn" value="Start"/>
                 </form>
                 <form action="/pause">
-                    <input type="submit" id="pause-btn" value="Pause"/>
+                    <input class="overview-btn" type="submit" id="pause-btn" value="Pause"/>
                 </form>
                 <form action="/stop">
-                    <input type="submit" id="stop-btn" value="Stop"/>
+                    <input class="overview-btn" type="submit" id="stop-btn" value="Stop"/>
                 </form>
             </div>
             <div class="select-program-container">
@@ -84,7 +86,7 @@
                     <option value={{ program["ProgramID"] }}>{{ program["Name"] }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" value="Select"/>
+                <input class="overview-btn" type="submit" value="Select"/>
                 </form>
             </div>
         </div>
