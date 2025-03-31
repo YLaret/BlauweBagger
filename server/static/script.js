@@ -52,7 +52,7 @@ function updatePage() {
             
             // controls update state
             var start = getElementById("start-btn");
-            if data.pause == 0 {
+            if (data.pause == 0) {
                 start.classList.add("start-active");
             } else {
                 start.classList.remove("start-active");
