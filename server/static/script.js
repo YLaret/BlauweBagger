@@ -57,6 +57,18 @@ function updatePage() {
             } else {
                 start.classList.remove("start-active");
             }
+            var pause = document.getElementById("pause-btn");
+            if (data.pause == 1) {
+                pause.classList.add("pause-active");
+            } else {
+                pause.classList.remove("pause-active");
+            }
+            var stop = document.getElementById("stop-btn");
+            if (data.pause == 2) {
+                stop.classList.add("stop-active");
+            } else {
+                stop.classList.remove("stop-active");
+            }
         }
     };
     xhr.onerror = function () {

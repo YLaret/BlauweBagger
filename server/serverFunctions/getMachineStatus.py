@@ -5,6 +5,7 @@ def getMachineStatus(machineStatus,programs,stages):
     ### FIND CURRENT STAGE
     # currentStage variable (0 if no stage => full stop)
     currentStage = 0
+    nextStageName = '-'
     totalProgramTime = 0
     totalStageTime = 0
     prevStageTime = 0
@@ -19,13 +20,15 @@ def getMachineStatus(machineStatus,programs,stages):
         pstages = [int(item) for item in programs[programID-1]["StageIDS"].split(',')]
         stageTime = 0
         found = 0
-        for stage in pstages:
-            stageTime = stageTime + stages[stage-1]["Time"]
+        for i,stage in enumerate(pstages):
+            stageTime = stageTime + stages[pstages[i]-1]["Time"]
             if stageTime > programRunTime and found == 0:
-                currentStage = stage
+                currentStage = pstages[i]
+                if i + 1 not len(pstages):
+                    nextStageName = stages[pstages[i+1]]["Name"]
                 found = 1
-                prevStageTime = stageTime - stages[stage-1]["Time"]
-                totalStageTime = stages[stage-1]["Time"]
+                prevStageTime = stageTime - stages[pstages[i]-1]["Time"]
+                totalStageTime = stages[pstages[i]-1]["Time"]
             # continue to find the total program time
             totalProgramTime = stageTime
     
@@ -36,8 +39,8 @@ def getMachineStatus(machineStatus,programs,stages):
     activeSwitches = []
     if currentStage != 0:
         activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
-        
+    
     ## OUTPUT DATA
-    result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':stages[currentStage]["Name"],'activeSwitches':activeSwitches}
+    result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':nextStageName,'activeSwitches':activeSwitches}
     return result
     
