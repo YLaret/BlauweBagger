@@ -113,7 +113,7 @@ sudo systemctl start FixSocketPermissions
 ```
 
 * Configure Nginx to proxy Request:
-* `sudo nano /etc/nginx/sites-available/BlauweBagger`
+`sudo nano /etc/nginx/sites-available/BlauweBagger`
 * Copy paste the following:
 
 ```
@@ -127,9 +127,9 @@ location / {
 }
 ```
 * Link to enabled sites:
-* `sudo ln -s /etc/nginx/sites-available/BlauweBagger /etc/nginx/sites-enabled`
+`sudo ln -s /etc/nginx/sites-available/BlauweBagger /etc/nginx/sites-enabled`
 * Restart Nginx:
-* `sudo systemctl restart nginx`
+`sudo systemctl restart nginx`
 
 ## Running the machine program (for quick dev)
 To run the machine program in developer modus:
