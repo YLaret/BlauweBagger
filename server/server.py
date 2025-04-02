@@ -85,7 +85,7 @@ def next():
     programs = sF.getTable("PROGRAM",0)
     stages = sF.getTable("STAGE",0)
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
-    sF.setProgramRunTime(CMS['totalStageTime'])
+    sF.setProgramRunTime(CMS['nextStageTime'])
     return redirect("/")
     
 @app.route("/tableview")
