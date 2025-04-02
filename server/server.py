@@ -30,7 +30,6 @@ def overview():
 def updatePage():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)
-    switches = sF.getTable("SWITCH",0)
     stages = sF.getTable("STAGE",0)
     meterData= sF.getTable("METER",0)
     meters = []
@@ -56,6 +55,15 @@ def selectProgram():
     sF.selectProgram()
     return redirect("/")
 
+@app.route("/previous")
+def previous():
+    machineStatus = sF.getTable("MACHINESTATUS",0)
+    programs = sF.getTable("PROGRAM",0)
+    stages = sF.getTable("STAGE",0)
+    CMS = sF.getMachineStatus
+    sF.setProgramRunTime(CMS['prevStageTime'])
+    return redirect("/")
+
 @app.route("/start")
 def start():
     sF.start()
@@ -69,6 +77,15 @@ def pause():
 @app.route("/stop")
 def stop():
     sF.stop()
+    return redirect("/")
+    
+@app.route("/next")
+def next():
+    machineStatus = sF.getTable("MACHINESTATUS",0)
+    programs = sF.getTable("PROGRAM",0)
+    stages = sF.getTable("STAGE",0)
+    CMS = sF.getMachineStatus
+    sF.setProgramRunTime(CMS['totalStageTime'])
     return redirect("/")
     
 @app.route("/tableview")

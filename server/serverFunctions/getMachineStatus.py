@@ -41,6 +41,6 @@ def getMachineStatus(machineStatus,programs,stages):
     stageRunTime = round(stageRunTime,1)
     
     ## OUTPUT DATA
-    result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':nextStageName,'activeSwitches':activeSwitches}
+    result = {'pause':pause,'totalProgramTime':totalProgramTime,'totalStageTime':totalStageTime,'programRunTime':programRunTime, 'stageRunTime':stageRunTime, 'programName':programs[programID-1]["Name"],'stageName':stages[currentStage-1]["Name"],'nextStageName':nextStageName,'activeSwitches':activeSwitches,'prevStageTime':prevStageTime,'totalStageTime':totalStageTime}
     return result
     
