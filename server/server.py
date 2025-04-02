@@ -60,7 +60,7 @@ def previous():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)
     stages = sF.getTable("STAGE",0)
-    CMS = sF.getMachineStatus
+    CMS = sF.getMachineStatus(machineStatus,programs,stages)
     sF.setProgramRunTime(CMS['prevStageTime'])
     return redirect("/")
 
@@ -84,7 +84,7 @@ def next():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)
     stages = sF.getTable("STAGE",0)
-    CMS = sF.getMachineStatus
+    CMS = sF.getMachineStatus(machineStatus,programs,stages)
     sF.setProgramRunTime(CMS['totalStageTime'])
     return redirect("/")
     
