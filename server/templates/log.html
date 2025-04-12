@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <ul>
+        {% for log in logs %}
+            <li><a href="/log/download/{{ log }}">{{ log }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

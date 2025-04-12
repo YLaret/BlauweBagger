@@ -1,6 +1,7 @@
 # websever
-from flask import Flask, render_template, redirect, jsonify
+from flask import Flask, render_template, redirect, jsonify, send_from_directory
 import sqlite3
+import os
 
 # local functions
 import serverFunctions as sF
@@ -9,6 +10,9 @@ app = Flask(__name__)
 
 # define table names, this will need something different in the future
 tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS","FORCE"]
+
+# log directory
+logDir = "../data/log"
 
 @app.route("/")
 def overview():
@@ -110,3 +114,12 @@ def program():
 def protramMotors(table):
     sF.updateTable(table)
     return redirect("/tableview")
+
+@app.route("/log")
+def log():
+    logs = [f for f in os.listdir(logDir) if os.path.isfile(os.path.join(logDir, f)) and not f.startswith('._')]
+    return render_template('log.html',logs=logs)
+
+@app.route('/log/download/<logfile>')
+def downloadLog(logfile):
+    return send_from_directory(logDir, logfile, as_attachment=True)

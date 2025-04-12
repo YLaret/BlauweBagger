@@ -6,3 +6,4 @@ from .shutDownSwitches import shutDownSwitches
 from .updateRunningStop import updateRunningStop
 from .getTable import getTable
 from .readFlowSensor import readFlowSensor
+from .setupLogging import setupLogging
