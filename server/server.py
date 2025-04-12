@@ -48,6 +48,7 @@ def updatePage():
 @app.route("/toggleswitch/<switch>")
 def toggleSwitch(switch):
     sF.toggleSwitch(switch)
+    sF.forceAllSwitches()
     return redirect("/")
 
 @app.route("/selectprogram/", methods=["POST"])
@@ -61,7 +62,7 @@ def previous():
     programs = sF.getTable("PROGRAM",0)
     stages = sF.getTable("STAGE",0)
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
-    sF.setProgramRunTime(CMS['prevStageTime'])
+    sF.setProgramRunTime(CMS['prevStageTime']-0.1)
     return redirect("/")
 
 @app.route("/start")
@@ -88,7 +89,7 @@ def next():
     programs = sF.getTable("PROGRAM",0)
     stages = sF.getTable("STAGE",0)
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
-    sF.setProgramRunTime(CMS['nextStageTime'])
+    sF.setProgramRunTime(CMS['nextStageTime']+0.1)
     return redirect("/")
     
 @app.route("/tableview")

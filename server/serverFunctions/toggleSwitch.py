@@ -20,7 +20,6 @@ def toggleSwitch(switch):
     swq = swq[:-1]
 
     db.execute('UPDATE STAGE SET SwitchIDS = "'+swq+'" WHERE StageID = 1')
-    db.execute('UPDATE FORCE SET SwitchIDS = '+str(switch))
     # commit changes and close connection
     db.commit()
     db.close()

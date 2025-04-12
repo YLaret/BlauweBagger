@@ -1,12 +1,12 @@
 import sqlite3
-import getTable
+from .getTable import getTable
 
 def forceAllSwitches():
     # connect to database
     db = sqlite3.connect('../data/machine.db',timeout=5)
     
     # get all switches
-    switchData = sF.getTable("SWITCH",0)
+    switchData = getTable("SWITCH",0)
     swq = ''
     for sw in switchData:
         swq = swq + str(sw["SwitchID"]) + ','
