@@ -8,7 +8,7 @@ import serverFunctions as sF
 app = Flask(__name__)
 
 # define table names, this will need something different in the future
-tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS"]
+tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS","FORCE"]
 
 @app.route("/")
 def overview():
@@ -67,16 +67,19 @@ def previous():
 @app.route("/start")
 def start():
     sF.start()
+    sF.forceAllSwitches()
     return redirect("/")
 
 @app.route("/pause")
 def pause():
     sF.pause()
+    sF.forceAllSwitches()
     return redirect("/")
     
 @app.route("/stop")
 def stop():
     sF.stop()
+    sF.forceAllSwitches()
     return redirect("/")
     
 @app.route("/next")

@@ -28,7 +28,6 @@ while True:
     ###################
     ### READ PHASE ####
     ###################
-    
     # connect database
     #switchData = mF.getTable("SWITCH",0)
     machineStatusData = mF.getTable("MACHINESTATUS",0)
@@ -36,6 +35,7 @@ while True:
     deviceData = mF.getTable("DEVICE",0)
     meterData = mF.getTable("METER",0)
     stageData = mF.getTable("STAGE",0)
+    forceData = mF.getTable("FORCE",0)
     
     
     ###################
@@ -92,14 +92,29 @@ while True:
                     TiD = 1
                 elif switchData[i]["TuyaVersion"] == 3.4:
                     TiD = 16
-                if i+1 in activeSwitches:
-                    print("Turning on switch: " + str(i+1))
+                if switchData[i]["SwitchID"] in activeSwitches:
+                    print("Turning on switch: " + str(switchData[i]["SwitchID"]))
                     switch.set_value(TiD,True,nowait=True)
                 else:
-                    print("Turning off switch: " + str(i+1))
+                    print("Turning off switch: " + str(switchData[i]["SwitchID"]))
                     switch.set_value(TiD,False,nowait=True)
         switchTime = datetime.datetime.now()
-   
+    # control switches outside time interval if force enabled
+    forceSwitches = [int(item) for item in forceData[0]["SwitchIDS"].split(',')]
+    for i,switch in enumerate(switches):
+        if switchData[i]["SwitchID"] in forceSwitches:
+            TiD = 1
+            if switchData[i]["TuyaVersion"] == 3.3:
+                TiD = 1
+            elif switchData[i]["TuyaVersion"] == 3.4:
+                TiD = 16
+            if switchData[i]["SwitchID"] in activeSwitches:
+                print("Turning on switch: " + str(switchData[i]["SwitchID"]))
+                switch.set_value(TiD,True,nowait=True)
+            else:
+                print("Turning off switch: " + str(switchData[i]["SwitchID"]))
+                switch.set_value(TiD,False,nowait=True)
+
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
     startTime = datetime.datetime.now()
@@ -117,7 +132,7 @@ while True:
             db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
     for i,meter in enumerate(meterData):
         db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
-    
+    db.execute('UPDATE FORCE SET SwitchIDS = 0')
     db.commit()
     db.close()
     

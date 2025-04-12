@@ -7,3 +7,4 @@ from .stop import stop
 from .toggleSwitch import toggleSwitch
 from .getMachineStatus import getMachineStatus
 from .setProgramRunTime import setProgramRunTime
+from .forceAllSwitches import forceAllSwitches
