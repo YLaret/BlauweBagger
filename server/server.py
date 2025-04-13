@@ -9,7 +9,7 @@ import serverFunctions as sF
 app = Flask(__name__)
 
 # define table names, this will need something different in the future
-tableNames = ["DEVICE","SWITCH","METER","STAGE","PROGRAM","MACHINESTATUS","FORCE"]
+tableNames = ["STAGE","PROGRAM","MACHINESTATUS","SWITCH","METER","DEVICE","FORCE"]
 
 # log directory
 logDir = "../data/log"
