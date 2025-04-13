@@ -113,7 +113,7 @@ def program():
 @app.route("/program/<table>", methods=["POST"])
 def protramMotors(table):
     sF.updateTable(table)
-    return redirect("/tableview")
+    return redirect("/program")
 
 @app.route("/log")
 def log():

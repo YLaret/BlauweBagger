@@ -9,7 +9,7 @@ if (currentPath == "/")
     navlinkoverview.classList.add('active')
     navlinktableview.classList.remove('active')
     navlinkprogram.classList.remove('active')
-} else if (currentPath == "/tableview") {
+} else if (currentPath == "/log") {
     navlinkoverview.classList.remove('active')
     navlinktableview.classList.add('active')
     navlinkprogram.classList.remove('active')
