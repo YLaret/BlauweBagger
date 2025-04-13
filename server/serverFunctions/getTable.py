@@ -16,7 +16,7 @@ def getTable(table,add):
         result.append(dict(zip(ns,ci)))
         rows = rows + 1
     if add:
-        if table != "MACHINESTATUS":
+        if table != "MACHINESTATUS" or table != "FORCE":
             result.append(dict(zip(ns,[rows]+[None]*len(ns))))
     else:
         if not result:
