@@ -16,7 +16,7 @@ import os
 snooze = 0.1
 # interval between sending data to the tuya switches
 # 10s works, 3s not, perhaps 6s works too
-switchInterval = 10;
+switchInterval = 0.1;
 meterLogInterval = 1;
 
 # initial startTime and switchTime
@@ -29,7 +29,7 @@ mF.setupLogging()
 
 ### CONNECT SWITCHES
 switchData = mF.getTable("SWITCH",0)
-switches = mF.connectSwitches(switchData)
+#switches = mF.connectSwitches(switchData)
 #########################
 ### MAIN MACHINE LOOP ###
 #########################
@@ -45,13 +45,12 @@ while True:
     meterData = mF.getTable("METER",0)
     stageData = mF.getTable("STAGE",0)
     forceData = mF.getTable("FORCE",0)
+    meterRulesData = mF.getTable("METERRULES",0)
     
     
     ###################
     ### LOGIC PHASE ###
     ###################
-    ### CONNECT SWITCHES
-    #switches = mF.connectSwitches(switchData)
 
     ### GET MACHINE STATUS
     # extract current program
@@ -82,7 +81,10 @@ while True:
                 break
               
     ### READ METERS
-    meters = mF.readFlowSensor()
+    # disable meter reading for dev
+    meters = [0,0,0]#mF.readFlowSensor()
+    meters.append(mF.getValueGPIO(12))
+    print(meters)
     # log meter data
     if (datetime.datetime.now() - meterLogTime).total_seconds() >= meterLogInterval:
         logging.info(f"Meter values: {meters}")
@@ -93,53 +95,46 @@ while True:
     activeSwitches = []
     if currentStage != 0:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
+
+    # meterrule override
+    for meterRule in meterRulesData:
+        for meter in meterData:
+            if meterRule["MeterID"] == meter["MeterID"]:
+                if meterRule["MeterThresholdGEQ"]:
+                    if meter["Value"] >= meterRule["MeterThreshold"]:
+                        pause = meterRule["Stage"]
+                        if meterRule["SwitchBool"]:
+                            activeSwitches.append(meterRule["SwitchID"])
+                        else:
+                            activeSwitches.remove(meterRule["SwitchID"])
+                else:
+                    if meter["Value"] <= meterRule["MeterThreshold"]:
+                        pause = meterRule["Stage"]
+                        if meterRule["SwitchBool"]:
+                            activeSwitches.append(meterRule["SwitchID"])
+                        else:
+                            activeSwitches.remove(meterRule["SwitchID"])
+    
     # send data to switches
     if (datetime.datetime.now() - switchTime).total_seconds() >= switchInterval:
         if currentStage == 0:
             print("Turning off all switches")
-            mF.shutDownSwitches(switches,switchData)
+            mF.shutDownSwitchesGPIO(switchData)
         else:
-            for i,switch in enumerate(switches):
-                TiD = 1
-                if switchData[i]["TuyaVersion"] == 3.3:
-                    TiD = 1
-                elif switchData[i]["TuyaVersion"] == 3.4:
-                    TiD = 16
+            for i,switch in enumerate(switchData):
                 if switchData[i]["SwitchID"] in activeSwitches:
                     print("Turning on switch: " + str(switchData[i]["SwitchID"]))
-                    switch.set_value(TiD,True,nowait=True)
+                    mF.setSwitchGPIO(switch["GPIO"],1)
                 else:
                     print("Turning off switch: " + str(switchData[i]["SwitchID"]))
-                    switch.set_value(TiD,False,nowait=True)
+                    mF.setSwitchGPIO(switch["GPIO"],0)
         switchTime = datetime.datetime.now()
         # log switch data if controlled
         logSwitchIDS = activeSwitches
         if 0 in logSwitchIDS:
             logSwitchIDS.remove(0)
         logging.info(f"Active SwitchIDS: {logSwitchIDS}")
-        
-    # control switches outside time interval if force enabled
-    forceSwitches = [int(item) for item in forceData[0]["SwitchIDS"].split(',')]
-    if int(forceSwitches[0]) != 0:
-        for i,switch in enumerate(switches):
-            if switchData[i]["SwitchID"] in forceSwitches:
-                TiD = 1
-                if switchData[i]["TuyaVersion"] == 3.3:
-                    TiD = 1
-                elif switchData[i]["TuyaVersion"] == 3.4:
-                    TiD = 16
-                if switchData[i]["SwitchID"] in activeSwitches:
-                    print("Turning on switch: " + str(switchData[i]["SwitchID"]))
-                    switch.set_value(TiD,True,nowait=True)
-                else:
-                    print("Turning off switch: " + str(switchData[i]["SwitchID"]))
-                    switch.set_value(TiD,False,nowait=True)
-        # log switch data if controlled
-        logSwitchIDS = activeSwitches
-        if 0 in logSwitchIDS:
-            logSwitchIDS.remove(0)
-        logging.info(f"Active SwitchIDS: {logSwitchIDS}")
-
+    
     ### CALCULATE LOOP TIME
     loopTime = (datetime.datetime.now() - startTime).total_seconds()
     startTime = datetime.datetime.now()
@@ -149,6 +144,9 @@ while True:
     ###################
     # connect database
     db = sqlite3.connect('../data/machine.db', timeout=5)
+    # update pause (changed by sensor)
+    db.execute('UPDATE MACHINESTATUS SET Pause = ' + str(pause))
+    # check if program finished
     if (pause == 0):
         if stageTime < programRunTime:
             print("Finished program!")

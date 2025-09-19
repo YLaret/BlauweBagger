@@ -7,3 +7,6 @@ from .updateRunningStop import updateRunningStop
 from .getTable import getTable
 from .readFlowSensor import readFlowSensor
 from .setupLogging import setupLogging
+from .shutDownSwitchesGPIO import shutDownSwitchesGPIO
+from .setSwitchGPIO import setSwitchGPIO
+from .getValueGPIO import getValueGPIO
