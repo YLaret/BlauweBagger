@@ -2,3 +2,4 @@ flask
 tinytuya
 minimalmodbus
 uwsgi
+gpiod
