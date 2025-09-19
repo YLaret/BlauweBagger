@@ -9,13 +9,7 @@ CREATE TABLE DEVICE (
 CREATE TABLE SWITCH (
     SwitchID INTEGER PRIMARY KEY AUTOINCREMENT,
     Name TEXT NOT NULL,
-    TuyaID TEXT NOT NULL,
-    IPAddress TEXT NOT NULL,
-    LocalKey TEXT NOT NULL,
-    TuyaVersion REAL NOT NULL,
-    MeterIDS TEXT,
-    MeterMin TEXT,
-    MeterMax TEXT
+    GPIO INTEGER NOT NULL
 );
 
 CREATE TABLE METER (
@@ -51,21 +45,33 @@ CREATE TABLE FORCE (
     SwitchIDS TEXT
 );
 
+CREATE TABLE METERRULES (
+    MeterRuleID INTEGER PRIMARY KEY AUTOINCREMENT,
+    MeterID INTEGER,
+    MeterThreshold REAL NOT NULL,
+    MeterThresholdGEQ INTEGER NOT NULL,
+    SwitchID INTEGER,
+    SwitchBool INTEGER NOT NULL,
+    Stage INTEGER NOT NULL,
+    FOREIGN KEY (MeterID) REFERENCES METER(MeterID)
+    FOREIGN KEY (SwitchID) REFERENCES SWITCH(SwitchID)
+);
 
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM2', 'bfc3f247f346c6795bquxi', 'Y<8VU5etZbt!8]cr', '192.168.0.103', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM3', 'bfcaf92327ae184c6fo1db', 'U.%v+JvH.WO|a5''E', '192.168.0.104', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM4', 'bf48f48381bce5c33fsamt', 'KoPm^>XbjY1;Kjvm', '192.168.0.105', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM5', 'bf6b95b0880be74a23qnku', 'HL]V>3)P.<_q`aKL', '192.168.0.106', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM6', 'bfb233983cc3330394ff3d', '3A*4^EO<:u{IK{Qr', '192.168.0.107', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('EM7', 'bf66568a765e418753ahml', '#bemGOVL7''s;)}u9', '192.168.0.108', 3.3);
-INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
-('3PEM1', 'bf385bb5a95081d75beptm', 'kN<%v5*9z}?D}K=b', '192.168.0.109', 3.4);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM2', 16);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM3', 3);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM4', 4);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM5', 5);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM6', 6);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('EM7', 7);
+INSERT INTO SWITCH (Name, GPIO) VALUES
+('3PEM1', 8);
+
 
 INSERT INTO MACHINESTATUS (ProgramID, Pause, ProgramRunTime) VALUES
 (0,0,0);
@@ -90,6 +96,13 @@ INSERT INTO METER (Name, Description, Value) VALUES
 
 INSERT INTO METER (Name, Description, Value) VALUES
 ('F25QA','(BROKEN) Clean water meter [L/min]',0);
+
+INSERT INTO METER (Name, Description, Value) VALUES
+('GPIO','test gpio bool',0);
+
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('4',1,1,1,0,1);
+
 
 INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 ('Dev Program','Program used for developing','2,3,4');
