@@ -16,7 +16,7 @@ import os
 snooze = 0.1
 # interval between sending data to the tuya switches
 # 10s works, 3s not, perhaps 6s works too
-switchInterval = 0.1;
+switchInterval = 0.5;
 meterLogInterval = 1;
 
 # initial startTime and switchTime
@@ -30,6 +30,17 @@ mF.setupLogging()
 ### CONNECT SWITCHES
 switchData = mF.getTable("SWITCH",0)
 #switches = mF.connectSwitches(switchData)
+
+###########################
+### FORCE STOP ON START ###
+###########################
+# connect database
+db = sqlite3.connect('../data/machine.db', timeout=5)
+# force stop status
+db.execute('UPDATE MACHINESTATUS SET Pause = 2')
+db.commit()
+db.close()
+
 #########################
 ### MAIN MACHINE LOOP ###
 #########################
