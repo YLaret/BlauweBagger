@@ -58,6 +58,12 @@ function updatePage() {
             }
             
             // controls update state
+            var auto = document.getElementById("auto-btn");
+            if (data.pause == 14) {
+                start.classList.add("auto-active");
+            } else {
+                start.classList.remove("auto-active");
+            }
             var start = document.getElementById("start-btn");
             if (data.pause == 0) {
                 start.classList.add("start-active");

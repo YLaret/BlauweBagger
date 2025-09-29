@@ -270,8 +270,12 @@ nav a:hover {
     -webkit-appearance: none;
 }
 
+#auto-btn {
+    background-color:
+}
+
 #start-btn {
-    background-color:#A5FAA5;   
+    background-color:#B8BFD3;
 }
 
 #pause-btn {
@@ -294,6 +298,11 @@ nav a:hover {
     font-size:16px;
     cursor:pointer;
     -webkit-appearance: none;
+}
+
+.auto-active {
+    background: #3D518E !important;
+    color: white !important;
 }
 
 .start-active {

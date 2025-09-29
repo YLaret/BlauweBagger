@@ -9,7 +9,7 @@ import serverFunctions as sF
 app = Flask(__name__)
 
 # define table names, this will need something different in the future
-tableNames = ["STAGE","PROGRAM","MACHINESTATUS","SWITCH","METER","DEVICE","FORCE"]
+tableNames = ["STAGE","PROGRAM","METERRULES","MACHINESTATUS","SWITCH","METER","DEVICE","FORCE"]
 
 # log directory
 logDir = "../data/log"
@@ -67,6 +67,12 @@ def previous():
     stages = sF.getTable("STAGE",0)
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     sF.setProgramRunTime(CMS['prevStageTime']-0.1)
+    return redirect("/")
+
+@app.route("/auto")
+def auto():
+    sF.auto()
+    sF.forceAllSwitches()
     return redirect("/")
 
 @app.route("/start")
