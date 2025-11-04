@@ -36,6 +36,8 @@ def getMachineStatus(machineStatus,programs,stages):
             activeSwitches = [int(item) for item in stages[currentStage-1]["SwitchIDS"].split(',')]
     elif pause == 1:
         activeSwitches = [int(item) for item in stages[0]["SwitchIDS"].split(',')]
+    elif pause == 14:
+        activeSwitches = [int(item) for item in stages[1]["SwitchIDS"].split(',')]
 
     programRunTime = round(programRunTime,1)
     stageRunTime = round(stageRunTime,1)

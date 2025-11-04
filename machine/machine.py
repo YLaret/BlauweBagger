@@ -13,7 +13,7 @@ import os
 
 ### ONLY VARS TO CHANGE ###
 # time the loop sleeps
-snooze = 0.1
+snooze = 0.5
 # interval between sending data to the tuya switches
 # 10s works, 3s not, perhaps 6s works too
 switchInterval = 0.5;
@@ -90,11 +90,24 @@ while True:
             if stageTime > programRunTime:
                 currentStage = stage
                 break
-              
+    elif pause == 14:
+        # special auto stage
+        currentStage = 2
+
     ### READ METERS
     # disable meter reading for dev
-    meters = [0,0,0]#mF.readFlowSensor()
-    meters.append(mF.getValueGPIO(12))
+    #mF.readFlowSensor()
+    meters = [0,0,0]
+    meters.append(mF.getValueGPIO(2)) # Mix Vol
+    meters.append(mF.getValueGPIO(3)) # Mix Leeg
+    meters.append(mF.getValueGPIO(4)) # Vuil Vol
+    meters.append(mF.getValueGPIO(17)) # Vuil Leeg
+    meters.append(mF.getValueGPIO(27)) # Schoon Vol
+    meters.append(mF.getValueGPIO(22)) # Schoon Leeg
+    meters.append(mF.getValueGPIO(10)) # Pers Vol
+    meters.append(mF.getValueGPIO(9)) # Pers Min
+
+
     print(meters)
     # log meter data
     if (datetime.datetime.now() - meterLogTime).total_seconds() >= meterLogInterval:
@@ -104,27 +117,32 @@ while True:
     ### CONTROL SWITCHES
     # if no full stop control turn on/off preferred switches
     activeSwitches = []
-    if currentStage != 0:
+    if currentStage != 0 and currentStage != -14:
         activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
 
-    # meterrule override
-    for meterRule in meterRulesData:
-        for meter in meterData:
-            if meterRule["MeterID"] == meter["MeterID"]:
-                if meterRule["MeterThresholdGEQ"]:
-                    if meter["Value"] >= meterRule["MeterThreshold"]:
-                        pause = meterRule["Stage"]
-                        if meterRule["SwitchBool"]:
-                            activeSwitches.append(meterRule["SwitchID"])
-                        else:
-                            activeSwitches.remove(meterRule["SwitchID"])
-                else:
-                    if meter["Value"] <= meterRule["MeterThreshold"]:
-                        pause = meterRule["Stage"]
-                        if meterRule["SwitchBool"]:
-                            activeSwitches.append(meterRule["SwitchID"])
-                        else:
-                            activeSwitches.remove(meterRule["SwitchID"])
+    # meterrules for in auto
+    if pause == 14:
+        for meterRule in meterRulesData:
+            for meter in meterData:
+                if meterRule["MeterID"] == meter["MeterID"]:
+                    if meterRule["MeterThresholdGEQ"]:
+                        if meter["Value"] >= meterRule["MeterThreshold"]:
+                            #pause = meterRule["Stage"]
+                            if meterRule["SwitchBool"]:
+                                if meterRule["SwitchID"] not in activeSwitches:
+                                    activeSwitches.append(meterRule["SwitchID"])
+                            else:
+                                if meterRule["SwitchID"] in activeSwitches:
+                                    activeSwitches.remove(meterRule["SwitchID"])
+                    else:
+                        if meter["Value"] <= meterRule["MeterThreshold"]:
+                            #pause = meterRule["Stage"]
+                            if meterRule["SwitchBool"]:
+                                if meterRule["SwitchID"] not in activeSwitches:
+                                    activeSwitches.append(meterRule["SwitchID"])
+                            else:
+                                if meterRule["SwitchID"] in activeSwitches:
+                                    activeSwitches.remove(meterRule["SwitchID"])
     
     # send data to switches
     if (datetime.datetime.now() - switchTime).total_seconds() >= switchInterval:
@@ -164,8 +182,12 @@ while True:
             db.execute('UPDATE MACHINESTATUS SET Pause = 2')
         else:
             db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
-    for i,meter in enumerate(meterData):
-        db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
+    elif (pause == 14):
+        if activeSwitches:
+            print('UPDATE STAGE SET SwitchIDS="'+','.join(map(str,activeSwitches))+'" WHERE STAGE.StageID = 2')
+            db.execute('UPDATE STAGE SET SwitchIDS="'+','.join(map(str,activeSwitches))+'" WHERE STAGE.StageID = 2')
+    #for i,meter in enumerate(meterData):
+    #   db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
     db.execute('UPDATE FORCE SET SwitchIDS = 0')
     db.commit()
     db.close()
