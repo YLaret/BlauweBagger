@@ -72,9 +72,9 @@ INSERT INTO SWITCH (Name, GPIO) VALUES
 INSERT INTO SWITCH (Name, GPIO) VALUES
 ('Filterpers UIT', 25);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers FW', 7);
+('Filterpers FW', 8);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers RV', 8);
+('Filterpers RV', 7);
 INSERT INTO SWITCH (Name, GPIO) VALUES
 ('Schoon IN', 12);
 INSERT INTO SWITCH (Name, GPIO) VALUES
