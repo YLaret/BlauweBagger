@@ -12,7 +12,7 @@ def shutDownSwitchesGPIO(switchData):
             consumer="turnoff-switch",
             config={
                 LINE: gpiod.LineSettings(
-                    direction=Direction.OUTPUT, output_value=Value.ACTIVE
+                    direction=Direction.OUTPUT, output_value=Value.INACTIVE
                 ),
             },
         ) as request:

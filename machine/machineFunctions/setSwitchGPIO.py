@@ -6,11 +6,11 @@ def setSwitchGPIO(gpio,value):
     LINE = gpio
         
     with gpiod.request_lines(
-        "/dev/gpiochip4",
+        "/dev/gpiochip0",
         consumer="set-switch",
         config={
             LINE: gpiod.LineSettings(
-                direction=Direction.OUTPUT, output_value=Value.ACTIVE
+                direction=Direction.OUTPUT, output_value=Value.INACTIVE
             ),
         },
     ) as request:
