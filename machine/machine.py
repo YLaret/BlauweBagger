@@ -220,8 +220,8 @@ while True:
             else:
                 db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
     # disabled for dev
-    #for i,meter in enumerate(meterData):
-    #   db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
+    for i,meter in enumerate(meterData):
+        db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
     db.execute('UPDATE FORCE SET SwitchIDS = 0')
     db.commit()
     db.close()

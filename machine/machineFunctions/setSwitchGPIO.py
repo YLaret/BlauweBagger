@@ -6,7 +6,7 @@ def setSwitchGPIO(gpio,value):
     LINE = gpio
         
     with gpiod.request_lines(
-        "/dev/gpiochip0",
+        "/dev/gpiochip4",
         consumer="set-switch",
         config={
             LINE: gpiod.LineSettings(
