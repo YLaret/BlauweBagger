@@ -212,6 +212,9 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
 ('11',0,0,5,0,0);
 
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('10',1,1,-14,1,0);
+
 
 INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 ('Clay Unload','Sequence used to unload clay','3,4,5');
