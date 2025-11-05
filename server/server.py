@@ -1,5 +1,5 @@
 # websever
-from flask import Flask, render_template, redirect, jsonify, send_from_directory
+from flask import Flask, render_template, redirect, jsonify, send_from_directory, request
 import sqlite3
 import os
 
@@ -30,6 +30,22 @@ def overview():
     
     return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
 
+@app.route("/hmi")
+def hmi():
+    machineStatus = sF.getTable("MACHINESTATUS",0)
+    programs = sF.getTable("PROGRAM",0)
+    switches = sF.getTable("SWITCH",0)
+    stages = sF.getTable("STAGE",0)
+    meters = sF.getTable("METER",0)
+    
+    # round the meter reading
+    for i,meter in enumerate(meters):
+        meters[i]["Value"] = round(float(meters[i]["Value"]))
+    # current machine status
+    CMS = sF.getMachineStatus(machineStatus,programs,stages)
+    
+    return render_template('hmi.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
+
 @app.route("/updatepage")
 def updatePage():
     machineStatus = sF.getTable("MACHINESTATUS",0)
@@ -53,7 +69,7 @@ def updatePage():
 def toggleSwitch(switch):
     sF.toggleSwitch(switch)
     sF.forceAllSwitches()
-    return redirect("/")
+    return redirect(request.referrer or "/")
 
 @app.route("/selectprogram/", methods=["POST"])
 def selectProgram():
@@ -73,7 +89,7 @@ def previous():
 def auto():
     sF.auto()
     sF.forceAllSwitches()
-    return redirect("/")
+    return redirect(request.referrer or "/")
 
 @app.route("/start")
 def start():
@@ -85,13 +101,13 @@ def start():
 def pause():
     sF.pause()
     sF.forceAllSwitches()
-    return redirect("/")
+    return redirect(request.referrer or "/")
     
 @app.route("/stop")
 def stop():
     sF.stop()
     sF.forceAllSwitches()
-    return redirect("/")
+    return redirect(request.referrer or "/")
     
 @app.route("/next")
 def next():

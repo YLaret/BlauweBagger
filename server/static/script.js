@@ -26,6 +26,45 @@ function updatePage() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             
+            // hmi update state
+            var switches = document.getElementsByClassName("hmi-pump");
+            if (data.activeSwitches) {
+                for (var i = 0; i < switches.length; i++) {
+                    var id = parseInt(switches[i].id, 10);
+                    if (data.activeSwitches.includes(id)) {
+                        switches[i].classList.add("hmi-active");
+                    } else {
+                        switches[i].classList.remove("hmi-active");
+                    }
+                }
+            }
+            
+            // controls update state
+            var auto = document.getElementById("auto-btn");
+            if (data.pause == 14) {
+                auto.classList.add("auto-active");
+            } else {
+                auto.classList.remove("auto-active");
+            }
+            var pause = document.getElementById("pause-btn");
+            if (data.pause == 1) {
+                pause.classList.add("pause-active");
+            } else {
+                pause.classList.remove("pause-active");
+            }
+            var stop = document.getElementById("stop-btn");
+            if (data.pause == 2) {
+                stop.classList.add("stop-active");
+            } else {
+                stop.classList.remove("stop-active");
+            }
+            var start = document.getElementById("start-btn");
+            if (data.pause == 0) {
+                start.classList.add("start-active");
+            } else {
+                start.classList.remove("start-active");
+            }
+
             // meters update state
             var meters = document.getElementsByClassName("meters");
             for (var i = 0; i < meters.length; i++) {
@@ -55,32 +94,6 @@ function updatePage() {
                         switches[i].classList.remove("switch-active");
                     }
                 }
-            }
-            
-            // controls update state
-            var auto = document.getElementById("auto-btn");
-            if (data.pause == 14) {
-                auto.classList.add("auto-active");
-            } else {
-                auto.classList.remove("auto-active");
-            }
-            var start = document.getElementById("start-btn");
-            if (data.pause == 0) {
-                start.classList.add("start-active");
-            } else {
-                start.classList.remove("start-active");
-            }
-            var pause = document.getElementById("pause-btn");
-            if (data.pause == 1) {
-                pause.classList.add("pause-active");
-            } else {
-                pause.classList.remove("pause-active");
-            }
-            var stop = document.getElementById("stop-btn");
-            if (data.pause == 2) {
-                stop.classList.add("stop-active");
-            } else {
-                stop.classList.remove("stop-active");
             }
         }
     };

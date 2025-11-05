@@ -1,0 +1,193 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style>
+.hmi-container 
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	height: 600px;
+    position: relative;
+}
+#hmi-diagram
+{
+    background-image: url("static/images/HMI-diagram.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+.hmi-pump
+{
+	background-color: rgb(255,112,112);
+	border-radius:50%;
+	border: none;
+	width: 33px;
+	height: 33px;
+	position: absolute;
+	z-index: 1;
+    padding:0;
+}
+    
+.hmi-active
+{
+        background-color: rgb(112,255,112);
+}
+    
+[id="1"]
+{
+    top: 109px;
+    left: 106px;
+}
+[id="2"]
+{
+    top: 109px;
+    left: 366px;
+}
+[id="3"]
+{
+    top: 318px;
+    left: 158px;
+}
+[id="4"]
+{
+    top: 439px;
+    left: 158px;
+}
+[id="5"]
+{
+    top: 473px;
+    left: 365px;
+}
+[id="6"]
+{
+    top: 335px;
+    left: 470px;
+}
+[id="7"]
+{
+    top: 456px;
+    left: 660px;
+}
+[id="8"]
+{
+    top: 491px;
+    left: 660px;
+}
+[id="9"]
+{
+	top: 58px;
+	left: 677px;
+}
+[id="10"]
+{
+    top: 127px;
+    left: 677px;
+}
+[id="11"]
+{
+    top: 560px;
+    left: 608px;
+}
+[id="12"]
+{
+    top: 473px;
+    left: 123px;
+}
+[id="13"]
+{
+    top: 525px;
+    left: 296px;
+}
+.master-hmi-container
+{
+    background-color: white;
+    border-radius: 15px;
+    border-style: solid;
+    padding:30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.control-select-container-hmi {
+    background-color: #E7E7E9;
+    padding: 15px;
+    border-radius: 15px;
+    border-style: solid;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+.controls-hmi {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 90%;
+    }
+</style>
+{% endblock %}
+{% block main %}
+    <div class="master-hmi-container">
+		<div class="hmi-container">
+            <div id="hmi-diagram"></div>
+            <form action="/toggleswitch/1">
+                <input type="submit" class="hmi-pump" id="1" value>
+            </form>
+            <form action="/toggleswitch/2">
+                <input type="submit" class="hmi-pump" id="2" value>
+            </form>
+            <form action="/toggleswitch/3">
+                <input type="submit" class="hmi-pump" id="3" value>
+            </form>
+            <form action="/toggleswitch/4">
+                <input type="submit" class="hmi-pump" id="4" value>
+            </form>
+            <form action="/toggleswitch/5">
+                <input type="submit" class="hmi-pump" id="5" value>
+            </form>
+            <form action="/toggleswitch/6">
+                <input type="submit" class="hmi-pump" id="6" value>
+            </form>
+            <form action="/toggleswitch/7">
+                <input type="submit" class="hmi-pump" id="7" value>
+            </form>
+            <form action="/toggleswitch/8">
+                <input type="submit" class="hmi-pump" id="8" value>
+            </form>
+            <form action="/toggleswitch/9">
+                <input type="submit" class="hmi-pump" id="9" value>
+            </form>
+            <form action="/toggleswitch/10">
+                <input type="submit" class="hmi-pump" id="10" value>
+            </form>
+			<form action="/toggleswitch/11">
+				<input type="submit" class="hmi-pump" id="11" value>
+			</form>
+            <form action="/toggleswitch/12">
+                <input type="submit" class="hmi-pump" id="12" value>
+            </form>
+            <form action="/toggleswitch/13">
+                <input type="submit" class="hmi-pump" id="13" value>
+            </form>
+		</div>
+    </div>
+        <div class="control-select-container-hmi">
+            <div class="controls-hmi">
+                <form action="/auto">
+                    <input class="overview-btn" type="submit" id="auto-btn" value="Auto"/>
+                </form>
+                <form action="/pause">
+                    <input class="overview-btn" type="submit" id="pause-btn" value="Pause"/>
+                </form>
+                <form action="/stop">
+                    <input class="overview-btn" type="submit" id="stop-btn" value="Stop"/>
+                </form>
+            </div>
+        </div>
+{% endblock %}
