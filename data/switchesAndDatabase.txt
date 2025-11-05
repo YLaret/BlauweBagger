@@ -160,6 +160,9 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 ('5',1,1,4,1,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('5',1,1,12,1,0);
+
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
 ('5',1,1,13,1,0);
 
 
@@ -190,6 +193,9 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
 ('5',0,0,4,0,0);
+
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('5',0,0,12,0,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
 ('5',0,0,13,0,0);
