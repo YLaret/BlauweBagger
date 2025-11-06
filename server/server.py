@@ -14,7 +14,7 @@ tableNames = ["STAGE","PROGRAM","METERRULES","MACHINESTATUS","SWITCH","METER","D
 # log directory
 logDir = "../data/log"
 
-@app.route("/")
+@app.route("/control")
 def overview():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)
@@ -30,7 +30,7 @@ def overview():
     
     return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
 
-@app.route("/hmi")
+@app.route("/")
 def hmi():
     machineStatus = sF.getTable("MACHINESTATUS",0)
     programs = sF.getTable("PROGRAM",0)

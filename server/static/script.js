@@ -1,22 +1,31 @@
 const currentPath = window.location.pathname;
 
 const navlinkoverview = document.querySelector('#nav-link-overview');
-const navlinktableview = document.querySelector('#nav-link-tableview');
+const navlinkcontrol = document.querySelector('#nav-link-control');
 const navlinkprogram = document.querySelector('#nav-link-program');
+const navlinklog = document.querySelector('#nav-link-log');
 
 if (currentPath == "/")
 {
     navlinkoverview.classList.add('active')
-    navlinktableview.classList.remove('active')
+    navlinkcontrol.classList.remove('active')
     navlinkprogram.classList.remove('active')
-} else if (currentPath == "/log") {
+    navlinklog.classList.remove('active')
+} else if (currentPath == "/control") {
     navlinkoverview.classList.remove('active')
-    navlinktableview.classList.add('active')
+    navlinkcontrol.classList.add('active')
     navlinkprogram.classList.remove('active')
+    navlinklog.classList.remove('active')
 } else if (currentPath == "/program") {
     navlinkoverview.classList.remove('active')
-    navlinktableview.classList.remove('active')
+    navlinkcontrol.classList.remove('active')
     navlinkprogram.classList.add('active')
+    navlinklog.classList.remove('active')
+} else if (currentPath == "/log") {
+    navlinkoverview.classList.remove('active')
+    navlinkcontrol.classList.remove('active')
+    navlinkprogram.classList.remove('active')
+    navlinklog.classList.add('active')
 }
 
 function updatePage() {
@@ -26,7 +35,7 @@ function updatePage() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             // HMI VIEW
-            if (currentPath == "/hmi") {
+            if (currentPath == "/") {
                 // hmi update state
                 var switches = document.getElementsByClassName("hmi-pump");
                 if (data.activeSwitches) {
@@ -92,7 +101,7 @@ function updatePage() {
                 document.getElementById("hmi-puit").innerText = data.meters[1];
             }
             // CONTROL VIEW
-            if (currentPath == "/") {
+            if (currentPath == "/control") {
                 var start = document.getElementById("start-btn");
                 if (data.pause == 0) {
                     start.classList.add("start-active");

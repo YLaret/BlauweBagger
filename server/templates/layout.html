@@ -7,7 +7,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="stylesheet" href="/static/styles.css">
-        <link rel="manifest" href="/static/manifest.json">
         {% block head %}{% endblock %}
 	</head>
 	<nav>
@@ -18,13 +17,18 @@
 						<span>Overview</span>
 					</a>
 				</li>
+                <li class="nav-item">
+                    <a id="nav-link-control" href="/control" target="_self">
+                        <span>Control</span>
+                    </a>
+                </li>
 				<li class="nav-item">
 					<a id="nav-link-program" href="/program" target="_self">
 						<span>Program</span>
 					</a>
 				</li>
                 <li class="nav-item">
-                    <a id="nav-link-tableview" href="/log" target="_self">
+                    <a id="nav-link-log" href="/log" target="_self">
                         <span>Log</span>
                     </a>
                 </li>
