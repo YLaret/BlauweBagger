@@ -9,8 +9,8 @@ The controller is a Raspberry Pi module which controls the pumps and motors with
 ### Database Architecture
 The database follows a relational model with the following layout:
 ![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/databaseArchitecture_v2.jpeg)
-NOTE1: Upon upgrading the Tuya switches with SSR controlled by the GPIO, the SWITCH table does NOT contain: {MeterIDS, MeterMIN, MeterMax, IPAdress, LocalKey} anymore, instead: {SwitchID, Name, GPIO}.
-NOTE2: A new table linking meters to switches called METERRULES containing:{MeterRuleID, MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage}.
+**NOTE1:** Upon upgrading the Tuya switches with SSR controlled by the GPIO, the **SWITCH** table does NOT contain: {MeterIDS, MeterMIN, MeterMax, IPAdress, LocalKey} anymore, instead: {SwitchID, Name, GPIO}.
+**NOTE2:** A new table linking meters to switches called **METERRULES** containing:{MeterRuleID, MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage}.
 ## General Design Requirements
 * ✅ Controlling pumps (manual, timed and automatic (senorbased)) using WebUI
 * ✅ Flowmeter visualization in WebUI
@@ -27,18 +27,19 @@ NOTE2: A new table linking meters to switches called METERRULES containing:{Mete
 * ✅ Program view with timing possibilities
 
 ## Manual
-After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.8.148). The schematic overview should be visible (meters are being updated live, so can have different values):
+After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.0.200). The schematic overview should be visible (meters are being updated live, so can have different values):
 ![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_stop.png)
 The system always boots with all switches off (STOP mode).
 ### Automatic Control
 To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
 ![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_auto.png)
 ### Manual Control
-To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. Be careful: NO METER CONTROL, dangerous situation can occur. 
+To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. **Be careful: NO METER CONTROL, dangerous situation can occur.** 
 ![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_pause.png)
 ### Timer Control (deprecated)
-To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program, note the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
+To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program. **NOTE:** the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
 ![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/program_timer.png)
+
 ## Installation
 ### Installing Rasbian
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
