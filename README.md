@@ -12,7 +12,7 @@ To let the machine run on autopilot simply press `AUTO`. The machine will determ
 To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. **Be careful: NO METER CONTROL, dangerous situation can occur.** 
 ![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_pause.png)
 ### Timer Control (deprecated)
-To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program. **NOTE:** the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
+To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program. In the control view the program can be selected and executed. **NOTE:** the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
 ![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/program_timer.png)
 
 ## Architecture
