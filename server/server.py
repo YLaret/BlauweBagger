@@ -44,7 +44,10 @@ def hmi():
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
-    return render_template('hmi.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
+    # aggrate meter values
+    aM = sF.aggrateMeters(meters)
+    
+    return render_template('hmi.html',CMS=CMS,programs=programs,meters=meters,switches=switches,aM=aM)
 
 @app.route("/updatepage")
 def updatePage():
@@ -57,11 +60,15 @@ def updatePage():
     # process meter reading
     for meter in meterData:
         meters.append(round(float(meter["Value"]),1))
+    
+    # aggrate meter values
+    aM = sF.aggrateMeters(meterData)
 
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
 
     CMS['meters'] = meters
+    CMS['aM'] = aM
 
     return jsonify(CMS)
 

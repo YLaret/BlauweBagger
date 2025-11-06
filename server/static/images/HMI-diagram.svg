@@ -218,11 +218,7 @@
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 520 268 L 500 256 L 520 244 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 408 140 L 428 128 L 408 116 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 216 172 L 236 160 L 216 148 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
-<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 112 208 L 112 176 L 160 176 L 160 208 Z M 112 208 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
-<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 160 192 L 224 192 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 616 136 L 616 104 L 664 104 L 664 136 Z M 616 136 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
-<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 672 192 L 608 192 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
-<path fill-rule="evenodd" fill="rgb(0%, 0%, 0%)" fill-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 608 192 L 615 189.667969 L 615 194.332031 Z M 608 192 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <g clip-path="url(#clip-0)">
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph-0-0" x="145" y="213"/>
@@ -295,7 +291,6 @@
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 264 160 L 264 128 L 208 128 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill-rule="evenodd" fill="rgb(0%, 0%, 0%)" fill-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 264 160 L 261.667969 153 L 266.332031 153 Z M 264 160 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 208 128 C 208 136.835938 200.835938 144 192 144 C 183.164062 144 176 136.835938 176 128 C 176 119.164062 183.164062 112 192 112 C 200.835938 112 208 119.164062 208 128 Z M 208 128 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
-<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 672 176 L 672 208 L 720 208 L 720 176 Z M 672 176 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 184 140 L 204 128 L 184 116 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 <g clip-path="url(#clip-7)">
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -336,4 +331,11 @@
 </g>
 </g>
 <path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 364 80 C 364 86.628906 358.628906 92 352 92 C 345.371094 92 340 86.628906 340 80 C 340 73.371094 345.371094 68 352 68 C 358.628906 68 364 73.371094 364 80 Z M 364 80 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 192 352 L 192 304 L 256 304 L 256 352 Z M 192 352 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 384 352 L 384 304 L 448 304 L 448 352 Z M 384 352 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 576 352 L 576 304 L 640 304 L 640 352 Z M 576 352 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 64 224 L 64 176 L 144 176 L 144 224 Z M 64 224 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 144 192 L 224 192 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 608 192 L 688 192 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
+<path fill="none" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 688 176 L 688 224 L 768 224 L 768 176 Z M 688 176 " transform="matrix(1, 0, 0, -1, -63, 577)"/>
 </svg>

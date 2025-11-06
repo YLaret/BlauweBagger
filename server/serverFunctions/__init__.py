@@ -9,3 +9,4 @@ from .toggleSwitch import toggleSwitch
 from .getMachineStatus import getMachineStatus
 from .setProgramRunTime import setProgramRunTime
 from .forceAllSwitches import forceAllSwitches
+from .aggrateMeters import aggrateMeters

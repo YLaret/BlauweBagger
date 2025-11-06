@@ -106,6 +106,90 @@
     top: 525px;
     left: 296px;
 }
+.hmi-lvl-container
+{
+    position: absolute;
+    background-color: rgb(255,112,112);
+    width: 68px;
+    height: 52px;
+}
+.hmi-lvl-container-pers
+{
+    position: absolute;
+    background-color: rgb(255,112,112);
+    width: 50px;
+    height: 34px;
+}
+.hmi-mtr-container
+{
+    position: absolute;
+    background-color: rgb(112,112,255);
+    width: 86px;
+    height: 52px;
+    color: white;
+}
+.hmi-mtr
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding-top: 7px;
+    font-size: 1.5rem;
+}
+.hmi-mtr-unit
+{
+    padding-left: 5px;
+    padding-right:2px;
+    font-size: 0.8rem;
+    margin-left: auto;
+    width: fit-content;
+}
+#hmi-mtr-cyc
+{
+    top:387px;
+    left:2px;
+}
+#hmi-mtr-puit
+{
+    top:387px;
+    left:676px;
+}
+.hmi-lvl-ok
+{
+    background-color: rgb(112,255,112);
+}
+#hmi-mix-container
+{
+    top:247px;
+    left:140px;
+}
+#hmi-vuil-container
+{
+    top:247px;
+    left:348px;
+}
+#hmi-schoon-container
+{
+    top:247px;
+    left:555px;
+}
+#hmi-pers-container
+{
+    top: 482px;
+    left: 600px;
+}
+.hmi-lvl-pers
+{
+        margin:auto;
+        width: fit-content;
+        padding-top: 9px;
+}
+.hmi-lvl
+{
+        margin:auto;
+        width: fit-content;
+        padding-top: 17px;
+}
 .master-hmi-container
 {
     background-color: white;
@@ -113,23 +197,28 @@
     border-style: solid;
     padding:30px;
     margin-top: 15px;
-    margin-bottom: 15px;
+    min-width:800px;
 }
-.control-select-container-hmi {
-    background-color: #E7E7E9;
+.control-select-container-hmi 
+{
+    background-color: rgb(250,250,255);
     padding: 15px;
     border-radius: 15px;
     border-style: solid;
     width: 40%;
     margin: auto;
     margin-bottom: 50px;
+    border-top:none;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
 }
-.controls-hmi {
+.controls-hmi 
+{
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
     width: 90%;
-    }
+}
 </style>
 {% endblock %}
 {% block main %}
@@ -175,6 +264,42 @@
             <form action="/toggleswitch/13">
                 <input type="submit" class="hmi-pump" id="13" value>
             </form>
+            <div class="hmi-lvl-container" id="hmi-mix-container">
+                <div class="hmi-lvl" id="hmi-mix">
+                    {{ aM['mix'] }}
+                </div>
+            </div>
+            <div class="hmi-lvl-container" id="hmi-vuil-container">
+                <div class="hmi-lvl" id="hmi-vuil">
+                    {{ aM['vuil'] }}
+                </div>
+            </div>
+            <div class="hmi-lvl-container" id="hmi-schoon-container">
+                <div class="hmi-lvl" id="hmi-schoon">
+                    {{ aM['schoon'] }}
+                </div>
+            </div>
+            <div class="hmi-lvl-container-pers" id="hmi-pers-container">
+                <div class="hmi-lvl-pers" id="hmi-pers">
+                    {{ aM['pers'] }}
+                </div>
+            </div>
+            <div class="hmi-mtr-container" id="hmi-mtr-cyc">
+                <div class="hmi-mtr" id="hmi-cyc">
+                    {{ meters[0]['Value'] }}
+                </div>
+                <div class="hmi-mtr-unit">
+                    L/min
+                </div>
+            </div>
+            <div class="hmi-mtr-container" id="hmi-mtr-puit">
+                <div class="hmi-mtr" id="hmi-puit">
+                    {{ meters[1]['Value'] }}
+                </div>
+                <div class="hmi-mtr-unit">
+                    L/min
+                </div>
+            </div>
 		</div>
     </div>
         <div class="control-select-container-hmi">
