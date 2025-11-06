@@ -1,6 +1,20 @@
 # BlauweBagger
 This is the repository for the software that controls the Blauwe Bagger prototype installation.
 
+## User Guide
+After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.0.200). The schematic overview should be visible (meters are being updated live, so can have different values):
+![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_stop.png)
+The system always boots with all switches off (STOP mode).
+### Automatic Control
+To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
+![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_auto.png)
+### Manual Control
+To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. **Be careful: NO METER CONTROL, dangerous situation can occur.** 
+![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_pause.png)
+### Timer Control (deprecated)
+To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program. **NOTE:** the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
+![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/program_timer.png)
+
 ## Architecture
 The controller is a Raspberry Pi module which controls the pumps and motors with Tuya enabled switches. The Pi will control the machine with a python service `machine.py`. This service will read the preferred state and write the actual state of the machine from and to a SQL database. A second service `server.py` hosts a local website that reads and writes the database values, allowing the user to control the machine remotely.
 * `machine.py` will rely on the [gpiod](https://pypi.org/project/gpiod/) library for interaction with switches (GPIO)
@@ -25,20 +39,6 @@ The database follows a relational model with the following layout:
 * ✅ Tableview with meters table, motors table and log window
 * ✅ Schematicview with visualization of the plant (motor and flow meter states) and a log window
 * ✅ Program view with timing possibilities
-
-## Manual
-After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.0.200). The schematic overview should be visible (meters are being updated live, so can have different values):
-![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_stop.png)
-The system always boots with all switches off (STOP mode).
-### Automatic Control
-To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
-![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_auto.png)
-### Manual Control
-To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. **Be careful: NO METER CONTROL, dangerous situation can occur.** 
-![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_pause.png)
-### Timer Control (deprecated)
-To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program. **NOTE:** the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
-![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/program_timer.png)
 
 ## Installation
 ### Installing Rasbian
