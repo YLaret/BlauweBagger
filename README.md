@@ -28,17 +28,17 @@ NOTE2: A new table linking meters to switches called METERRULES containing:{Mete
 
 ## Manual
 After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.8.148). The schematic overview should be visible (meters are being updated live, so can have different values):
-![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_stop.png)
+![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_stop.png)
 The system always boots with all switches off (STOP mode).
 ### Automatic Control
 To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
-![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_auto.png)
+![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_auto.png)
 ### Manual Control
 To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. Be careful: NO METER CONTROL, dangerous situation can occur. 
-![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_pause.png)
+![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/schematic_pause.png)
 ### Timer Control (deprecated)
 To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program, note the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
-![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/program.png)
+![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/SwtchCntrl/docs/program_timer.png)
 ## Installation
 ### Installing Rasbian
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
