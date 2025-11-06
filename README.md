@@ -1,35 +1,44 @@
 # BlauweBagger
 This is the repository for the software that controls the Blauwe Bagger prototype installation.
 
-## TODO
-* Logging monitor and output        !!
-* Pump control based on flowmeter   !!
-* Direct toggle for switches        !
-
 ## Architecture
 The controller is a Raspberry Pi module which controls the pumps and motors with Tuya enabled switches. The Pi will control the machine with a python service `machine.py`. This service will read the preferred state and write the actual state of the machine from and to a SQL database. A second service `server.py` hosts a local website that reads and writes the database values, allowing the user to control the machine remotely.
-* `machine.py` will rely heavily on the [TinyTuya](https://github.com/jasonacox/tinytuya) library for interaction with switches
+* `machine.py` will rely on the [gpiod](https://pypi.org/project/gpiod/) library for interaction with switches (GPIO)
 * `server.py` will be based around Flask and nginx
 
 ### Database Architecture
 The database follows a relational model with the following layout:
 ![Database Architecture](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/databaseArchitecture_v2.jpeg)
-
+NOTE1: Upon upgrading the Tuya switches with SSR controlled by the GPIO, the SWITCH table does NOT contain: {MeterIDS, MeterMIN, MeterMax, IPAdress, LocalKey} anymore, instead: {SwitchID, Name, GPIO}.
+NOTE2: A new table linking meters to switches called METERRULES containing:{MeterRuleID, MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage}.
 ## General Design Requirements
-* Controlling pumps (timed and manual) using WebUI
-* Flowmeter visualization in WebUI
-* Pump control based on flowmeter
-* Log pump data (flow and power)
-* Log and display errors and stalls
-* Be transferable to new systems
+* ✅ Controlling pumps (manual, timed and automatic (senorbased)) using WebUI
+* ✅ Flowmeter visualization in WebUI
+* ☢️ Pump control based on flowmeter (this might be handled by another microcontroller)
+* ✅ Log pump data (flow and power)
+* ✅ Log and display errors and stalls
+* ✅ Be transferable to new systems
 
 ### Webserver Design Requirements
-* Schematic and tableview
-* Way to create programs and controll machine manually
-* Tableview with meters table, motors table and log window
-* Schematicview with visualization of the plant (motor and flow meter states) and a log window
-* Program view with timing possibilities
+* ✅ Schematic and tableview
+* ✅ Way to create programs and controll machine manually
+* ✅ Tableview with meters table, motors table and log window
+* ✅ Schematicview with visualization of the plant (motor and flow meter states) and a log window
+* ✅ Program view with timing possibilities
 
+## Manual
+After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.8.148). The schematic overview should be visible (meters are being updated live, so can have different values):
+![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_stop.png)
+The system always boots with all switches off (STOP mode).
+### Automatic Control
+To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
+![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_auto.png)
+### Manual Control
+To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. Be careful: NO METER CONTROL, dangerous situation can occur. 
+![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/schematic_pause.png)
+### Timer Control (deprecated)
+To run a timer based program, create stages with SwitchIDS and stageTimes and add these to a program, note the first program `Clay Unload` is a special program used by automatic control for the unload sequence, change with caution.
+![Program Timer](https://raw.githubusercontent.com/YLaret/BlauweBagger/tree/SwtchCntrl/docs/program.png)
 ## Installation
 ### Installing Rasbian
 * Download [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/operating-systems/)
