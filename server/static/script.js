@@ -90,13 +90,15 @@ function updatePage() {
                 } else {
                     schoon.classList.remove("hmi-lvl-ok");
                 }
-                document.getElementById("hmi-pers").innerText=data.aM.pers;
+                document.getElementById("hmi-pers").innerText=data.meters[2];
+                /*
                 schoon = document.getElementById("hmi-pers-container");
                 if (data.aM.pers == "OK") {
                     schoon.classList.add("hmi-lvl-ok");
                 } else {
                     schoon.classList.remove("hmi-lvl-ok");
                 }
+                */
                 document.getElementById("hmi-cyc").innerText = data.meters[0];
                 document.getElementById("hmi-puit").innerText = data.meters[1];
             }

@@ -114,7 +114,7 @@ INSERT INTO METER (Name, Description, Value) VALUES
 ('F200QA','Meter going out of the cyclone [L/min]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('F25QA','(BROKEN) Clean water meter [L/min]',0);
+('Pers Druk','Kamerfilterpers druk [bar]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
 ('Mix Vol','Mixtank vol',0);
@@ -135,10 +135,8 @@ INSERT INTO METER (Name, Description, Value) VALUES
 ('Schoon Leeg','Schoonwatertank leeg',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('Pers Vol','Kamerfilterpers vol',0);
+('Wacht op pers','Virtuele wacht op kamerfilterpers meter',0);
 
-INSERT INTO METER (Name, Description, Value) VALUES
-('Pers Min','Kamerfilterpers minimale druk',0);
 
 /* pomp aan */
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
@@ -169,7 +167,7 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 ('7',1,1,5,1,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('11',1,1,5,1,0);
+('3',180,1,5,1,0);
 
 /* pomp uit */
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
@@ -212,11 +210,19 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 ('7',0,0,5,0,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('11',0,0,5,0,0);
+('3',180,0,5,0,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('10',1,1,-14,1,0);
+('3',220,1,-14,1,0);
 
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('10',1,1,4,0,0);
+
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('10',1,1,12,0,0);
+
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+('10',1,1,13,0,0);
 
 INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 ('Clay Unload','Sequence used to unload clay','3,4,5');

@@ -115,8 +115,9 @@
 }
 .hmi-lvl-container-pers
 {
+    color: white;
     position: absolute;
-    background-color: rgb(255,112,112);
+    background-color: #385193;
     width: 50px;
     height: 34px;
 }
@@ -143,6 +144,10 @@
     font-size: 0.8rem;
     margin-left: auto;
     width: fit-content;
+}
+.hmi-mtr-unit-pers
+{
+    margin-top:-3px;
 }
 #hmi-mtr-cyc
 {
@@ -180,9 +185,9 @@
 }
 .hmi-lvl-pers
 {
-        margin:auto;
+        margin-left:3px;
         width: fit-content;
-        padding-top: 9px;
+        padding-top: 3px;
 }
 .hmi-lvl
 {
@@ -281,7 +286,10 @@
             </div>
             <div class="hmi-lvl-container-pers" id="hmi-pers-container">
                 <div class="hmi-lvl-pers" id="hmi-pers">
-                    {{ aM['pers'] }}
+                    {{ meters[2]['Value'] }}
+                </div>
+                <div class="hmi-mtr-unit hmi-mtr-unit-pers">
+                    bar
                 </div>
             </div>
             <div class="hmi-mtr-container" id="hmi-mtr-cyc">

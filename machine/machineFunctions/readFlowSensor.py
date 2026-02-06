@@ -22,7 +22,8 @@ def readFlowSensor():
     # Arguments - (register start address, number of registers to read, function code)
     data= sensy_boi.read_registers(0, 13, 3)
 
-    f200qa = (data[0]/4095*16*12.1875)
+    f200qa = (data[0]/4095*300)
+    #f200qa = (data[0]/4095*16*12.1875)
     f250qa = (data[1]/4095*16*14.84375)
     f25ad = (data[2]/4095*16*8.8125)
 

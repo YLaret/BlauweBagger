@@ -22,6 +22,9 @@ meterLogInterval = 1;
 # special unloading var
 uLoad = 0
 
+# special suspend var (to pause cyclone until kfp is unloaded)
+suspend = 0
+
 # initial startTime and switchTime
 startTime = datetime.datetime.now()
 switchTime = datetime.datetime.now() - datetime.timedelta(seconds=switchInterval)
@@ -109,17 +112,17 @@ while True:
 
     ### READ METERS
     # disable meter reading for dev
-    #mF.readFlowSensor()
-    meters = [0,0,0]
+    #meters = mF.readFlowSensor()
+    meters = [135,3,200] # Flow hydro, flow pers, pers druk
     meters.append(mF.getValueGPIO(2)) # Mix Vol
     meters.append(mF.getValueGPIO(3)) # Mix Leeg
     meters.append(mF.getValueGPIO(4)) # Vuil Vol
     meters.append(mF.getValueGPIO(17)) # Vuil Leeg
     meters.append(mF.getValueGPIO(27)) # Schoon Vol
     meters.append(mF.getValueGPIO(22)) # Schoon Leeg
-    meters.append(mF.getValueGPIO(10)) # Pers Vol
-    meters.append(mF.getValueGPIO(9)) # Pers Min
-
+    if meters[5] == 1:
+        suspend = 1
+    meters.append(suspend)
 
     print(meters)
     # log meter data
@@ -217,6 +220,7 @@ while True:
             if stageTime < programRunTime:
                 print("Finished Unloading!")
                 uLoad = 0
+                suspend = 0
             else:
                 db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
     # disabled for dev
