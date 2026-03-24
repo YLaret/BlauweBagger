@@ -108,7 +108,7 @@ Description=Fix socket permissions
 After=network.target BlauweBagger.service
 
 [Service]
-ExecStart=/bin/bash -c "sudo chown pi:www-data /home/pi/BlauweBagger/server/server.sock; sudo chmod 660 /home/pi/BlauweBagger/server/server.sock"
+ExecStart=/bin/bash -c "sudo chown pi:www-data /home/pi/BlauweBagger/server/server.sock; sudo chmod 660 /home/pi/BlauweBagger/server/server.sock; sudo chmod 755 /home/pi"
 Type=oneshot
 RemainAfterExit=yes
 

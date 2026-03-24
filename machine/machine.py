@@ -112,8 +112,8 @@ while True:
 
     ### READ METERS
     # disable meter reading for dev
-    #meters = mF.readFlowSensor()
-    meters = [135,3,200] # Flow hydro, flow pers, pers druk
+    meters = mF.readFlowSensor()
+    #meters = [123,456,200] # Flow hydro, flow pers, pers druk
     meters.append(mF.getValueGPIO(2)) # Mix Vol
     meters.append(mF.getValueGPIO(3)) # Mix Leeg
     meters.append(mF.getValueGPIO(4)) # Vuil Vol
