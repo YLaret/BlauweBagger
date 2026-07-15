@@ -29,6 +29,10 @@ def overview():
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
     return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
+    
+@app.route("/acc")
+def acc():
+    return render_template('acc.html')
 
 @app.route("/")
 def hmi():
