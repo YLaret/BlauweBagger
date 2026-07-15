@@ -243,6 +243,9 @@ INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 INSERT INTO FORCE (SwitchIDS) VALUES
 ('0');
 
+INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, VFDAdress) VALUES
+('Hydrocycloon druk','1.8',1,'bar',40,2,0,0.5,'1');
+
 %%%% EXCLUDE %%%%
 INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
 ('EM0', 'bfc34e65c3aff6952455sz', 'i0M~/lA?`HuiH_7Y', '192.168.0.101', 3.3);

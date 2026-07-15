@@ -1,15 +1,19 @@
 # PSEUDO CODE
 import controlFunctions as cF
+from pymodbus.client import ModbusSerialClient
+import datetime
+import csv
+import os
 
 # constants
-dt = 1 # [s]
+sleepTime = 1 # [s]
 FREQ_REGISTER = 0x2001
 
 # initialize
 controls = cF.getTable("CONTROL",0)
 controlDict = {}
 for control in controls:
-	controlDict[control["controlID"]] = {"e":0,"eSum":0}
+	controlDict[control["controlID"]] = {"e":0,"eSum":0,"t0":datetime.datetime.now(),"t1":datetime.datetime.now()}
 
 # CONNECT VFD
 vfd = ModbusSerialClient(
@@ -34,6 +38,9 @@ while True:
 		for control in controls:
 			# CONTROL PHASE
 			e = control["Ref"] - meters[control["meterID"]]
+            t1 = datetime.datetime.now()
+            dt = (controlDict[control["controlID"]]["t1"]-controlDict[control["controlID"]]["t0"]).total_seconds()
+            t0 = datetime.datetime.now()
 			eSum = e*dt + controlDict[control["controlID"]]["eSum"]
 			de = (e-controlDict[control.controlID]["e"])/dt
 
@@ -53,7 +60,7 @@ while True:
                 with open("../data/"+LOG_FILE, "w", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
-                        datetime.now().isoformat(),
+                        datetime.datetime.now().isoformat(),
                         meters[control["MeterID"]],
                         control["Ref"],
                         freq
@@ -62,7 +69,7 @@ while True:
                 with open("../data/"+LOG_FILE, "a", newline="", buffering=1) as f:
                     writer = csv.writer(f)
                     writer.writerow([
-                        datetime.now().isoformat(),
+                        datetime.datetime.now().isoformat(),
                         meters[control["MeterID"]],
                         control["Ref"],
                         freq
@@ -70,9 +77,13 @@ while True:
                     f.flush()
             
 		# SLEEP PHASE
-		sleep(dt)
+		sleep(sleepTime)
     except:
         for control in controls:
             controlDict[control["controlID"]]["e"] = 0
             controlDict[control["controlID"]]["eSum"] = 0
+            t1 = datetime.datetime.now()
+            dt = (controlDict[control["controlID"]]["t1"]-controlDict[control["controlID"]]["t0"]).total_seconds()
+            t0 = datetime.datetime.now()
+            
         
