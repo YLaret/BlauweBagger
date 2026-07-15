@@ -27,35 +27,35 @@ vfd = ModbusSerialClient(
 vfd.connect()
 
 while True:
-	try:
+    try:
         # CONTACT VFD
         result = vfd.write_register(0x2000, 0b01)
-        
-		# READ PHASE
-        controls = cF.getTable("CONTROL",0)
-		meters = cF.getTable("METER",0)
 
-		for control in controls:
-			# CONTROL PHASE
-			e = control["Ref"] - meters[control["meterID"]]
+        # READ PHASE
+        controls = cF.getTable("CONTROL",0)
+        meters = cF.getTable("METER",0)
+
+        for control in controls:
+            # CONTROL PHASE
+            e = control["Ref"] - meters[control["meterID"]]
             t1 = datetime.datetime.now()
             dt = (controlDict[control["controlID"]]["t1"]-controlDict[control["controlID"]]["t0"]).total_seconds()
             t0 = datetime.datetime.now()
-			eSum = e*dt + controlDict[control["controlID"]]["eSum"]
-			de = (e-controlDict[control.controlID]["e"])/dt
+            eSum = e*dt + controlDict[control["controlID"]]["eSum"]
+            de = (e-controlDict[control.controlID]["e"])/dt
 
-			freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
+            freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
             value = int(freq * 10)
             result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
-            
-			# WRITE PHASE
-			cF.writeFrequency(control["controlID"],freq)
-			controlDict[control["controlID"]]["e"] = e
-			controlDict[control["controlID"]]["eSum"] = eSum
-   
+
+            # WRITE PHASE
+            cF.writeFrequency(control["controlID"],freq)
+            controlDict[control["controlID"]]["e"] = e
+            controlDict[control["controlID"]]["eSum"] = eSum
+
             # LOG PHASE
             LOG_FILE = "control" + str(control["controlID"])+ "_log.csv"
-            
+
             if not os.path.exists("../data/"+LOG_FILE):
                 with open("../data/"+LOG_FILE, "w", newline="") as f:
                     writer = csv.writer(f)
@@ -77,7 +77,7 @@ while True:
                     f.flush()
             
 		# SLEEP PHASE
-		sleep(sleepTime)
+        sleep(sleepTime)
     except:
         for control in controls:
             controlDict[control["controlID"]]["e"] = 0
