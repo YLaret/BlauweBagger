@@ -13,7 +13,7 @@ FREQ_REGISTER = 0x2001
 controls = cF.getTable("CONTROL",0)
 controlDict = {}
 for control in controls:
-	controlDict[control["controlID"]] = {"e":0,"eSum":0,"t0":datetime.datetime.now(),"t1":datetime.datetime.now()}
+	controlDict[control["ControlID"]] = {"e":0,"eSum":0,"t0":datetime.datetime.now(),"t1":datetime.datetime.now()}
 
 # CONNECT VFD
 vfd = ModbusSerialClient(
@@ -37,11 +37,11 @@ while True:
 
         for control in controls:
             # CONTROL PHASE
-            e = control["Ref"] - meters[control["meterID"]]
+            e = control["Ref"] - meters[control["MeterID"]]
             t1 = datetime.datetime.now()
-            dt = (controlDict[control["controlID"]]["t1"]-controlDict[control["controlID"]]["t0"]).total_seconds()
+            dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             t0 = datetime.datetime.now()
-            eSum = e*dt + controlDict[control["controlID"]]["eSum"]
+            eSum = e*dt + controlDict[control["ControlID"]]["eSum"]
             de = (e-controlDict[control.controlID]["e"])/dt
 
             freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
@@ -49,12 +49,12 @@ while True:
             result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
 
             # WRITE PHASE
-            cF.writeFrequency(control["controlID"],freq)
-            controlDict[control["controlID"]]["e"] = e
-            controlDict[control["controlID"]]["eSum"] = eSum
+            cF.writeFrequency(control["ControlID"],freq)
+            controlDict[control["ControlID"]]["e"] = e
+            controlDict[control["ControlID"]]["eSum"] = eSum
 
             # LOG PHASE
-            LOG_FILE = "control" + str(control["controlID"])+ "_log.csv"
+            LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
 
             if not os.path.exists("../data/"+LOG_FILE):
                 with open("../data/"+LOG_FILE, "w", newline="") as f:
@@ -80,10 +80,10 @@ while True:
         sleep(sleepTime)
     except:
         for control in controls:
-            controlDict[control["controlID"]]["e"] = 0
-            controlDict[control["controlID"]]["eSum"] = 0
+            controlDict[control["ControlID"]]["e"] = 0
+            controlDict[control["ControlID"]]["eSum"] = 0
             t1 = datetime.datetime.now()
-            dt = (controlDict[control["controlID"]]["t1"]-controlDict[control["controlID"]]["t0"]).total_seconds()
+            dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             t0 = datetime.datetime.now()
             
         
