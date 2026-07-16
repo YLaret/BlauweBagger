@@ -37,7 +37,6 @@ def acc():
     for tableName in tableNames:
         if tableName == "CONTROL":
             tables.append(sF.getTable(tableName,0))
-            print(Kd)
     controls = sF.getTable("CONTROL",0)
     for control in controls:
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
