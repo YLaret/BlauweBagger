@@ -117,7 +117,7 @@ def updatePage():
                 control["meas"].append(float(row[1]))
                 control["ref"].append(float(row[2]))
                 control["freq"].append(float(row[3]))
-
+    CMS['controls'] = controls
     return jsonify(CMS)
 
 @app.route("/toggleswitch/<switch>")
