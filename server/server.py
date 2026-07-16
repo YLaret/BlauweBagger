@@ -194,7 +194,12 @@ def program():
 @app.route("/program/<table>", methods=["POST"])
 def protramMotors(table):
     sF.updateTable(table)
-    return redirect("/program")
+    return redirect("/program")]
+    
+@app.route("/acc/<table>", methods=["POST"])
+def protramMotors(table):
+    sF.updateTable(table)
+    return redirect("/acc")
 
 @app.route("/log")
 def log():
