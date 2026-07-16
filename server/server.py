@@ -48,16 +48,16 @@ def acc():
     for control in controls:
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
         with open("../data/control/"+LOG_FILE) as f:
-        reader = csv.reader(f)
-        control["time"] = []
-        control["meas"] = []
-        control["ref"] = []
-        control["freq"] = []
-        for row in reader:
-            control["time"].append(row[0])
-            control["meas"].append(float(row[1]))
-            control["ref"].append(float(row[2]))
-            control["freq"].append(float(row[3]))
+            reader = csv.reader(f)
+            control["time"] = []
+            control["meas"] = []
+            control["ref"] = []
+            control["freq"] = []
+            for row in reader:
+                control["time"].append(row[0])
+                control["meas"].append(float(row[1]))
+                control["ref"].append(float(row[2]))
+                control["freq"].append(float(row[3]))
     
     return render_template('acc.html',controls=controls)
 
