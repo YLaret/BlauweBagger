@@ -16,17 +16,16 @@
         </script>
         {% for control in controls %}
         <div class="chart-container">
-            <canvas id="{{control.Name}}-chart"></canvas>
+            <canvas id="control-{{control.ControlID}}-chart"></canvas>
             <div>
-                {{control.controlID}}
             </div>
-            <form action="/acc/{{control.controlID}}" method="POST">
+            <form action="/acc/{{control.ControlID}}" method="POST">
                 <input type="submit" value="Clear"/>
             </form>
         </div>
 
         <script>
-        var ctx = document.getElementById("{{control.Name}}-chart").getContext("2d");
+        var ctx = document.getElementById("{{control.ControlID}}-chart").getContext("2d");
 
         charts["{{control.ControlID}}"] = new Chart(ctx, {
             type: "line",

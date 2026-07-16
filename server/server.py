@@ -39,24 +39,26 @@ def acc():
             tables.append(sF.getTable(tableName,0))
     controls = sF.getTable("CONTROL",0)
     for control in controls:
+        control["time"] = []
+        control["meas"] = []
+        control["ref"] = []
+        control["freq"] = []
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
-        with open("../data/control/"+LOG_FILE) as f:
-            reader = csv.reader(f)
-            control["time"] = []
-            control["meas"] = []
-            control["ref"] = []
-            control["freq"] = []
-            for row in reader:
-                control["time"].append(row[0])
-                control["meas"].append(float(row[1]))
-                control["ref"].append(float(row[2]))
-                control["freq"].append(float(row[3]))
-    
+        acclog = "../data/control/control"+str(control["ControlID"])+"_log.csv"
+        if os.path.exists(acclog):
+            with open("../data/control/"+LOG_FILE) as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    control["time"].append(row[0])
+                    control["meas"].append(float(row[1]))
+                    control["ref"].append(float(row[2]))
+                    control["freq"].append(float(row[3]))
+        
     return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
 
-@app.route("/acc/<controlID>")
-def accClear(controlID, methods=["POST"]):
-    acclog = "../data/control/control"+str(controlID)+"_log.csv"
+@app.route("/acc/<ControlID>")
+def accClear(ControlID, methods=["POST"]):
+    acclog = "../data/control/control"+str(ControlID)+"_log.csv"
     if os.path.exists(acclog):
         os.remove(acclog)
     return redirect("/acc")
