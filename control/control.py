@@ -38,9 +38,9 @@ while True:
         for control in controls:
             # CONTROL PHASE
             e = control["Ref"] - meters[control["MeterID"]]
-            t1 = datetime.datetime.now()
+            controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
-            t0 = datetime.datetime.now()
+            controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
             eSum = e*dt + controlDict[control["ControlID"]]["eSum"]
             de = (e-controlDict[control.controlID]["e"])/dt
 
@@ -82,8 +82,8 @@ while True:
         for control in controls:
             controlDict[control["ControlID"]]["e"] = 0
             controlDict[control["ControlID"]]["eSum"] = 0
-            t1 = datetime.datetime.now()
+            controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
-            t0 = datetime.datetime.now()
+            controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
             
         

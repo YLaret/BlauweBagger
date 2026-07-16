@@ -30,8 +30,11 @@ def overview():
     
     return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
     
-@app.route("/acc")
+@app.route("/acc", methods=["GET","POST"])
 def acc():
+    if flask.request.method == 'POST':
+        Ref = flask.request.values.get('Ref')
+        print(Ref)
     return render_template('acc.html')
 
 @app.route("/")
