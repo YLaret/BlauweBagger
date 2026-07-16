@@ -36,7 +36,7 @@ def acc():
     tables = []
     for tableName in tableNames:
         if tableName == "CONTROL":
-            tables.append(sF.getTable(tableName,0))    
+            tables.append(sF.getTable(tableName,0))
     
     if request.method == 'POST':
         for control in controls:
@@ -64,7 +64,7 @@ def acc():
                 control["ref"].append(float(row[2]))
                 control["freq"].append(float(row[3]))
     
-    return render_template('acc.html',controls=controls,tables=tables,tableNames="CONTROL")
+    return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
 
 @app.route("/")
 def hmi():
