@@ -1,6 +1,7 @@
 const currentPath = window.location.pathname;
 
 const navlinkoverview = document.querySelector('#nav-link-overview');
+const navlinkacc = document.querySelector('#nav-link-acc');
 const navlinkcontrol = document.querySelector('#nav-link-control');
 const navlinkprogram = document.querySelector('#nav-link-program');
 const navlinklog = document.querySelector('#nav-link-log');
@@ -8,21 +9,31 @@ const navlinklog = document.querySelector('#nav-link-log');
 if (currentPath == "/")
 {
     navlinkoverview.classList.add('active')
+    navlinkacc.classList.remove('active')
+    navlinkcontrol.classList.remove('active')
+    navlinkprogram.classList.remove('active')
+    navlinklog.classList.remove('active')
+} else if (currentPath == "/acc") {
+    navlinkoverview.classList.remove('active')
+    navlinkacc.classList.add('active')
     navlinkcontrol.classList.remove('active')
     navlinkprogram.classList.remove('active')
     navlinklog.classList.remove('active')
 } else if (currentPath == "/control") {
     navlinkoverview.classList.remove('active')
+    navlinkacc.classList.remove('active')
     navlinkcontrol.classList.add('active')
     navlinkprogram.classList.remove('active')
     navlinklog.classList.remove('active')
 } else if (currentPath == "/program") {
     navlinkoverview.classList.remove('active')
+    navlinkacc.classList.remove('active')
     navlinkcontrol.classList.remove('active')
     navlinkprogram.classList.add('active')
     navlinklog.classList.remove('active')
 } else if (currentPath == "/log") {
     navlinkoverview.classList.remove('active')
+    navlinkacc.classList.remove('active')
     navlinkcontrol.classList.remove('active')
     navlinkprogram.classList.remove('active')
     navlinklog.classList.add('active')
