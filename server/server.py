@@ -33,7 +33,7 @@ def overview():
     
 @app.route("/acc", methods=["GET","POST"])
 def acc():
-    controls = sF.getTable("CONTROL",0)
+    
     if request.method == 'POST':
         for control in controls:
             Ref = request.values.get(control["Name"]+'-Ref')
@@ -45,6 +45,7 @@ def acc():
             print(Kp)
             print(Ki)
             print(Kd)
+    controls = sF.getTable("CONTROL",0)
     for control in controls:
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
         with open("../data/control/"+LOG_FILE) as f:
@@ -100,6 +101,22 @@ def updatePage():
 
     CMS['meters'] = meters
     CMS['aM'] = aM
+    
+    # control
+    controls = sF.getTable("CONTROL",0)
+    for control in controls:
+        LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
+        with open("../data/control/"+LOG_FILE) as f:
+            reader = csv.reader(f)
+            control["time"] = []
+            control["meas"] = []
+            control["ref"] = []
+            control["freq"] = []
+            for row in reader:
+                control["time"].append(row[0])
+                control["meas"].append(float(row[1]))
+                control["ref"].append(float(row[2]))
+                control["freq"].append(float(row[3]))
 
     return jsonify(CMS)
 
