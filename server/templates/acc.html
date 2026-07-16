@@ -2,6 +2,14 @@
 
 {% block head %}
 <script src="static/Chart.min.js"></script>
+<style>
+.chart-container {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    max-height: 100%;
+}
+</style>
 {% endblock %}
 {% block main %}
     <div class="master-acc">
@@ -9,32 +17,8 @@
             var charts = {};
         </script>
         {% for control in controls %}
-        <div class="acc-item">
+        <div class="chart-container">
             <canvas id="{{control.Name}}-chart"></canvas>
-            <form action="" method="post">
-                <div>
-                    {{ control.Name }}
-                </div>
-                <div>
-                    <label name="{{control.Name}}-Ref">Ref [{{control.Unit}}]</label>
-                    <input name="{{control.Name}}-Ref" type="number" value="{{control.Ref}}" step="0.1">
-                </div>
-                <div>
-                    <label name="{{control.Name}}-Kp">Kp</label>
-                    <input name="{{control.Name}}-Kp" type="number" value="{{control.Kp}}" step="0.1">
-                </div>
-                <div>
-                    <label name="{{control.Name}}-Ki">Ki</label>
-                    <input name="{{control.Name}}-Ki" type="number" value="{{control.Ki}}" step="0.1">
-                </div>
-                <div>
-                    <label name="{{control.Name}}-Kd">Kd</label>
-                    <input name="{{control.Name}}-Kd" type="number" value="{{control.Kd}}" step="0.1">
-                </div>
-                <div>
-                    <input type="submit" value="Apply">
-                </div>
-            </form>
         </div>
 
         <script>
@@ -78,10 +62,16 @@
                 ]
             },
             options: {
-                responsive: true,
+                responsive: false,
                 maintainAspectRatio: false,
                 animation: false,
 
+                title: {
+                    display: true,
+                    text: "{{ control.Name }}",
+                    fontSize: 16
+                },
+                
                 scales: {
                     xAxes: [{
                         ticks: {
