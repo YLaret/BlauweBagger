@@ -53,9 +53,9 @@ def acc():
         reader = csv.reader(f)
         for row in reader:
             time.append(row[0])
-            meas.append(row[1])
-            ref.append(row[2])
-            freq.append(row[3])
+            meas.append(float(row[1]))
+            ref.append(float(row[2]))
+            freq.append(float(row[3]))
             
     return render_template('acc.html',controls=controls,time=time,meas=meas,ref=ref,freq=freq)
 
