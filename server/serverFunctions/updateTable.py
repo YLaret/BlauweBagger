@@ -3,7 +3,10 @@ from flask import request
 # database package
 import sqlite3
 
-def updateTable(table):
+def updateControl():
+    # control only
+    table = "CONTROL"
+    
     # connect to database
     db = sqlite3.connect('../data/machine.db',timeout=5)
 
@@ -23,26 +26,6 @@ def updateTable(table):
             
             # update database
             db.execute('UPDATE ' + str(table) + ' SET ' + str(ni) + '="' + str(value) + '" WHERE ' + str(ns[0]) + '="' + str(ci[0]) + '"')
-    
-    # allow for addition of 1 row if not none
-    values = ""
-    columns = ""
-    for i,ni in enumerate(ns):
-        if i>0:
-            # value
-            value = request.form.get(str(rows+2) + str(ni))
-            if value and value != "None":
-                try:
-                    float(value)
-                except ValueError:
-                    value = '"'+str(value)+'"'
-                values = values + str(value) + ','
-                columns = columns + ni + ','
-    
-    values = values[:-1]
-    columns = columns[:-1]
-    
-    query = 'INSERT INTO ' + str(table) + ' ('+columns+') VALUES (' + values + ')'
 
     if values and columns:
         db.execute(query)

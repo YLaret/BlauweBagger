@@ -100,7 +100,7 @@
                             position: "left",
                             scaleLabel: {
                                 display: true,
-                                labelString: "{{control.Unit}}"
+                                labelString: "[{{control.Unit}}]"
                             }
                         },
                         {
@@ -119,6 +119,33 @@
             }
         });
         </script>
+    {% endfor %}
+    {% for table in tables %}
+    <div class="table-container">
+        <h1>{{ tableNames[loop.index-1] }}</h1>
+        <form action="/program/{{ tableNames[loop.index-1] }}" method="POST">
+                <table>
+                        <thead>
+                                <tr>
+                                        {% for key, value in table[0].items() %}
+                                                <th>{{key}}</th>
+                                        {% endfor %}
+                                </tr>
+                        </thead>
+                        <tbody>
+                                   {% for item in table %}
+                                {% set outer_loop = loop %}
+                                           <tr>
+                                                   {% for key, value in item.items() %}
+                            <td><input name="{{outer_loop.index|string + key}}" value="{{value}}" /></th>
+                                                   {% endfor %}
+                                           </tr>
+                                {% endfor %}
+                <tr><td><input type="submit" value="Apply"/></td></tr>
+                        </tbody>
+                </table>
+        </form>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

@@ -10,7 +10,7 @@ import serverFunctions as sF
 app = Flask(__name__)
 
 # define table names, this will need something different in the future
-tableNames = ["STAGE","PROGRAM","METERRULES","MACHINESTATUS","SWITCH","METER","DEVICE","FORCE"]
+tableNames = ["STAGE","PROGRAM","METERRULES","MACHINESTATUS","SWITCH","METER","DEVICE","FORCE","CONTROL"]
 
 # log directory
 logDir = "../data/log"
@@ -33,6 +33,10 @@ def overview():
     
 @app.route("/acc", methods=["GET","POST"])
 def acc():
+    tables = []
+    for tableName in tableNames:
+        if tableName == "CONTROL":
+            tables.append(sF.getTable(tableName,0))    
     
     if request.method == 'POST':
         for control in controls:
@@ -60,7 +64,7 @@ def acc():
                 control["ref"].append(float(row[2]))
                 control["freq"].append(float(row[3]))
     
-    return render_template('acc.html',controls=controls)
+    return render_template('acc.html',controls=controls,tables=tables,tableNames="CONTROL")
 
 @app.route("/")
 def hmi():
