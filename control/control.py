@@ -4,6 +4,7 @@ from pymodbus.client import ModbusSerialClient
 import datetime
 import csv
 import os
+from time import sleep
 
 # constants
 sleepTime = 1 # [s]
