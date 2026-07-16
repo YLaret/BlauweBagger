@@ -1,7 +1,7 @@
 import minimalmodbus
 def readFlowSensor():
     mb_address = 3 # Modbus address of sensor
-    sensy_boi = minimalmodbus.Instrument('/dev/ttyUSB0',mb_address)    # Make an "instrument" object called sensy_boi (port name, slave address (in decimal))
+    sensy_boi = minimalmodbus.Instrument('/dev/ttyUSB1',mb_address)    # Make an "instrument" object called sensy_boi (port name, slave address (in decimal))
 
     sensy_boi.serial.baudrate = 9600                # BaudRate
     sensy_boi.serial.bytesize = 8                    # Number of data bits to be requested
