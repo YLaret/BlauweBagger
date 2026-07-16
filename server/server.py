@@ -45,6 +45,7 @@ def acc():
         control["freq"] = []
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
         if os.path.exists("../data/control/"+LOG_FILE):
+            print("The file exists.")
             with open("../data/control/"+LOG_FILE) as f:
                 reader = csv.reader(f)
                 for row in reader:
@@ -52,6 +53,8 @@ def acc():
                     control["meas"].append(float(row[1]))
                     control["ref"].append(float(row[2]))
                     control["freq"].append(float(row[3]))
+        else:
+            print("The file no exists.")
         
     return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
 
