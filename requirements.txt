@@ -3,3 +3,4 @@ tinytuya
 minimalmodbus
 uwsgi
 gpiod
+pymodbus

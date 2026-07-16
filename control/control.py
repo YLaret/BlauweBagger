@@ -1,4 +1,3 @@
-# PSEUDO CODE
 import controlFunctions as cF
 from pymodbus.client import ModbusSerialClient
 import datetime
@@ -36,7 +35,7 @@ except:
 while True:
     try:
         # CONTACT VFD
-        #result = vfd.write_register(0x2000, 0b01)
+        result = vfd.write_register(0x0001)
 
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
