@@ -45,6 +45,26 @@ function updatePage() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
+            // ACC
+            if (currentPath == "/acc") {
+
+                data.controls.forEach(function(control) {
+
+                    var chart = charts[control.ControlID];
+
+                    if (chart) {
+                        chart.data.labels = control.time;
+
+                        chart.data.datasets[0].data = control.meas;
+                        chart.data.datasets[1].data = control.ref;
+                        chart.data.datasets[2].data = control.freq;
+
+                        chart.update();
+                    }
+
+                });
+            }
+            
             // HMI VIEW
             if (currentPath == "/") {
                 // hmi update state
