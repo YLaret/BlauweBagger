@@ -34,14 +34,16 @@ def overview():
 def acc():
     controls = sF.getTable("CONTROL",0)
     if request.method == 'POST':
-        Ref = request.values.get('Ref')
-        Ref = request.values.get('Kp')
-        Ref = request.values.get('Ki')
-        Ref = request.values.get('Kd')
-        print(Ref)
-        print(Kp)
-        print(Ki)
-        print(Kd)
+        for control in controls:
+            Ref = request.values.get(control["Name"]+'-Ref')
+            Kp = request.values.get(control["Name"]+'-Kp')
+            Ki = request.values.get(control["Name"]+'-Ki')
+            Kd = request.values.get(control["Name"]+'-Kd')
+            # write to db
+            print(Ref)
+            print(Kp)
+            print(Ki)
+            print(Kd)
     return render_template('acc.html',controls=controls)
 
 @app.route("/")

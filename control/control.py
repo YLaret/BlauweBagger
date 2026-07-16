@@ -37,7 +37,7 @@ while True:
 
         for control in controls:
             # CONTROL PHASE
-            e = control["Ref"] - meters[control["MeterID"]]
+            e = control["Ref"] - meters[control["MeterID"]]["Value"]
             controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
@@ -61,7 +61,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]],
+                        meters[control["MeterID"]]["Value"],
                         control["Ref"],
                         freq
                     ])
@@ -70,7 +70,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]],
+                        meters[control["MeterID"]]["Value"],
                         control["Ref"],
                         freq
                     ])
@@ -95,7 +95,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]],
+                        meters[control["MeterID"]]["Value"],
                         control["Ref"],
                         freq
                     ])
@@ -104,7 +104,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]],
+                        meters[control["MeterID"]]["Value"],
                         control["Ref"],
                         freq
                     ])

@@ -10,20 +10,23 @@
             <canvas id="freqChart" style="max-height:300px;"></canvas>
             <form action="" method="post">
                 <div>
-                    <label name="Ref">p_ref [bar]</label>
-                    <input name="Ref" type="number" value="{{control.Ref}}" step="0.1">
+                    {{ control.Name }}
                 </div>
                 <div>
-                    <label name="Kp">Kp</label>
-                    <input name="Kp" type="number" value="{{control.Kp}}" step="0.1">
+                    <label name="{{control.Name}}-Ref">p_ref [bar]</label>
+                    <input name="{{control.Name}}-Ref" type="number" value="{{control.Ref}}" step="0.1">
                 </div>
                 <div>
-                    <label name="Ki">Ki</label>
-                    <input name="Ki" type="number" value="{{control.Ki}}" step="0.1">
+                    <label name="{{control.Name}}-Kp">Kp</label>
+                    <input name="{{control.Name}}-Kp" type="number" value="{{control.Kp}}" step="0.1">
                 </div>
                 <div>
-                    <label name="Kd">Kd</label>
-                    <input name="Kd" type="number" value="{{control.Kd}}" step="0.1">
+                    <label name="{{control.Name}}-Ki">Ki</label>
+                    <input name="{{control.Name}}-Ki" type="number" value="{{control.Ki}}" step="0.1">
+                </div>
+                <div>
+                    <label name="{{control.Name}}-Kd">Kd</label>
+                    <input name="{{control.Name}}-Kd" type="number" value="{{control.Kd}}" step="0.1">
                 </div>
                 <div>
                     <input type="submit" value="Apply">
