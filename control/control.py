@@ -36,7 +36,7 @@ except:
 while True:
     try:
         # CONTACT VFD
-        result = vfd.write_register(0x2000, 0b01)
+        #result = vfd.write_register(0x2000, 0b01)
 
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
