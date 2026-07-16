@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, jsonify, send_from_directory, request
 import sqlite3
 import os
+import csv
 
 # local functions
 import serverFunctions as sF
@@ -44,7 +45,19 @@ def acc():
             print(Kp)
             print(Ki)
             print(Kd)
-    return render_template('acc.html',controls=controls)
+    time = []
+    meas = []
+    ref = []
+    freq = []
+    with open("../data/control/control1_log.csv") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            time.append(row[0])
+            meas.append(row[1])
+            ref.append(row[2])
+            freq.append(row[3])
+            
+    return render_template('acc.html',controls=controls,time=time,meas=meas,ref=ref,freq=freq)
 
 @app.route("/")
 def hmi():

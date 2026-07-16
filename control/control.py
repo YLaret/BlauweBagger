@@ -31,7 +31,7 @@ try:
     # CONTACT VFD
     result = vfd.write_register(0x2000, 0b01)
 except:
-    print("Donde esta VFD?")
+    print("No connection with VFD")
 
 while True:
     try:
@@ -85,7 +85,7 @@ while True:
             
 		# SLEEP PHASE
         sleep(sleepTime)
-        print("hallo")
+
     except:
         for control in controls:
             # RESET PHASE
