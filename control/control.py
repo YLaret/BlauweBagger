@@ -41,10 +41,14 @@ while True:
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
         meters = cF.getTable("METER",0)
+        
+        print(meters)
 
         for control in controls:
             # CONTROL PHASE
-            e = control["Ref"] - meters[control["MeterID"]]["Value"]
+            meas = meters[control["MeterID"]]["Value"]
+            print(meas)
+            e = control["Ref"] - meas
             controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
@@ -52,6 +56,7 @@ while True:
             de = (e-controlDict[control["ControlID"]]["e"])/dt
 
             freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
+            freq = 33
             value = int(freq * 10)
             result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
 
@@ -68,7 +73,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]]["Value"],
+                        meas,
                         control["Ref"],
                         freq
                     ])
@@ -77,7 +82,7 @@ while True:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
-                        meters[control["MeterID"]]["Value"],
+                        meas,
                         control["Ref"],
                         freq
                     ])
@@ -87,6 +92,10 @@ while True:
         sleep(sleepTime)
 
     except:
+        # READ PHASE
+        controls = cF.getTable("CONTROL",0)
+        meters = cF.getTable("METER",0)
+        
         for control in controls:
             # RESET PHASE
             controlDict[control["ControlID"]]["e"] = 0
