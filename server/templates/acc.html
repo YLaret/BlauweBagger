@@ -40,7 +40,7 @@
         new Chart(ctx, {
             type: "line",
             data: {
-                labels: {{ time|tojson }},
+                labels: {{ control.time|tojson }},
                 datasets: [
                     {
                         label: "Measured [{{ control.Unit }}]",
