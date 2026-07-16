@@ -56,7 +56,6 @@ while True:
             de = (e-controlDict[control["ControlID"]]["e"])/dt
 
             freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
-            freq = 33
             value = int(freq * 10)
             result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
 
