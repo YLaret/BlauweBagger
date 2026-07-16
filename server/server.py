@@ -45,19 +45,21 @@ def acc():
             print(Kp)
             print(Ki)
             print(Kd)
-    time = []
-    meas = []
-    ref = []
-    freq = []
-    with open("../data/control/control1_log.csv") as f:
+    for control in controls:
+        LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
+        with open("../data/control/"+LOG_FILE) as f:
         reader = csv.reader(f)
+        control["time"] = []
+        control["meas"] = []
+        control["ref"] = []
+        control["freq"] = []
         for row in reader:
-            time.append(row[0])
-            meas.append(float(row[1]))
-            ref.append(float(row[2]))
-            freq.append(float(row[3]))
-            
-    return render_template('acc.html',controls=controls,time=time,meas=meas,ref=ref,freq=freq)
+            control["time"].append(row[0])
+            control["meas"].append(float(row[1]))
+            control["ref"].append(float(row[2]))
+            control["freq"].append(float(row[3]))
+    
+    return render_template('acc.html',controls=controls)
 
 @app.route("/")
 def hmi():

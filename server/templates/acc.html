@@ -5,10 +5,9 @@
 {% endblock %}
 {% block main %}
     <div class="master-acc">
-        <div>Advanced Cyclone Control</div>
         {% for control in controls %}
         <div class="acc-item">
-            <canvas id="chart"></canvas>
+            <canvas id="{{control.Name}}-chart"></canvas>
             <form action="" method="post">
                 <div>
                     {{ control.Name }}
@@ -34,88 +33,89 @@
                 </div>
             </form>
         </div>
-        {% endfor %}
-    </div>
-<script>
-var ctx = document.getElementById("chart").getContext("2d");
 
-new Chart(ctx, {
-    type: "line",
-    data: {
-        labels: {{ time|tojson }},
-        datasets: [
-            {
-                label: "Measured [unit]",
-                data: {{ meas|tojson }},
-                borderColor: "#0074D9",
-                borderWidth: 3,
-                fill: false,
-                pointRadius: 0,
-                lineTension: 0,
-                yAxisID: "y-axis-value"
-            },
-            {
-                label: "Reference [unit]",
-                data: {{ ref|tojson }},
-                borderColor: "#FF4136",
-                borderWidth: 3,
-                fill: false,
-                pointRadius: 0,
-                lineTension: 0,
-                yAxisID: "y-axis-value"
-            },
-            {
-                label: "Frequency [Hz]",
-                data: {{ freq|tojson }},
-                borderColor: "#2ECC40",
-                borderWidth: 3,
-                fill: false,
-                pointRadius: 0,
-                lineTension: 0,
-                yAxisID: "y-axis-frequency"
-            }
-        ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
+        <script>
+        var ctx = document.getElementById("{{control.Name}}-chart").getContext("2d");
 
-        scales: {
-            xAxes: [{
-                ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 10
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: "Time"
-                }
-            }],
-
-            yAxes: [
-                {
-                    id: "y-axis-value",
-                    position: "left",
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Value [unit]"
-                    }
-                },
-                {
-                    id: "y-axis-frequency",
-                    position: "right",
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Frequency [Hz]"
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: {{ time|tojson }},
+                datasets: [
+                    {
+                        label: "Measured [{{ control.Unit }}]",
+                        data: {{ control.meas|tojson }},
+                        borderColor: "#0074D9",
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 0,
+                        lineTension: 0,
+                        yAxisID: "y-axis-value"
                     },
-                    gridLines: {
-                        drawOnChartArea: false
+                    {
+                        label: "Reference [{{ control.Unit }}]",
+                        data: {{ control.ref|tojson }},
+                        borderColor: "#FF4136",
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 0,
+                        lineTension: 0,
+                        yAxisID: "y-axis-value"
+                    },
+                    {
+                        label: "Frequency [Hz]",
+                        data: {{ control.freq|tojson }},
+                        borderColor: "#2ECC40",
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 0,
+                        lineTension: 0,
+                        yAxisID: "y-axis-frequency"
                     }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 10
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Time"
+                        }
+                    }],
+
+                    yAxes: [
+                        {
+                            id: "y-axis-value",
+                            position: "left",
+                            scaleLabel: {
+                                display: true,
+                                labelString: "{{control.Unit}}"
+                            }
+                        },
+                        {
+                            id: "y-axis-frequency",
+                            position: "right",
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Frequency [Hz]"
+                            },
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    ]
                 }
-            ]
-        }
-    }
-});
-</script>
+            }
+        });
+        </script>
+    {% endfor %}
+</div>
 {% endblock %}
