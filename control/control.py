@@ -80,10 +80,34 @@ while True:
         sleep(sleepTime)
     except:
         for control in controls:
+            # RESET PHASE
             controlDict[control["ControlID"]]["e"] = 0
             controlDict[control["ControlID"]]["eSum"] = 0
             controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
+            
+            # LOG PHASE
+            LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
+
+            if not os.path.exists("../data/"+LOG_FILE):
+                with open("../data/"+LOG_FILE, "w", newline="") as f:
+                    writer = csv.writer(f)
+                    writer.writerow([
+                        datetime.datetime.now().isoformat(),
+                        meters[control["MeterID"]],
+                        control["Ref"],
+                        freq
+                    ])
+            else:
+                with open("../data/"+LOG_FILE, "a", newline="", buffering=1) as f:
+                    writer = csv.writer(f)
+                    writer.writerow([
+                        datetime.datetime.now().isoformat(),
+                        meters[control["MeterID"]],
+                        control["Ref"],
+                        freq
+                    ])
+                    f.flush()
             
         

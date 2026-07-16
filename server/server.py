@@ -32,10 +32,17 @@ def overview():
     
 @app.route("/acc", methods=["GET","POST"])
 def acc():
+    controls = sF.getTable("CONTROL",0)
     if request.method == 'POST':
         Ref = request.values.get('Ref')
+        Ref = request.values.get('Kp')
+        Ref = request.values.get('Ki')
+        Ref = request.values.get('Kd')
         print(Ref)
-    return render_template('acc.html')
+        print(Kp)
+        print(Ki)
+        print(Kd)
+    return render_template('acc.html',controls=controls)
 
 @app.route("/")
 def hmi():
