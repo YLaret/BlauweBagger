@@ -42,7 +42,7 @@ while True:
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
             controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
             eSum = e*dt + controlDict[control["ControlID"]]["eSum"]
-            de = (e-controlDict[control.controlID]["e"])/dt
+            de = (e-controlDict[control["ControlID"]]["e"])/dt
 
             freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
             value = int(freq * 10)
