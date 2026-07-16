@@ -55,7 +55,7 @@ def acc():
     
     return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
 
-@app.rout("/acc/<controlID>")
+@app.route("/acc/<controlID>")
 def accClear(controlID):
     acclog = "../data/control/control"+str(controlID)+"_log.csv"
     if os.path.exists(acclog):
