@@ -44,8 +44,7 @@ def acc():
         control["ref"] = []
         control["freq"] = []
         LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
-        acclog = "../data/control/control"+str(control["ControlID"])+"_log.csv"
-        if os.path.exists(acclog):
+        if os.path.exists("../data/control/"+LOG_FILE):
             with open("../data/control/"+LOG_FILE) as f:
                 reader = csv.reader(f)
                 for row in reader:
@@ -57,7 +56,7 @@ def acc():
     return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
 
 @app.route("/acc/<ControlID>")
-def accClear(ControlID, methods=["POST"]):
+def accClear(ControlID):
     acclog = "../data/control/control"+str(ControlID)+"_log.csv"
     if os.path.exists(acclog):
         os.remove(acclog)
