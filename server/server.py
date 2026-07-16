@@ -192,12 +192,12 @@ def program():
     return render_template('program.html',tables=tables,tableNames=tableNames)
 
 @app.route("/program/<table>", methods=["POST"])
-def protramMotors(table):
+def programMotors(table):
     sF.updateTable(table)
     return redirect("/program")
     
 @app.route("/acc/<table>", methods=["POST"])
-def protramMotors(table):
+def programControl(table):
     sF.updateTable(table)
     return redirect("/acc")
 
