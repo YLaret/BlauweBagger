@@ -27,6 +27,12 @@ vfd = ModbusSerialClient(
 )
 vfd.connect()
 
+try:
+    # CONTACT VFD
+    result = vfd.write_register(0x2000, 0b01)
+except:
+    print("Donde esta VFD?")
+
 while True:
     try:
         # CONTACT VFD
