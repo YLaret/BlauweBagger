@@ -57,7 +57,7 @@ while True:
             # LOG PHASE
             LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
 
-            if not os.path.exists("../data/"+LOG_FILE):
+            if not os.path.exists("../data/control/"+LOG_FILE):
                 with open("../data/"+LOG_FILE, "w", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
@@ -67,7 +67,7 @@ while True:
                         freq
                     ])
             else:
-                with open("../data/"+LOG_FILE, "a", newline="", buffering=1) as f:
+                with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
@@ -79,6 +79,7 @@ while True:
             
 		# SLEEP PHASE
         sleep(sleepTime)
+        print("hallo")
     except:
         for control in controls:
             # RESET PHASE
@@ -91,7 +92,7 @@ while True:
             # LOG PHASE
             LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
 
-            if not os.path.exists("../data/"+LOG_FILE):
+            if not os.path.exists("../data/control/"+LOG_FILE):
                 with open("../data/"+LOG_FILE, "w", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
@@ -101,7 +102,7 @@ while True:
                         freq
                     ])
             else:
-                with open("../data/"+LOG_FILE, "a", newline="", buffering=1) as f:
+                with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
