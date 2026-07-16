@@ -18,7 +18,7 @@
         <div class="chart-container">
             <canvas id="{{control.Name}}-chart"></canvas>
             <div>
-                {{control}}
+                {{control.controlID}}
             </div>
             <form action="/acc/{{control.controlID}}" method="POST">
                 <input type="submit" value="Clear"/>
