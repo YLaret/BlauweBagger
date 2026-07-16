@@ -32,8 +32,8 @@ def overview():
     
 @app.route("/acc", methods=["GET","POST"])
 def acc():
-    if flask.request.method == 'POST':
-        Ref = flask.request.values.get('Ref')
+    if request.method == 'POST':
+        Ref = request.values.get('Ref')
         print(Ref)
     return render_template('acc.html')
 
