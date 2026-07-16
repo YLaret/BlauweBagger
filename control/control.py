@@ -111,5 +111,8 @@ while True:
                         freq
                     ])
                     f.flush()
+                    
+        # SLEEP PHASE
+        sleep(sleepTime)
             
         
