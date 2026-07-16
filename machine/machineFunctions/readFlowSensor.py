@@ -22,11 +22,12 @@ def readFlowSensor():
     # Arguments - (register start address, number of registers to read, function code)
     data= sensy_boi.read_registers(0, 13, 3)
 
-    f200qa = (data[0]/4095*200)
-    f250qa = (data[1]/4095*250)
-    p300 = (data[2]/4095*300)
+    in0 = (6*data[0]/4095)
+    in1 = (data[1]/4095)
+    in2 = (data[2]/4095)
+    in3 = (data[3]/4095)
 
-    data = [f200qa,f250qa,p300]
+    data = [in0,in1,in2]
     
     # Piece of mind close out
     sensy_boi.serial.close()
