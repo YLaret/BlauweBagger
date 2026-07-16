@@ -17,6 +17,9 @@
         {% for control in controls %}
         <div class="chart-container">
             <canvas id="{{control.Name}}-chart"></canvas>
+            <form action="/acc/{{control.controlID}}" method="POST">
+                <input type="submit" value="Clear"/>
+            </form>
         </div>
 
         <script>

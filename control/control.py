@@ -41,13 +41,10 @@ while True:
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
         meters = cF.getTable("METER",0)
-        
-        print(meters)
 
         for control in controls:
             # CONTROL PHASE
             meas = meters[control["MeterID"]-1]["Value"]
-            print(meas)
             e = control["Ref"] - meas
             controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()

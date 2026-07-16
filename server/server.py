@@ -31,23 +31,12 @@ def overview():
     
     return render_template('overview.html',CMS=CMS,programs=programs,meters=meters,switches=switches)
     
-@app.route("/acc", methods=["GET","POST"])
+@app.route("/acc")
 def acc():
     tables = []
     for tableName in tableNames:
         if tableName == "CONTROL":
             tables.append(sF.getTable(tableName,0))
-    
-    if request.method == 'POST':
-        for control in controls:
-            Ref = request.values.get(control["Name"]+'-Ref')
-            Kp = request.values.get(control["Name"]+'-Kp')
-            Ki = request.values.get(control["Name"]+'-Ki')
-            Kd = request.values.get(control["Name"]+'-Kd')
-            # write to db
-            print(Ref)
-            print(Kp)
-            print(Ki)
             print(Kd)
     controls = sF.getTable("CONTROL",0)
     for control in controls:
@@ -65,6 +54,13 @@ def acc():
                 control["freq"].append(float(row[3]))
     
     return render_template('acc.html',controls=controls,tables=tables,tableNames=["CONTROL"])
+
+@app.rout("/acc/<controlID>")
+def accClear(controlID):
+    acclog = "../data/control/control"+str(controlID)+"_log.csv"
+    if os.path.exists(acclog):
+        os.remove(acclog)
+    return redirect("/acc")
 
 @app.route("/")
 def hmi():
