@@ -227,6 +227,13 @@ while True:
     for i,meter in enumerate(meterData):
         db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
     db.execute('UPDATE FORCE SET SwitchIDS = 0')
+    
+    # if cyclone on
+    if 4 in activeSwitches:
+        db.execute('UPDATE CONTROL SET VFDAdress=1 WHERE ControlID = 1')
+    else:
+        db.execute('UPDATE CONTROL SET VFDAdress=1 WHERE ControlID = 0')
+    
     db.commit()
     db.close()
     

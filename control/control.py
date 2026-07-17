@@ -8,6 +8,7 @@ from time import sleep
 # constants
 sleepTime = 1 # [s]
 FREQ_REGISTER = 0x2001
+cyclOn = 0
 
 # initialize
 controls = cF.getTable("CONTROL",0)
@@ -33,13 +34,13 @@ except:
     print("No connection with VFD")
 
 while True:
-    try:
-        # CONTACT VFD (different method necessary)
-        #result = vfd.write_register(0x2002, 0b1)
-        
-        # CONNECTED TO VFD
-        print("VFD connected")
-
+    controls = cF.getTable("CONTROL",0)
+    for control in controls:
+        if control["VFDAdress"]:
+            cyclOn = 1
+        else:
+            cyclOn = 0
+    if cyclOn:
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
         meters = cF.getTable("METER",0)
@@ -89,10 +90,7 @@ while True:
 		# SLEEP PHASE
         sleep(sleepTime)
 
-    except:
-        # NO CONNECTION
-        print("No VFD connection")
-        
+    else:
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
         meters = cF.getTable("METER",0)
@@ -128,8 +126,5 @@ while True:
                         0
                     ])
                     f.flush()
-                    
-        # SLEEP PHASE
-        #sleep(sleepTime)
             
         
