@@ -68,7 +68,7 @@ while True:
             LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
 
             if not os.path.exists("../data/control/"+LOG_FILE):
-                with open("../data/contol/"+LOG_FILE, "w", newline="") as f:
+                with open("../data/control/"+LOG_FILE, "w", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow([
                         datetime.datetime.now().isoformat(),
