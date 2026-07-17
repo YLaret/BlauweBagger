@@ -25,7 +25,7 @@ def overview():
     
     # round the meter reading
     for i,meter in enumerate(meters):
-        meters[i]["Value"] = round(float(meters[i]["Value"]))
+        meters[i]["Value"] = round(float(meters[i]["Value"]),3)
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
@@ -72,7 +72,7 @@ def hmi():
     
     # round the meter reading
     for i,meter in enumerate(meters):
-        meters[i]["Value"] = round(float(meters[i]["Value"]))
+        meters[i]["Value"] = round(float(meters[i]["Value"]),3)
     # current machine status
     CMS = sF.getMachineStatus(machineStatus,programs,stages)
     
@@ -91,7 +91,7 @@ def updatePage():
     
     # process meter reading
     for meter in meterData:
-        meters.append(round(float(meter["Value"]),1))
+        meters.append(round(float(meter["Value"]),3))
     
     # aggrate meter values
     aM = sF.aggrateMeters(meterData)
