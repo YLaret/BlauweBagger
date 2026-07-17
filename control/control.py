@@ -36,7 +36,7 @@ except:
 while True:
     controls = cF.getTable("CONTROL",0)
     for control in controls:
-        if control["VFDAdress"]:
+        if control["VFDAdress"] == 1:
             cyclOn = 1
         else:
             cyclOn = 0
