@@ -34,8 +34,8 @@ except:
 
 while True:
     try:
-        # CONTACT VFD
-        result = vfd.write_register(0x2002, 0b1)
+        # CONTACT VFD (different method necessary)
+        #result = vfd.write_register(0x2002, 0b1)
         
         # CONNECTED TO VFD
         print("VFD connected")
