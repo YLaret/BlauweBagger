@@ -110,7 +110,7 @@ while True:
                         datetime.datetime.now().isoformat(),
                         meas,
                         control["Ref"],
-                        freq
+                        0
                     ])
             else:
                 with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
@@ -119,7 +119,7 @@ while True:
                         datetime.datetime.now().isoformat(),
                         meas,
                         control["Ref"],
-                        freq
+                        0
                     ])
                     f.flush()
                     
