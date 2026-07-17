@@ -28,7 +28,7 @@ vfd.connect()
 
 try:
     # CONTACT VFD
-    result = vfd.write_register(0x2000, 0b01)
+    result = vfd.write_register(0x0001)
 except:
     print("No connection with VFD")
 
