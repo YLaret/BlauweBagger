@@ -60,31 +60,31 @@ CREATE TABLE METERRULES (
 
 
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Drum Trommel', 14);
+('Drum Trommel', 18);
 INSERT INTO SWITCH (Name, GPIO) VALUES
 ('Drum Water', 15);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Mixer', 18);
+('Mixer', 19);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Cycloon Pomp', 23);
+('Cycloon Pomp', 15);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers IN', 24);
+('Filterpers IN', 22);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers UIT', 25);
+('Filterpers UIT', 21);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers FW', 8);
+('Filterpers FW', 24);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers RV', 7);
+('Filterpers RV', 23);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Schoon IN', 12);
+('Schoon IN', 26);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Schoon UIT', 16);
+('Schoon UIT', 27);
 INSERT INTO SWITCH (Name, GPIO) VALUES
 ('Rollenbank', 20);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Doseer Pomp', 21);
+('Doseer Pomp', 16);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Zeef', 26);
+('Zeef', 17);
 
 
 INSERT INTO MACHINESTATUS (ProgramID, Pause, ProgramRunTime) VALUES
@@ -213,7 +213,7 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 ('3',180,0,5,0,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('3',220,1,-14,1,0);
+('3',245,1,-14,1,0);
 
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
 ('10',1,1,4,0,0);
