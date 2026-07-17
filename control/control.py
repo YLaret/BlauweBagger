@@ -28,14 +28,14 @@ vfd.connect()
 
 try:
     # CONTACT VFD
-    result = vfd.write_register(0x0001)
+    result = vfd.write_register(0x0001,0b01)
 except:
     print("No connection with VFD")
 
 while True:
     try:
         # CONTACT VFD
-        result = vfd.write_register(0x0001)
+        result = vfd.write_register(0x0001,0b01)
         
         # CONNECTED TO VFD
         print("VFD connected")
