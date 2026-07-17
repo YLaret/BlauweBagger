@@ -91,7 +91,7 @@ def updatePage():
     
     # process meter reading
     for meter in meterData:
-        meters.append(round(float(meter["Value"]),3))
+        meters.append(round(float(meter["Value"])))
     
     # aggrate meter values
     aM = sF.aggrateMeters(meterData)
