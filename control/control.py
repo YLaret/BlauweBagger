@@ -17,7 +17,7 @@ for control in controls:
 
 # CONNECT VFD
 vfd = ModbusSerialClient(
-    port='/dev/ttyUSB1',
+    port='/dev/ttyUSB0',
     baudrate=9600,
     parity='N',
     stopbits=1,
