@@ -36,6 +36,9 @@ while True:
     try:
         # CONTACT VFD
         result = vfd.write_register(0x0001)
+        
+        # CONNECTED TO VFD
+        print("VFD connected")
 
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
@@ -87,6 +90,9 @@ while True:
         sleep(sleepTime)
 
     except:
+        # NO CONNECTION
+        print("No VFD connection")
+        
         # READ PHASE
         controls = cF.getTable("CONTROL",0)
         meters = cF.getTable("METER",0)
@@ -124,6 +130,6 @@ while True:
                     f.flush()
                     
         # SLEEP PHASE
-        sleep(sleepTime)
+        #sleep(sleepTime)
             
         
