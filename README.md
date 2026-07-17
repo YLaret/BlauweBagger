@@ -174,3 +174,37 @@ sudo systemctl daemon-reload
 sudo systemctl start BlauweBaggerMachine
 sudo systemctl enable BlauweBaggerMachine
 ```
+
+## Running the control program (for quick dev)
+To run the control program in developer modus:
+```
+cd control
+python control.py
+```
+
+Exit the program with Ctr+C
+
+## Installing the machine program (permanent usage)
+* Create the service `sudo nano /etc/systemd/system/BlauweBaggerControl.service`
+* Copy and past the following:
+```
+[Unit]
+Description=Python script controlling the hydrocyclone
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/BlauweBagger/control
+ExecStart=/usr/bin/python /home/pi/BlauweBagger/control/control.py
+Restart=on-abort
+
+
+[Install]
+WantedBy=multi-user.target
+```
+* Start the script
+```
+sudo systemctl daemon-reload
+sudo systemctl start BlauweBaggerControl
+sudo systemctl enable BlauweBaggerControl
+```
