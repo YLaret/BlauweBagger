@@ -23,7 +23,7 @@ def readFlowSensor():
     data= sensy_boi.read_registers(0, 13, 3)
 
     in0 = (6*data[0]/4095)
-    in1 = (data[1]/4095)
+    in1 = (300*data[1]/4095)
     in2 = (data[2]/4095)
     in3 = (data[3]/4095)
 
