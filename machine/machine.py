@@ -230,9 +230,9 @@ while True:
     
     # if cyclone on
     if 4 in activeSwitches:
-        db.execute('UPDATE CONTROL SET VFDAdress=1 WHERE ControlID = 1')
+        db.execute('UPDATE CONTROL SET cyclOn=1 WHERE ControlID = 1')
     else:
-        db.execute('UPDATE CONTROL SET VFDAdress=0 WHERE ControlID = 1')
+        db.execute('UPDATE CONTROL SET cyclOn=0 WHERE ControlID = 1')
     
     db.commit()
     db.close()
@@ -241,13 +241,3 @@ while True:
     ### SLEEP PHASE ###
     ###################
     time.sleep(snooze)
-            
-        
-
-    
-    
-    
-    
-    
-    
-    

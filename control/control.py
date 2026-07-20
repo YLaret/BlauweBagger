@@ -8,7 +8,6 @@ from time import sleep
 # constants
 sleepTime = 1 # [s]
 FREQ_REGISTER = 0x2001
-cyclOn = 0
 
 # initialize
 controls = cF.getTable("CONTROL",0)
@@ -27,27 +26,14 @@ vfd = ModbusSerialClient(
 )
 vfd.connect()
 
-try:
-    # CONTACT VFD
-    result = vfd.write_register(0x2002, 0b1)
-except:
-    print("No connection with VFD")
-
 while True:
+    # READ PHASE
     controls = cF.getTable("CONTROL",0)
+    meters = cF.getTable("METER",0)
     for control in controls:
-        if control["VFDAdress"] == 1:
-            cyclOn = 1
-        else:
-            cyclOn = 0
-    if cyclOn:
-        # READ PHASE
-        controls = cF.getTable("CONTROL",0)
-        meters = cF.getTable("METER",0)
-
-        for control in controls:
+        meas = meters[control["MeterID"]-1]["Value"]
+        if control["cyclOn"] == 1:
             # CONTROL PHASE
-            meas = meters[control["MeterID"]-1]["Value"]
             e = control["Ref"] - meas
             controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
             dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
@@ -55,7 +41,11 @@ while True:
             eSum = e*dt + controlDict[control["ControlID"]]["eSum"]
             de = (e-controlDict[control["ControlID"]]["e"])/dt
 
-            freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
+            if control["auto"] == 1:
+                freq = min(max(control["Freq"] + control["Kp"]*e + control["Ki"]*eSum + control["Kd"]*de,0),50)
+            else:
+                freq = control["Freq"]
+            
             value = int(freq * 10)
             result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
 
@@ -63,68 +53,31 @@ while True:
             cF.writeFrequency(control["ControlID"],freq)
             controlDict[control["ControlID"]]["e"] = e
             controlDict[control["ControlID"]]["eSum"] = eSum
-
-            # LOG PHASE
-            LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
-
-            if not os.path.exists("../data/control/"+LOG_FILE):
-                with open("../data/control/"+LOG_FILE, "w", newline="") as f:
-                    writer = csv.writer(f)
-                    writer.writerow([
-                        datetime.datetime.now().isoformat(),
-                        meas,
-                        control["Ref"],
-                        freq
-                    ])
-            else:
-                with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
-                    writer = csv.writer(f)
-                    writer.writerow([
-                        datetime.datetime.now().isoformat(),
-                        meas,
-                        control["Ref"],
-                        freq
-                    ])
-                    f.flush()
+        else:
+            freq = 0
             
-		# SLEEP PHASE
-        sleep(sleepTime)
+        # LOG PHASE
+        LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
 
-    else:
-        # READ PHASE
-        controls = cF.getTable("CONTROL",0)
-        meters = cF.getTable("METER",0)
+        if not os.path.exists("../data/control/"+LOG_FILE):
+            with open("../data/control/"+LOG_FILE, "w", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow([
+                    datetime.datetime.now().isoformat(),
+                    meas,
+                    control["Ref"],
+                    freq
+                ])
+        else:
+            with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
+                writer = csv.writer(f)
+                writer.writerow([
+                    datetime.datetime.now().isoformat(),
+                    meas,
+                    control["Ref"],
+                    freq
+                ])
+                f.flush()
         
-        for control in controls:
-            # RESET PHASE
-            meas = meters[control["MeterID"]-1]["Value"]
-            controlDict[control["ControlID"]]["e"] = 0
-            controlDict[control["ControlID"]]["eSum"] = 0
-            controlDict[control["ControlID"]]["t1"] = datetime.datetime.now()
-            dt = (controlDict[control["ControlID"]]["t1"]-controlDict[control["ControlID"]]["t0"]).total_seconds()
-            controlDict[control["ControlID"]]["t0"] = datetime.datetime.now()
-            
-            # LOG PHASE
-            LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
-
-            if not os.path.exists("../data/control/"+LOG_FILE):
-                with open("../data/control/"+LOG_FILE, "w", newline="") as f:
-                    writer = csv.writer(f)
-                    writer.writerow([
-                        datetime.datetime.now().isoformat(),
-                        meas,
-                        control["Ref"],
-                        0
-                    ])
-            else:
-                with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
-                    writer = csv.writer(f)
-                    writer.writerow([
-                        datetime.datetime.now().isoformat(),
-                        meas,
-                        control["Ref"],
-                        0
-                    ])
-                    f.flush()
-            
-        
+    # SLEEP PHASE
+    sleep(sleepTime)

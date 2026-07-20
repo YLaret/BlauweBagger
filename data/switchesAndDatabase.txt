@@ -67,6 +67,8 @@ CREATE TABLE CONTROL (
     Kp REAL,
     Ki REAL,
     Kd REAL,
+    cyclOn INTEGER,
+    auto INTEGER,
     VFDAdress TEXT
 );
 
@@ -243,8 +245,8 @@ INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 INSERT INTO FORCE (SwitchIDS) VALUES
 ('0');
 
-INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, VFDAdress) VALUES
-('Hydrocycloon druk','1.8',1,'bar',40,2,0,0.5,'1');
+INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, cyclOn, auto, VFDAdress) VALUES
+('Hydrocycloon druk','1.8',1,'bar',40,2,0,0.5,0,1,'1');
 
 %%%% EXCLUDE %%%%
 INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES
