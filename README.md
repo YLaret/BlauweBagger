@@ -7,7 +7,7 @@ After booting up the Raspberry Pi and going to the main page: [Main](http://192.
 The system always boots with all switches off (STOP mode).
 ### Automatic Control
 To let the machine run on autopilot simply press `AUTO`. The machine will determine based on the sensors which pumps and motors to turn on/off.
-![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/docs/schematic_auto.png)
+![Schematic Auto](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/schematic_auto.png)
 ### Manual Control
 To control the switches manually, press `PAUSE` all the switches will turn off. Pressing on a pump or motor will turn it on/off. **Be careful: NO METER CONTROL, dangerous situation can occur.** 
 ![Schematic Manual](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/schematic_pause.png)
