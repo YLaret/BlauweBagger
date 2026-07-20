@@ -28,7 +28,7 @@ The database follows a relational model with the following layout:
 ## General Design Requirements
 * ✅ Controlling pumps (manual, timed and automatic (senorbased)) using WebUI
 * ✅ Flowmeter visualization in WebUI
-* ☢️ Pump control based on flowmeter (this might be handled by another microcontroller)
+* ✅ Pump control based on flowmeter
 * ✅ Log pump data (flow and power)
 * ✅ Log and display errors and stalls
 * ✅ Be transferable to new systems
