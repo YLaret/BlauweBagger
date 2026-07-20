@@ -2,7 +2,7 @@
 This is the repository for the software that controls the Blauwe Bagger prototype installation.
 
 ## User Guide
-After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.0.200). The schematic overview should be visible (meters are being updated live, so can have different values):
+After booting up the Raspberry Pi and going to the main page: [Main](http://192.168.0.100). The schematic overview should be visible (meters are being updated live, so can have different values):
 ![Schematic Stop](https://raw.githubusercontent.com/YLaret/BlauweBagger/main/docs/schematic_stop.png)
 The system always boots with all switches off (STOP mode).
 ### Automatic Control
@@ -28,7 +28,7 @@ The database follows a relational model with the following layout:
 ## General Design Requirements
 * ✅ Controlling pumps (manual, timed and automatic (senorbased)) using WebUI
 * ✅ Flowmeter visualization in WebUI
-* ✅ Pump control based on flowmeter
+* ✅ Pump control based on pressuresensor
 * ✅ Log pump data (flow and power)
 * ✅ Log and display errors and stalls
 * ✅ Be transferable to new systems
@@ -209,7 +209,10 @@ sudo systemctl start BlauweBaggerControl
 sudo systemctl enable BlauweBaggerControl
 ```
 ## Hydrocyclone Control
-The ACC page provides hydrocyclone control. The `Ref` entry of the `CONTROL` table in the `machine.db` Sqlite3 database is used to determine the set point, the `auto` entry is used to toggle sensor control (e.g. when a sensor fails possible to turn of auto control of the VFD). The control service source code is `control/control.py`.
+The ACC page provides hydrocyclone control. The `Ref` entry of the `CONTROL` table in the `machine.db` Sqlite3 database is used to determine the set point, the `auto` entry is used to toggle sensor control (e.g. when a sensor fails possible to turn of automatic control of the VFD). The control service source code is `control/control.py`.
 
 ## Tailscale (remote access)
-To access the installation remotely Tailscale is used to create a mesh VPN to which the Raspberry Pi and the control client are connected. To install follow the [instructions](https://pypi.org/project/gpiod/) to install on the Raspberry Pi, login with an account (e.g. `blueboxvpn@gmail.com`) and install on the control client side as well (iOS, macOS, Windows or Linux) and login with the same account. Go to the ip-address of the Raspberry Pi (visible on Tailscale dashboard).
+To access the installation remotely Tailscale is used to create a mesh VPN to which the Raspberry Pi and the control client are connected. To install follow the [instructions](https://pypi.org/project/gpiod/) to install on the Raspberry Pi, login with an account (e.g. `blueboxvpn@gmail.com`) and install on the control client side as well (iOS, macOS, Windows or Linux) and login with the same account. Go to the ip-address of the Raspberry Pi (visible on Tailscale dashboard). On the control client connect to the Tailscale VPN and
+
+## 5G router setup (Zyxel NR5307)
+Check the connected devices and note the MAC-address of the raspberrypi (e.g. 1c:cf:67:67:3c:d8). Go to Home Network->Static DHCP insert a configuration with the MAC-address and the preferred IP-address (e.g. 192.168.1.100). This will be url to which local (non-VPN) devices (e.g. iPad) can connect to the machine.
