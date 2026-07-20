@@ -129,7 +129,7 @@ sudo systemctl start FixSocketPermissions
 ```
 server {
     listen 80;
-    server_name 192.168.0.200;
+    server_name _;
 location / {
         include uwsgi_params;
         uwsgi_pass unix:/home/pi/BlauweBagger/server/server.sock;
@@ -208,3 +208,8 @@ sudo systemctl daemon-reload
 sudo systemctl start BlauweBaggerControl
 sudo systemctl enable BlauweBaggerControl
 ```
+## Hydrocyclone Control
+The ACC page provides hydrocyclone control. The `Ref` entry of the `CONTROL` table in the `machine.db` Sqlite3 database is used to determine the set point, the `auto` entry is used to toggle sensor control (e.g. when a sensor fails possible to turn of auto control of the VFD). The control service source code is `control/control.py`.
+
+## Tailscale (remote access)
+To access the installation remotely Tailscale is used to create a mesh VPN to which the Raspberry Pi and the control client are connected. To install follow the [instructions](https://pypi.org/project/gpiod/) to install on the Raspberry Pi, create an account and install on the control client side as well (iOS, macOS, Windows or Linux). Login with the same account on the Raspberry Pi and the control client and go to the ip of the Raspberry Pi (visible on Tailscale dashboard).
