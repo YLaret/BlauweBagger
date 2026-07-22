@@ -7,7 +7,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 800px;
-	height: 600px;
+	height: 700px;
     position: relative;
 }
 #hmi-diagram
@@ -17,7 +17,7 @@
     background-size: 100%;
     background-position: center;
     width: 800px;
-    height: 600px;
+    height: 700px;
     position: absolute;
     top: 0;
     left: 0;
@@ -43,48 +43,48 @@
     
 [id="1"]
 {
-    top: 109px;
-    left: 106px;
+    top: 147px;
+    left: 128px;
 }
-[id="2"]
+[id="1.1"]
 {
-    top: 109px;
-    left: 366px;
+    top: 147px;
+    left: 548px;
 }
 [id="3"]
 {
-    top: 318px;
-    left: 158px;
+    top: 350px;
+    left: 178px;
 }
 [id="4"]
 {
-    top: 439px;
-    left: 158px;
+    top: 467px;
+    left: 178px;
 }
 [id="5"]
 {
-    top: 473px;
-    left: 365px;
+    top: 501px;
+    left: 379px;
 }
 [id="6"]
 {
-    top: 335px;
-    left: 470px;
+    top: 63px;
+    left: 178px;
 }
 [id="7"]
 {
-    top: 456px;
-    left: 660px;
+    top: 483px;
+    left: 665px;
 }
 [id="8"]
 {
-    top: 491px;
-    left: 660px;
+    top: 517px;
+    left: 665px;
 }
 [id="9"]
 {
-	top: 58px;
-	left: 677px;
+	top: 63px;
+	left: 582px;
 }
 [id="10"]
 {
@@ -98,13 +98,18 @@
 }
 [id="12"]
 {
-    top: 473px;
-    left: 123px;
+    top: 274px;
+    left: 279px;
 }
 [id="13"]
 {
-    top: 525px;
-    left: 296px;
+    top: 551px;
+    left: 312px;
+}
+[id="13.1"]
+{
+    top: 603px;
+    left: 136px;
 }
 .hmi-lvl-container
 {
@@ -125,8 +130,8 @@
 {
     position: absolute;
     background-color: #385193;
-    width: 86px;
-    height: 52px;
+    width: 67px;
+    height: 42px;
     color: white;
 }
 .hmi-mtr
@@ -135,7 +140,7 @@
     margin-right: auto;
     width: fit-content;
     padding-top: 7px;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
 .hmi-mtr-unit
 {
@@ -149,39 +154,50 @@
 {
     margin-top:-3px;
 }
-#hmi-mtr-cyc
+#hmi-mtr-0
 {
-    top:387px;
-    left:2px;
+    top:517px;
+    left:47px;
 }
-#hmi-mtr-puit
+#hmi-mtr-1
 {
     top:387px;
     left:676px;
 }
+#hmi-mtr-2
+{
+    top:517px;
+    left:47px;
+}
+#hmi-mtr-3
+{
+    top:387px;
+    left:676px;
+}
+
 .hmi-lvl-ok
 {
     background-color: rgb(112,255,112);
 }
 #hmi-mix-container
 {
-    top:247px;
-    left:140px;
+    top:281px;
+    left:160px;
 }
 #hmi-vuil-container
 {
-    top:247px;
-    left:348px;
+    top:281px;
+    left:362px;
 }
 #hmi-schoon-container
 {
-    top:247px;
-    left:555px;
+    top:281px;
+    left:570px;
 }
 #hmi-pers-container
 {
-    top: 482px;
-    left: 600px;
+    top: 508px;
+    left: 606px;
 }
 .hmi-lvl-pers
 {
@@ -233,8 +249,8 @@
             <form action="/toggleswitch/1">
                 <input type="submit" class="hmi-pump" id="1" value>
             </form>
-            <form action="/toggleswitch/2">
-                <input type="submit" class="hmi-pump" id="2" value>
+            <form action="/toggleswitch/1">
+                <input type="submit" class="hmi-pump" id="1.1" value>
             </form>
             <form action="/toggleswitch/3">
                 <input type="submit" class="hmi-pump" id="3" value>
@@ -269,6 +285,9 @@
             <form action="/toggleswitch/13">
                 <input type="submit" class="hmi-pump" id="13" value>
             </form>
+            <form action="/toggleswitch/13">
+                <input type="submit" class="hmi-pump" id="13.1" value>
+            </form>
             <div class="hmi-lvl-container" id="hmi-mix-container">
                 <div class="hmi-lvl" id="hmi-mix">
                     {{ aM['mix'] }}
@@ -292,17 +311,33 @@
                     bar
                 </div>
             </div>
-            <div class="hmi-mtr-container" id="hmi-mtr-cyc">
-                <div class="hmi-mtr" id="hmi-cyc">
+            <div class="hmi-mtr-container" id="hmi-mtr-0">
+                <div class="hmi-mtr" id="hmi-0">
                     {{ meters[0]['Value'] }}
                 </div>
                 <div class="hmi-mtr-unit">
                     bar
                 </div>
             </div>
-            <div class="hmi-mtr-container" id="hmi-mtr-puit">
-                <div class="hmi-mtr" id="hmi-puit">
+            <div class="hmi-mtr-container" id="hmi-mtr-1">
+                <div class="hmi-mtr" id="hmi-1">
                     {{ meters[1]['Value'] }}
+                </div>
+                <div class="hmi-mtr-unit">
+                    A
+                </div>
+            </div>
+            <div class="hmi-mtr-container" id="hmi-mtr-2">
+                <div class="hmi-mtr" id="hmi-2">
+                    xx
+                </div>
+                <div class="hmi-mtr-unit">
+                    L/min
+                </div>
+            </div>
+            <div class="hmi-mtr-container" id="hmi-mtr-3">
+                <div class="hmi-mtr" id="hmi-3">
+                    {{ meters[3]['Value'] }}
                 </div>
                 <div class="hmi-mtr-unit">
                     L/min
