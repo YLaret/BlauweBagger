@@ -130,8 +130,10 @@ function updatePage() {
                     schoon.classList.remove("hmi-lvl-ok");
                 }
                 */
-                document.getElementById("hmi-cyc").innerText = data.meters[0];
-                document.getElementById("hmi-puit").innerText = data.meters[1];
+                document.getElementById("hmi-0").innerText = data.meters[0];
+                document.getElementById("hmi-1").innerText = data.meters[1];
+                document.getElementById("hmi-2").innerText = "-";
+                document.getElementById("hmi-3").innerText = "-";
             }
             // CONTROL VIEW
             if (currentPath == "/control") {
