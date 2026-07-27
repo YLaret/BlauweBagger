@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20251104163837" modified="D:20260727222337"/>
+<info created="D:20251104163837" modified="D:20260727223137"/>
 <ipestyle name="landscape">
 <layout paper="842 595" origin="0 0" frame="842 595"/>
 </ipestyle>
@@ -902,11 +902,11 @@ h
 196 24 l
 </path>
 <text matrix="1 0 0 1 124 40" transformations="translations" pos="176 364" stroke="black" type="label" width="34.302" height="11.955" depth="0" valign="baseline" size="LARGE">Floc.</text>
-<path stroke="black" dash="dashed" pen="ultrafat" rarrow="normal/normal">
+<path stroke="black" dash="dashed" pen="ultrafat" rarrow="fnormal/normal">
 208 160 m
 144 160 l
 </path>
-<path stroke="black" dash="dashed" pen="ultrafat" rarrow="normal/normal">
+<path stroke="black" dash="dashed" pen="ultrafat" rarrow="fnormal/normal">
 320 184 m
 144 184 l
 </path>
@@ -938,7 +938,7 @@ h
 148 220 l
 h
 </path>
-<path stroke="black" dash="dashed" pen="ultrafat" rarrow="normal/normal">
+<path stroke="black" dash="dashed" pen="ultrafat" rarrow="fnormal/normal">
 272 160 m
 272 112 l
 148 112 l
@@ -1026,7 +1026,7 @@ h
 516 464 m
 4 0 0 4 512 464 508 464 a
 </path>
-<path stroke="black" dash="dashed" pen="ultrafat" rarrow="normal/normal">
+<path stroke="black" dash="dashed" pen="ultrafat" rarrow="fnormal/normal">
 320 320 m
 304 320 l
 304 208 l
