@@ -1,4 +1,4 @@
-body {
+.overview-btnbody {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -262,7 +262,6 @@ nav a:hover {
 .overview-btn {
     border-radius:7px;
     border:none;
-    border-style:solid;
     border-width:2px;
     border-color:#3F4D92;
     background-color:#B8BED5;
