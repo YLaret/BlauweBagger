@@ -113,7 +113,7 @@ while True:
     ### READ METERS
     # disable meter reading for dev
     meters = mF.readFlowSensor()
-    #meters = [123,456,200] # Flow hydro, flow pers, pers druk
+    #meters = [123,456,789,123] # Flow hydro, flow pers, pers druk
     meters.append(mF.getValueGPIO(13)) # Mix Vol
     meters.append(mF.getValueGPIO(12)) # Mix Leeg
     meters.append(mF.getValueGPIO(11)) # Vuil Vol
@@ -223,7 +223,7 @@ while True:
                 suspend = 0
             else:
                 db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
-    # disabled for dev
+    # update meters
     for i,meter in enumerate(meterData):
         db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
     db.execute('UPDATE FORCE SET SwitchIDS = 0')

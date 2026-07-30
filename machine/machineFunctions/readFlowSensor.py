@@ -20,16 +20,14 @@ def readFlowSensor():
     # Every .read call makes the script slower. Often it is faster to read multiple register at once than seperating them
     # For example its faster to read 17 registers in 1 read than 9 seperate reads
     # Arguments - (register start address, number of registers to read, function code)
-    data= sensy_boi.read_registers(0, 13, 3)
+    data = sensy_boi.read_registers(0, 13, 3)
 
-    in0 = (6*data[0]/4095)
-    in1 = (data[1]/4095)
-    in2 = (300*data[2]/4095)
-    in3 = (data[3]/4095)
-
-    data = [in0,in1,in2]
+    in0 = (6*data[0])4095
+    in1 = (10*data[1])/4095
+    in2 = (200*data[2])/4095
+    in3 = (300*data[3])/4095
     
     # Piece of mind close out
     sensy_boi.serial.close()
     
-    return data
+    return [in0,in1,in2,in3]
