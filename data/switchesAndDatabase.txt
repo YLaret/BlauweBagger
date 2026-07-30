@@ -128,7 +128,7 @@ INSERT INTO METER (Name, Description, Value) VALUES
 ('IN1.Cyc','[A]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('IN2.Doseer','[L/min]',0)
+('IN2.Doseer','[L/min]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
 ('IN3.KFP','[bar]',0);
