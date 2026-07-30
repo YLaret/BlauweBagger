@@ -121,7 +121,7 @@ function updatePage() {
                 } else {
                     schoon.classList.remove("hmi-lvl-ok");
                 }
-                document.getElementById("hmi-pers").innerText=data.meters[2];
+                document.getElementById("hmi-pers").innerText=data.meters[3];
                 /*
                 schoon = document.getElementById("hmi-pers-container");
                 if (data.aM.pers == "OK") {
@@ -133,7 +133,7 @@ function updatePage() {
                 document.getElementById("hmi-0").innerText = data.meters[0];
                 document.getElementById("hmi-1").innerText = data.meters[1];
                 document.getElementById("hmi-2").innerText = "-";
-                document.getElementById("hmi-3").innerText = "-";
+                document.getElementById("hmi-3").innerText = data.meters[2];
             }
             // CONTROL VIEW
             if (currentPath == "/control") {
