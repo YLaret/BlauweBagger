@@ -114,12 +114,13 @@ while True:
     # disable meter reading for dev
     meters = mF.readFlowSensor()
     #meters = [123,456,789,123] # Flow hydro, flow pers, pers druk
-    meters.append(mF.getValueGPIO(13)) # Mix Vol
-    meters.append(mF.getValueGPIO(12)) # Mix Leeg
-    meters.append(mF.getValueGPIO(11)) # Vuil Vol
-    meters.append(mF.getValueGPIO(10)) # Vuil Leeg
-    meters.append(mF.getValueGPIO(9)) # Schoon Vol
-    meters.append(mF.getValueGPIO(8)) # Schoon Leeg
+    # inversed for active fluid sensors
+    meters.append(1-mF.getValueGPIO(13)) # Mix Vol
+    meters.append(1) # Mix Leeg not connected
+    meters.append(1-mF.getValueGPIO(11)) # Vuil Vol
+    meters.append(1-mF.getValueGPIO(10)) # Vuil Leeg
+    meters.append(1-mF.getValueGPIO(9)) # Schoon Vol
+    meters.append(1-mF.getValueGPIO(8)) # Schoon Leeg
     if meters[5] == 1:
         suspend = 1
     meters.append(suspend)
