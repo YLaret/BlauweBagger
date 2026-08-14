@@ -8,7 +8,6 @@ from time import sleep
 # constants
 sleepTime = 1 # [s]
 FREQ_REGISTER = 0x2001
-maxLogSize = 10e3
 
 # initialize
 controls = cF.getTable("CONTROL",0)
@@ -89,6 +88,6 @@ while True:
                 with open(LOG_PATH, "w", newline="") as f:
                     writer = csv.writer(f)
                     writer.writerow(header)
-                    writer.writerows(data[-120:])
+                    writer.writerows(data[-119:])
     # SLEEP PHASE
     sleep(sleepTime)
