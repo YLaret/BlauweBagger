@@ -8,6 +8,7 @@ from time import sleep
 # constants
 sleepTime = 1 # [s]
 FREQ_REGISTER = 0x2001
+maxLogSize = 10e3
 
 # initialize
 controls = cF.getTable("CONTROL",0)
@@ -57,27 +58,37 @@ while True:
             freq = 0
             
         # LOG PHASE
-        LOG_FILE = "control" + str(control["ControlID"])+ "_log.csv"
+        LOG_FILE = "control" + str(control["ControlID"]) + "_log.csv"
+        LOG_PATH = "../data/control/" + LOG_FILE
 
-        if not os.path.exists("../data/control/"+LOG_FILE):
-            with open("../data/control/"+LOG_FILE, "w", newline="") as f:
+        row = [
+            datetime.datetime.now().isoformat(),
+            meas,
+            control["Ref"],
+            freq
+        ]
+
+        if not os.path.exists(LOG_PATH):
+            with open(LOG_PATH, "w", newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow([
-                    datetime.datetime.now().isoformat(),
-                    meas,
-                    control["Ref"],
-                    freq
-                ])
+                writer.writerow(row)
         else:
-            with open("../data/control/"+LOG_FILE, "a", newline="", buffering=1) as f:
+            with open(LOG_PATH, "a", newline="", buffering=1) as f:
                 writer = csv.writer(f)
-                writer.writerow([
-                    datetime.datetime.now().isoformat(),
-                    meas,
-                    control["Ref"],
-                    freq
-                ])
+                writer.writerow(row)
                 f.flush()
-        
+
+            # Keep only the last 120 rows
+            with open(LOG_PATH, "r", newline="") as f:
+                rows = list(csv.reader(f))
+
+            header = rows[0]
+            data = rows[1:]
+
+            if len(data) > 120:
+                with open(LOG_PATH, "w", newline="") as f:
+                    writer = csv.writer(f)
+                    writer.writerow(header)
+                    writer.writerows(data[-120:])
     # SLEEP PHASE
     sleep(sleepTime)
