@@ -81,13 +81,11 @@ while True:
             with open(LOG_PATH, "r", newline="") as f:
                 rows = list(csv.reader(f))
 
-            header = rows[0]
-            data = rows[1:]
+            data = rows
 
             if len(data) > 120:
                 with open(LOG_PATH, "w", newline="") as f:
                     writer = csv.writer(f)
-                    writer.writerow(header)
-                    writer.writerows(data[-119:])
+                    writer.writerows(data[-120:])
     # SLEEP PHASE
     sleep(sleepTime)
