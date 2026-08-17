@@ -19,12 +19,6 @@ snooze = 0.5
 switchInterval = 0.5;
 meterLogInterval = 1;
 
-# special unloading var
-uLoad = 0
-
-# special suspend var (to pause cyclone until kfp is unloaded)
-suspend = 0
-
 # initial startTime and switchTime
 startTime = datetime.datetime.now()
 switchTime = datetime.datetime.now() - datetime.timedelta(seconds=switchInterval)
@@ -97,18 +91,8 @@ while True:
                 currentStage = stage
                 break
     elif pause == 14:
-        if uLoad == 0:
-            # special auto stage
-            currentStage = 2
-        elif uLoad == 1:
-        # calculate currentStage based on run time
-            pstages = [int(item) for item in programData[0]["StageIDS"].split(',')]
-            stageTime = 0
-            for stage in pstages:
-                stageTime = stageTime + stageData[stage-1]["Time"]
-                if stageTime > programRunTime:
-                    currentStage = stage
-                    break
+        # special auto stage
+        currentStage = 2
 
     ### READ METERS
     # disable meter reading for dev
@@ -118,7 +102,7 @@ while True:
     meters.append(mF.getValueGPIO(12))      # Mix Leeg
     # inversed for active level sensors
     meters.append(1-mF.getValueGPIO(11))    # Vuil Vol
-    meters.append(1)                        # Vuil Leeg (not connected)
+    meters.append(meterData[4]['Value'])    # Vuil Leeg (not connected)
     meters.append(1-mF.getValueGPIO(9))     # Schoon Vol
     meters.append(1-mF.getValueGPIO(8))     # Schoon Leeg
 

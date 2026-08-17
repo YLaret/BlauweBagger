@@ -149,12 +149,100 @@ INSERT INTO METER (Name, Description, Value) VALUES
 
 
 
-/* pomp aan TODO */
+/* AUTO */
+/* MIX LEEG */
+/* BAGGER.IN 1 */
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-(0,0,0,0,0,0);
+(6,0,0,5,1,0);
+/* DRUMFILTER 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,0,0,1,1,0);
+/* MIXTANK 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,0,0,2,0,0);
+/* Cycloonpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,0,0,3,0,0);
+/* Trilzeef 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,0,0,11,0,0);
+/* Doseerpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,0,0,10,0,0);
 
-/* pomp uit */
+/* MIX !LEEG */
+/* BAGGER.IN 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,5,1,0);
+/* DRUMFILTER 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,1,1,0);
+/* MIXTANK 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,2,1,0);
+/* Cycloonpomp 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,3,1,0);
+/* Trilzeef 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,11,1,0);
+/* Doseerpomp 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(6,1,1,10,1,0);
 
+/* MIX VOL */
+/* BAGGER.IN 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(5,1,1,5,0,0);
+/* DRUMFILTER 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(5,1,1,1,0,0);
+
+/* BEZINK LEEG */
+/* KFP.POMP 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(8,0,0,4,0,0);
+
+/* BEZINK !LEEG */
+/* KFP.POMP 1 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(8,1,1,4,1,0);
+
+/* BEZINK VOL */
+/* Cycloonpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(7,1,1,3,0,0);
+/* Trilzeef 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(7,1,1,11,0,0);
+/* Doseerpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(7,1,1,10,0,0);
+
+/* WATER LEEG */
+/* BAGGER.IN 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,5,0,0);
+/* DRUMFILTER 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,1,0,0);
+/* MIXTANK 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,2,0,0);
+/* Cycloonpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,3,0,0);
+/* Trilzeef 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,11,0,0);
+/* Doseerpomp 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(10,0,0,10,0,0);
+
+/* WATER VOL */
+/* WTR.UIT 0 */
+INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
+(9,1,1,9,1,0);
 
 INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 ('Clay Unload','Sequence used to unload clay','3,4,5');
