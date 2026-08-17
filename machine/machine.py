@@ -184,6 +184,8 @@ while True:
     elif (pause == 14):
         if activeSwitches:
             db.execute('UPDATE STAGE SET SwitchIDS="'+','.join(map(str,activeSwitches))+'" WHERE STAGE.StageID = 2')
+        else:
+            db.execute('UPDATE STAGE SET SwitchIDS="0" WHERE STAGE.StageID = 2')
             
     # update meters
     for i,meter in enumerate(meterData):
