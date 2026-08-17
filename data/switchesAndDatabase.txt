@@ -74,31 +74,27 @@ CREATE TABLE CONTROL (
 
 
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Drum Trommel', 18);
+('DRUMFILTER', 18);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Drum Water', 15);
+('MIXTANK', 19);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Mixer', 19);
+('CYCLOON POMP', 15);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Cycloon Pomp', 15);
+('KFP.POMP', 22);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers IN', 22);
+('BAGGER.IN', 21);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Bagger.IN', 21);
+('KFP.F', 24);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers FW', 24);
+('KFP.R', 23);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Filterpers RV', 23);
+('WTR.IN', 26);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Schoon IN', 26);
+('WTR.UIT', 27);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Schoon UIT', 27);
+('DOSEER POMP', 16);
 INSERT INTO SWITCH (Name, GPIO) VALUES
-('Rollenbank', 20);
-INSERT INTO SWITCH (Name, GPIO) VALUES
-('Doseer Pomp', 16);
-INSERT INTO SWITCH (Name, GPIO) VALUES
-('Zeef', 17);
+('TRIL ZEEF', 17);
 
 
 INSERT INTO MACHINESTATUS (ProgramID, Pause, ProgramRunTime) VALUES
@@ -151,98 +147,14 @@ INSERT INTO METER (Name, Description, Value) VALUES
 INSERT INTO METER (Name, Description, Value) VALUES
 ('Schoon Leeg','Schoonwatertank leeg',0);
 
-INSERT INTO METER (Name, Description, Value) VALUES
-('Wacht op pers','Virtuele wacht op kamerfilterpers meter',0);
 
 
 /* pomp aan TODO */
 INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('8',1,1,10,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('9',0,0,9,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('4',0,0,1,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('4',0,0,2,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',1,1,3,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',1,1,4,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',1,1,12,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',1,1,13,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('7',1,1,5,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('3',180,1,5,1,0);
+(0,0,0,0,0,0);
 
 /* pomp uit */
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('8',0,0,10,0,0);
 
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('9',1,1,9,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('9',0,0,1,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('9',0,0,2,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('4',1,1,2,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',0,0,3,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',0,0,4,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',0,0,12,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('5',0,0,13,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('6',1,1,4,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('6',1,1,12,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('6',1,1,13,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('7',0,0,5,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('3',180,0,5,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('3',245,1,-14,1,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('10',1,1,4,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('10',1,1,12,0,0);
-
-INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, SwitchBool, Stage) VALUES
-('10',1,1,13,0,0);
-
-INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
-('Clay Unload','Sequence used to unload clay','3,4,5');
 
 
 INSERT INTO FORCE (SwitchIDS) VALUES
