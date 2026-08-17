@@ -156,6 +156,8 @@ INSERT INTO METERRULES (MeterID, MeterThreshold, MeterThresholdGEQ, SwitchID, Sw
 /* pomp uit */
 
 
+INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
+('Clay Unload','Sequence used to unload clay','3,4,5');
 
 INSERT INTO FORCE (SwitchIDS) VALUES
 ('0');
