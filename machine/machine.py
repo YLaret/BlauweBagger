@@ -102,7 +102,7 @@ while True:
     meters.append(mF.getValueGPIO(12))      # Mix Leeg
     # inversed for active level sensors
     meters.append(1-mF.getValueGPIO(11))    # Vuil Vol
-    meters.append(meterData[4]['Value'])    # Vuil Leeg (not connected)
+    meters.append(meterData[7]['Value'])    # Vuil Leeg (not connected)
     meters.append(1-mF.getValueGPIO(9))     # Schoon Vol
     meters.append(1-mF.getValueGPIO(8))     # Schoon Leeg
 
