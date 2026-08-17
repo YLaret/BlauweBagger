@@ -114,16 +114,14 @@ while True:
     # disable meter reading for dev
     meters = mF.readFlowSensor()
     #meters = [123,456,789,012] # cyc.druk, cyc.amp, doseer.flow, pers.druk
-    meters.append(mF.getValueGPIO(13)) # Mix Vol
-    meters.append(mF.getValueGPIO(12)) # Mix Leeg
+    meters.append(mF.getValueGPIO(13))      # Mix Vol
+    meters.append(mF.getValueGPIO(12))      # Mix Leeg
     # inversed for active level sensors
-    meters.append(1-mF.getValueGPIO(11)) # Vuil Vol
-    meters.append(1) # Vuil Leeg (not connected)
-    meters.append(1-mF.getValueGPIO(9)) # Schoon Vol
-    meters.append(1-mF.getValueGPIO(8)) # Schoon Leeg
-    if meters[5] == 1:
-        suspend = 1
-    meters.append(suspend)
+    meters.append(1-mF.getValueGPIO(11))    # Vuil Vol
+    meters.append(1)                        # Vuil Leeg (not connected)
+    meters.append(1-mF.getValueGPIO(9))     # Schoon Vol
+    meters.append(1-mF.getValueGPIO(8))     # Schoon Leeg
+
 
     print(meters)
     # log meter data
@@ -139,42 +137,27 @@ while True:
 
     # meterrules for in auto
     if pause == 14:
-        if uLoad == 0:
-            for meterRule in meterRulesData:
-                for meter in meterData:
-                    if meterRule["MeterID"] == meter["MeterID"]:
-                        if meterRule["MeterThresholdGEQ"]:
-                            if meter["Value"] >= meterRule["MeterThreshold"]:
-                                #pause = meterRule["Stage"]
-                                if meterRule["SwitchBool"]:
-                                    if meterRule["SwitchID"] not in activeSwitches:
-                                        activeSwitches.append(meterRule["SwitchID"])
-                                    if meterRule["SwitchID"] == -14:
-                                        uLoad = 1
-                                        programRunTime = 0
-                                        pstages = [int(item) for item in programData[0]["StageIDS"].split(',')]
-                                        stageTime = 0
-                                        for stage in pstages:
-                                            stageTime = stageTime + stageData[stage-1]["Time"]
-                                            if stageTime > programRunTime:
-                                                currentStage = stage
-                                                break
-                                else:
-                                    if meterRule["SwitchID"] in activeSwitches:
-                                        activeSwitches.remove(meterRule["SwitchID"])
-                        else:
-                            if meter["Value"] <= meterRule["MeterThreshold"]:
-                                #pause = meterRule["Stage"]
-                                if meterRule["SwitchBool"]:
-                                    if meterRule["SwitchID"] not in activeSwitches:
-                                        activeSwitches.append(meterRule["SwitchID"])
-                                else:
-                                    if meterRule["SwitchID"] in activeSwitches:
-                                        activeSwitches.remove(meterRule["SwitchID"])
-        elif uLoad == 1:
-            activeSwitches = [int(item) for item in stageData[currentStage-1]["SwitchIDS"].split(',')]
-            
-
+        for meterRule in meterRulesData:
+            for meter in meterData:
+                if meterRule["MeterID"] == meter["MeterID"]:
+                    if meterRule["MeterThresholdGEQ"]:
+                        if meter["Value"] >= meterRule["MeterThreshold"]:
+                            #pause = meterRule["Stage"]
+                            if meterRule["SwitchBool"]:
+                                if meterRule["SwitchID"] not in activeSwitches:
+                                    activeSwitches.append(meterRule["SwitchID"])
+                            else:
+                                if meterRule["SwitchID"] in activeSwitches:
+                                    activeSwitches.remove(meterRule["SwitchID"])
+                    else:
+                        if meter["Value"] <= meterRule["MeterThreshold"]:
+                            #pause = meterRule["Stage"]
+                            if meterRule["SwitchBool"]:
+                                if meterRule["SwitchID"] not in activeSwitches:
+                                    activeSwitches.append(meterRule["SwitchID"])
+                            else:
+                                if meterRule["SwitchID"] in activeSwitches:
+                                    activeSwitches.remove(meterRule["SwitchID"])
     
     # send data to switches
     if (datetime.datetime.now() - switchTime).total_seconds() >= switchInterval:
@@ -217,20 +200,14 @@ while True:
     elif (pause == 14):
         if activeSwitches:
             db.execute('UPDATE STAGE SET SwitchIDS="'+','.join(map(str,activeSwitches))+'" WHERE STAGE.StageID = 2')
-        if uLoad == 1:
-            if stageTime < programRunTime:
-                print("Finished Unloading!")
-                uLoad = 0
-                suspend = 0
-            else:
-                db.execute('UPDATE MACHINESTATUS SET ProgramRunTime = ' + str(programRunTime + loopTime))
+            
     # update meters
     for i,meter in enumerate(meterData):
         db.execute('UPDATE METER SET Value = ' +str(meters[i]) +' WHERE MeterID = '+str(meter["MeterID"]))
     db.execute('UPDATE FORCE SET SwitchIDS = 0')
     
-    # if cyclone on
-    if 4 in activeSwitches:
+    # if cyclone on (SwitchID=3 of cyclone pump)
+    if 3 in activeSwitches:
         db.execute('UPDATE CONTROL SET cyclOn=1 WHERE ControlID = 1')
     else:
         db.execute('UPDATE CONTROL SET cyclOn=0 WHERE ControlID = 1')
