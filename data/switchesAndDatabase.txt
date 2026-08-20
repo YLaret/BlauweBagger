@@ -69,7 +69,7 @@ CREATE TABLE CONTROL (
     Kd REAL,
     cyclOn INTEGER,
     auto INTEGER,
-    VFDAdress TEXT
+    VFDAddress TEXT
 );
 
 
@@ -118,16 +118,16 @@ INSERT INTO STAGE (Name, SwitchIDS, Time) VALUES
 
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('IN0.Cyc','[bar]',0);
+('IN0.CycIN','[bar]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('IN1.Cyc','[A]',0);
+('IN1.CycIN','[A]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
 ('IN2.Doseer','[L/min]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
-('IN3.KFP','[bar]',0);
+('IN3.CycOF','[L/min]',0);
 
 INSERT INTO METER (Name, Description, Value) VALUES
 ('Mix Vol','Mixtank vol',0);
@@ -250,8 +250,11 @@ INSERT INTO PROGRAM (Name, Description, StageIDS) VALUES
 INSERT INTO FORCE (SwitchIDS) VALUES
 ('0');
 
-INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, cyclOn, auto, VFDAdress) VALUES
-('Hydrocycloon druk','1.8',1,'bar',40,2,0,0.5,0,1,'1');
+INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, cyclOn, auto, VFDAddress) VALUES
+('Hydrocycloon druk','1.8',1,'bar',40,2,0,0.5,0,0,'1');
+
+INSERT INTO CONTROL (Name, Ref, MeterID, Unit, Freq, Kp, Ki, Kd, cyclOn, auto, VFDAddress) VALUES
+('Flocculant','8',4,'L/min',40,2,0,0.5,0,0,'2');
 
 %%%% EXCLUDE %%%%
 INSERT INTO SWITCH (Name, TuyaID, LocalKey, IPAddress, TuyaVersion) VALUES

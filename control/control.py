@@ -47,7 +47,7 @@ while True:
                 freq = control["Freq"]
             
             value = int(freq * 10)
-            result = vfd.write_register(FREQ_REGISTER, value, no_response_expected=True)
+            result = vfd.write_register(FREQ_REGISTER, value, device_id=int(control["VFDAddress"]), no_response_expected=True)
 
             # WRITE PHASE
             cF.writeFrequency(control["ControlID"],freq)
