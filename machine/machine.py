@@ -198,6 +198,12 @@ while True:
     else:
         db.execute('UPDATE CONTROL SET cyclOn=0 WHERE ControlID = 1')
     
+    # if cyclone on (SwitchID=3 of cyclone pump)
+    if 10 in activeSwitches:
+        db.execute('UPDATE CONTROL SET cyclOn=1 WHERE ControlID = 2')
+    else:
+        db.execute('UPDATE CONTROL SET cyclOn=0 WHERE ControlID = 2')
+    
     db.commit()
     db.close()
     
