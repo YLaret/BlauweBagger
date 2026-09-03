@@ -17,7 +17,7 @@ for control in controls:
 
 # CONNECT VFD
 vfd = ModbusSerialClient(
-    port='/dev/serial/by-id/usb-FTDI_USB_Serial_Converter_FTB6SPL3-if00-port0',
+    port='/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_BG04PPD8-if00-port0',
     baudrate=9600,
     parity='N',
     stopbits=1,
